@@ -792,6 +792,12 @@ body .nav-folder-title { font-weight: 700; }
    both row types reserve the gutter and the triangle is taken out of the inline flow,
    so no row can sit to the left of its own parent. */
 body :is(.nav-folder-title, .nav-file-title) { position: relative; padding-left: var(--amiga-tree-gutter); }
+/* Obsidian draws its own indentation guides from its nav metrics. This explorer
+   rebuilds the gutter so the disclosure triangle hangs inside it, which puts those
+   guides straight through the triangles. The Workbench connector rail below replaces
+   them, dropping from under the parent's triangle rather than crossing it. */
+body { --nav-indentation-guide-color: transparent; }
+body .nav-indentation-guide { display: none; }
 body .nav-folder-children.tree-item-children { margin-left: var(--amiga-tree-rail); padding-left: var(--amiga-tree-step); border-left: 1px solid color-mix(in srgb, var(--amiga-accent) 42%, var(--amiga-border-middle)); }
 body .nav-folder-title > .collapse-icon { position: absolute; top: 0; bottom: 0; left: 4px; display: grid; place-items: center; flex: none; width: 12px; min-width: 12px; height: auto; margin: 0; padding: 0; background: none; color: var(--amiga-accent); transform: none; }
 body .nav-folder-title > .collapse-icon::before { content: none; }
