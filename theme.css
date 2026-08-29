@@ -693,8 +693,8 @@ body :is(.workspace-leaf, .workspace-sidedock, .mod-left-split, .mod-right-split
   box-shadow: var(--amiga-window-bevel);
 }
 body :is(.workspace-leaf-content, .workspace-sidedock .workspace-leaf-content, .markdown-source-view, .markdown-reading-view) { background: var(--amiga-window); }
-body .workspace-sidedock-vault-profile :is(.clickable-icon, .workspace-drawer-active-note-icon) { color: var(--amiga-text); opacity: 1; }
-body .workspace-sidedock-vault-profile :is(.clickable-icon, .workspace-drawer-active-note-icon) svg { color: currentColor; opacity: 1; }
+body .workspace-sidedock-vault-profile .clickable-icon { color: var(--amiga-text); opacity: 1; }
+body .workspace-sidedock-vault-profile .clickable-icon svg { color: currentColor; opacity: 1; }
 body .workspace-leaf-resize-handle { background: var(--amiga-desktop); border-inline: 1px solid var(--amiga-border-dark); }
 
 /* Native actions retain their handlers; each known action gets its own pictogram. */
