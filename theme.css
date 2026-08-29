@@ -466,6 +466,12 @@ body {
   --amiga-pressed-bevel: inset 1px 1px 0 var(--amiga-border-dark);
   --amiga-window-gap: 3px;
   --amiga-gadget-size: 1.75rem;
+  /* Explorer indent. Every row reserves the same left gutter and the disclosure
+     triangle hangs inside it, so a file's label lines up with its folder's label
+     instead of sitting to the left of it. */
+  --amiga-tree-gutter: 20px;
+  --amiga-tree-rail: 9px;
+  --amiga-tree-step: 5px;
   /* Chrome text follows the reader's interface font and font-size setting: Obsidian
      derives --font-ui-* from --font-text-size, so the shell scales with the slider
      instead of sitting at a fixed 13px. */
@@ -615,12 +621,18 @@ body :is(.view-actions .clickable-icon, .view-actions .view-action, .markdown-so
 body :is(.nav-files-container, .workspace-leaf-content[data-type="file-explorer"]) { padding-left: 0.35rem; background: var(--amiga-window); font: var(--amiga-chrome-size) var(--amiga-chrome-font); }
 body :is(.nav-folder-title, .nav-file-title, .tree-item-self) { min-height: 27px; padding: 0 0.25rem; border: 0; border-radius: 0; color: var(--amiga-text); font: 600 var(--amiga-chrome-size)/1.5 var(--amiga-chrome-font); }
 body .nav-folder-title { font-weight: 700; }
-body .nav-folder-children.tree-item-children { margin-left: 0; padding-left: 7px; border-left: 1px solid color-mix(in srgb, var(--amiga-accent) 42%, var(--amiga-border-middle)); }
-body .nav-folder-title > .collapse-icon { position: relative; flex: 0 0 12px; width: 12px; min-width: 12px; height: 27px; margin: 0 5px 0 0; padding: 0; background: none; color: var(--amiga-accent); transform: none; }
+
+/* Obsidian gives every nav row a left inset that the disclosure triangle hangs into,
+   which is what keeps a file's label aligned with its folder's. Restore that here:
+   both row types reserve the gutter and the triangle is taken out of the inline flow,
+   so no row can sit to the left of its own parent. */
+body :is(.nav-folder-title, .nav-file-title) { position: relative; padding-left: var(--amiga-tree-gutter); }
+body .nav-folder-children.tree-item-children { margin-left: var(--amiga-tree-rail); padding-left: var(--amiga-tree-step); border-left: 1px solid color-mix(in srgb, var(--amiga-accent) 42%, var(--amiga-border-middle)); }
+body .nav-folder-title > .collapse-icon { position: absolute; top: 0; bottom: 0; left: 4px; display: grid; place-items: center; flex: none; width: 12px; min-width: 12px; height: auto; margin: 0; padding: 0; background: none; color: var(--amiga-accent); transform: none; }
 body .nav-folder-title > .collapse-icon::before { content: none; }
 body .nav-folder-title > .collapse-icon svg { visibility: hidden; transform: none; }
-body .nav-folder-title > .collapse-icon::after { position: absolute; top: 9px; left: 2px; width: 0; height: 0; border-block: 5px solid transparent; border-left: 8px solid var(--amiga-accent); content: ""; }
-body .nav-folder-title > .collapse-icon:not(.is-collapsed)::after { top: 11px; left: 0; border: 6px solid transparent; border-top: 8px solid var(--amiga-accent); }
+body .nav-folder-title > .collapse-icon::after { width: 0; height: 0; border-block: 5px solid transparent; border-left: 8px solid var(--amiga-accent); content: ""; }
+body .nav-folder-title > .collapse-icon:not(.is-collapsed)::after { margin-top: 2px; border: 6px solid transparent; border-top: 8px solid var(--amiga-accent); }
 body :is(.nav-file-title.is-active, .tree-item-self.is-active, .tree-item-self[aria-selected="true"]) { border: 1px solid var(--amiga-border-dark); background: var(--amiga-selection); color: var(--amiga-text-title); box-shadow: none; }
 
 /* One native metadata list, rendered as a single Workbench requester table. */
