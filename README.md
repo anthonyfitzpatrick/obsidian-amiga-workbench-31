@@ -67,20 +67,7 @@ is hidden behind a gradient or an image.
 | Spacing unit | 0.5rem | The most generous of the three |
 | Control height | 2.125rem | The largest gadgets |
 
-<!-- SCREENSHOT 03 -->
-> ### 📷 Screenshot 03 — Ribbon, explorer and tab bar detail
-> **Save as:** `docs/images/03-chrome-detail.png`
->
-> **What this image must show:** A close crop of the left-hand chrome: the ribbon with its hand-drawn pictograms, the file explorer showing nested folders with their disclosure triangles and connector rails, and the tab bar along the top with at least three tabs open and one active.
->
-> **How to capture it:**
-> 1. Light mode, as Screenshot 01.
-> 2. Open **three or four tabs** so the tab bar is populated and one is clearly active.
-> 3. Expand folders to at least **three levels deep** so the indentation is obvious.
-> 4. Capture the whole window as above, then crop to the left third plus the tab bar — roughly **700 × 600**.
-> 5. Do not scale the image down afterwards; these are pixel-drawn details and they blur easily.
->
-> *Delete this block and replace it with:* `![Ribbon, explorer and tab bar detail](docs/images/03-chrome-detail.png)`
+![Ribbon and file explorer](docs/images/03-chrome-detail.png)
 
 ## What is covered
 
