@@ -177,6 +177,51 @@ body :where(button, .button, input, select, textarea, a, .clickable-icon, .works
 
 body.is-mobile { --amiga-control-height: 2.5rem; }
 
+/* Mobile. The Workbench chrome is drawn for a pointer and a wide pane; a phone needs
+   bigger targets and a properties table that stacks instead of reserving a fixed
+   240px key column that cannot fit. */
+body.is-mobile {
+  --amiga-scrollbar-width: 10px;
+  --amiga-tree-gutter: 24px;
+  --amiga-window-gap: 2px;
+}
+body.is-mobile .metadata-property { grid-template-columns: minmax(0, 1fr); }
+body.is-mobile .metadata-property-key { border-right: 0; border-bottom: var(--amiga-border-width) solid var(--amiga-border-dark); }
+body.is-mobile :is(.workspace-tab-header, .view-header, .status-bar-item) { min-height: var(--amiga-control-height); }
+body.is-phone .workspace-ribbon { width: auto; min-width: 0; }
+
+@media (prefers-contrast: more) {
+  body {
+    --amiga-border-middle: var(--amiga-border-dark);
+    --amiga-text-muted: var(--amiga-text);
+    --amiga-focus-width: 3px;
+  }
+}
+
+/* Print and PDF export. A desktop palette belongs on screen, not on paper. */
+@media print {
+  body {
+    --amiga-desktop: #ffffff;
+    --amiga-window: #ffffff;
+    --amiga-panel: #ffffff;
+    --amiga-surface-raised: #ffffff;
+    --amiga-surface-recessed: #ffffff;
+    --amiga-input-background: #ffffff;
+    --amiga-text: #000000;
+    --amiga-text-muted: #333333;
+    --amiga-text-title: #000000;
+    --amiga-titlebar: #ffffff;
+    --amiga-selection: transparent;
+    --amiga-border-light: #ffffff;
+    --amiga-border-middle: #808080;
+    --amiga-border-dark: #000000;
+    --amiga-window-bevel: none;
+    --amiga-raised-bevel: none;
+    --amiga-recessed-bevel: none;
+    --amiga-pressed-bevel: none;
+  }
+}
+
 
 .workspace, .app-container { background: var(--amiga-desktop); }
 
@@ -317,12 +362,132 @@ input[type="checkbox"] { accent-color: var(--amiga-accent); }
 ::-webkit-scrollbar-thumb { background: var(--amiga-surface-raised); }
 
 
-.menu, .suggestion-container, .prompt, .modal { padding: var(--amiga-spacing-unit); border-radius: 0; }
-.menu-item, .suggestion-item { border-radius: 0; }
-.menu-item.selected, .suggestion-item.is-selected { background: var(--amiga-selection); color: var(--amiga-text-title); }
-.modal-title, .prompt-title { background: var(--amiga-titlebar); color: var(--amiga-text-title); padding: calc(var(--amiga-spacing-unit) / 2); box-shadow: var(--amiga-raised-bevel); }
-.notice { background: var(--amiga-panel); color: var(--amiga-text); }
-.tooltip { background: var(--amiga-text); color: var(--amiga-window); border-radius: 0; }
+/* Menus, palettes, requesters and notices share one Workbench overlay idiom: a hard
+   frame with no radius or blur, a title strip where there is a title, square rows, and
+   a solid selection bar. These are the surfaces a reader touches every few minutes. */
+
+.menu,
+.suggestion-container,
+.prompt,
+.modal,
+.popover {
+  padding: var(--amiga-spacing-unit);
+  border: var(--amiga-border-width) solid var(--amiga-border-dark);
+  border-radius: 0;
+  background: var(--amiga-window);
+  color: var(--amiga-text);
+  box-shadow: var(--amiga-window-bevel);
+}
+
+.modal-bg { backdrop-filter: none; }
+
+.modal-title,
+.prompt-title {
+  padding: calc(var(--amiga-spacing-unit) / 2);
+  border-bottom: var(--amiga-border-width) solid var(--amiga-border-dark);
+  background: var(--amiga-titlebar);
+  color: var(--amiga-text-title);
+  box-shadow: var(--amiga-raised-bevel);
+  font-family: var(--font-interface);
+  font-weight: var(--amiga-control-weight);
+}
+
+.modal-close-button {
+  border: var(--amiga-border-width) solid var(--amiga-border-dark);
+  border-radius: 0;
+  background: var(--amiga-surface-raised);
+  color: var(--amiga-text);
+}
+
+/* Command palette and quick switcher: a recessed entry field over square result rows. */
+.prompt-input {
+  border: var(--amiga-border-width) solid var(--amiga-border-dark);
+  border-radius: 0;
+  background: var(--amiga-input-background);
+  box-shadow: var(--amiga-recessed-bevel);
+  color: var(--amiga-text);
+  font-family: var(--font-interface);
+}
+
+.prompt-results { padding: 0; }
+
+.menu-item,
+.suggestion-item {
+  min-height: var(--amiga-control-height);
+  padding: 0 var(--amiga-spacing-unit);
+  border-radius: 0;
+  color: var(--amiga-text);
+  font-family: var(--font-interface);
+  font-size: var(--font-ui-small);
+}
+
+.menu-item:hover,
+.suggestion-item:hover { background: var(--amiga-hover); color: var(--amiga-text); }
+
+.menu-item.selected,
+.suggestion-item.is-selected {
+  background: var(--amiga-selection);
+  color: var(--amiga-text-title);
+}
+
+/* Secondary text inside a selected row must follow the bar, not the page. */
+.menu-item.selected :is(.menu-item-icon, .menu-item-title),
+.suggestion-item.is-selected :is(.suggestion-note, .suggestion-prefix, .suggestion-flair, .suggestion-aux) { color: inherit; }
+
+.menu-item-icon,
+.suggestion-flair { color: var(--amiga-text-accent); }
+
+.suggestion-note,
+.suggestion-prefix,
+.suggestion-empty { color: var(--amiga-text-muted); }
+
+.menu-separator {
+  margin: calc(var(--amiga-spacing-unit) / 2) 0;
+  border-top: var(--amiga-border-width) solid var(--amiga-border-middle);
+}
+
+/* Keyboard hints read as small raised gadgets, the way Workbench drew key labels. */
+.suggestion-hotkey,
+.prompt-instruction-command {
+  padding: 0 calc(var(--amiga-spacing-unit) / 2);
+  border: var(--amiga-border-width) solid var(--amiga-border-dark);
+  border-radius: 0;
+  background: var(--amiga-surface-raised);
+  box-shadow: var(--amiga-raised-bevel);
+  color: var(--amiga-text);
+  font-family: var(--font-monospace);
+  font-size: var(--font-ui-smaller);
+}
+
+.prompt-instructions {
+  padding-top: calc(var(--amiga-spacing-unit) / 2);
+  border-top: var(--amiga-border-width) solid var(--amiga-border-dark);
+  background: var(--amiga-panel);
+  color: var(--amiga-text-muted);
+  font-size: var(--font-ui-smaller);
+}
+
+.notice {
+  border: var(--amiga-border-width) solid var(--amiga-border-dark);
+  border-radius: 0;
+  background: var(--amiga-panel);
+  box-shadow: var(--amiga-raised-bevel);
+  color: var(--amiga-text);
+  font-family: var(--font-interface);
+  font-size: var(--font-ui-small);
+}
+
+.tooltip {
+  border: var(--amiga-border-width) solid var(--amiga-border-dark);
+  border-radius: 0;
+  background: var(--amiga-titlebar);
+  color: var(--amiga-text-title);
+  box-shadow: none;
+  font-family: var(--font-interface);
+  font-size: var(--font-ui-smaller);
+}
+
+.tooltip .tooltip-arrow { display: none; }
 
 
 code,
@@ -523,9 +688,9 @@ body .workspace-ribbon :is(.side-dock-ribbon-action, .clickable-icon) {
   color: var(--amiga-text);
   opacity: 1;
 }
-body .workspace-ribbon :is(.side-dock-ribbon-action, .clickable-icon) svg { visibility: visible; width: 26px; height: 26px; color: var(--amiga-border-dark); stroke-width: 2; stroke-linecap: square; stroke-linejoin: miter; }
+body .workspace-ribbon :is(.side-dock-ribbon-action, .clickable-icon) svg { visibility: visible; width: 26px; height: 26px; color: var(--amiga-text); stroke-width: 2; stroke-linecap: square; stroke-linejoin: miter; }
 body .workspace-ribbon [aria-label]::before { position: absolute; width: 26px; height: 26px; pointer-events: none; content: ""; background: center / 26px 26px no-repeat; }
-body .workspace-ribbon :is([aria-label="Publishing Manager"], [aria-label="Open quick switcher"], [aria-label="Open graph view"], [aria-label="Create new canvas"], [aria-label="Insert template"], [aria-label="Open command palette"], [aria-label="Create new base"], [aria-label="Open format converter"], [aria-label="Create excel file"], [aria-label="Templater"], [aria-label="Open Git source control"], [aria-label="Open panel"], [aria-label="Open Docker Connector"], [aria-label="Open Cadence"], [aria-label="Cadence quick capture"]) svg { visibility: hidden; }
+body .workspace-ribbon :is([aria-label="Open quick switcher"], [aria-label="Open graph view"], [aria-label="Create new canvas"], [aria-label="Insert template"], [aria-label="Open command palette"], [aria-label="Create new base"], [aria-label="Templater"], [aria-label="Open Git source control"]) svg { visibility: hidden; }
 body .workspace-ribbon :is(.side-dock-ribbon-action, .clickable-icon):hover { background: color-mix(in srgb, var(--amiga-accent) 16%, var(--amiga-window)); color: var(--amiga-text); }
 body .workspace-ribbon :is(.side-dock-ribbon-action, .clickable-icon):is(:active, .is-active, [aria-pressed="true"]) {
   background: var(--amiga-accent);
@@ -651,7 +816,6 @@ body .metadata-property-value .multi-select-container { display: flex; flex: 1 1
 body .metadata-property-value .multi-select-pill { flex: 1 1 auto; min-width: 0; margin: 0; padding: 0; border: 0; border-radius: 0; overflow: hidden; background: transparent; box-shadow: none; color: inherit; white-space: nowrap; text-overflow: ellipsis; font-family: var(--font-interface); font-size: var(--font-ui-small); font-weight: 400; line-height: 1.25; }
 body .metadata-property-value .multi-select-pill :is(.clickable-icon, button) { display: none; }
 body .metadata-property-value .multi-select-input { min-width: 0; margin: 0; padding: 0; border: 0; background: transparent; color: inherit; font-family: var(--font-interface); font-size: var(--font-ui-small); font-weight: 400; line-height: 1.25; }
-body .metadata-property:is([data-property-key="role"], [data-property-key="gender"], [data-property-key="status"]) .multi-select-input { flex: 0 0 26px; width: 26px; min-width: 26px; height: 26px; min-height: 26px; margin: 0 4px 0 auto; padding: 0; border: 1px solid var(--amiga-border-dark); border-radius: 0; appearance: none; background: linear-gradient(45deg, transparent 50%, var(--amiga-border-dark) 51%) calc(50% - 3px) 8px / 6px no-repeat, linear-gradient(-45deg, transparent 50%, var(--amiga-border-dark) 51%) calc(50% + 3px) 8px / 6px no-repeat, var(--amiga-accent); box-shadow: inset 1px 1px 0 var(--amiga-border-light), inset -1px -1px 0 var(--amiga-border-middle); color: transparent; caret-color: transparent; cursor: pointer; opacity: 1; visibility: visible; }
 body .metadata-property-warning-icon { position: absolute; display: none !important; }
 body .metadata-property-value:focus-within { outline: 2px solid var(--amiga-focus); outline-offset: -2px; }
 body .metadata-add-button { min-height: 30px; margin: 3px 0.4rem; padding: 0.1rem 0.55rem; border: 2px solid var(--amiga-border-dark); border-radius: 0; background: var(--amiga-accent); box-shadow: inset 1px 1px 0 var(--amiga-border-light), inset -1px -1px 0 var(--amiga-border-middle); color: var(--amiga-border-dark); font-family: var(--font-interface); font-size: var(--font-ui-small); font-weight: 700; line-height: 1.25; text-transform: uppercase; }
@@ -807,38 +971,87 @@ body.theme-dark {
 
 
 /* Workbench ribbon pictograms. Generated per personality by tools/build.mjs.
+   Only actions every vault has, plus two ubiquitous community plugins, are
+   drawn; anything else keeps its own icon under the shared ribbon treatment.
    %23ffffff, %23000000 and %23aa907c are substituted from each personality's icon tokens. */
-body.theme-light .workspace-ribbon [aria-label="Publishing Manager"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M4 8h15v25H4zM23 8h15v25H23z' fill='%23ffffff' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M21 8v25' stroke='%23aa907c' stroke-width='4'/%3E%3Cpath d='M7 14h9m9 0h10' stroke='%23000000' stroke-width='2'/%3E%3C/svg%3E"); }
 body.theme-light .workspace-ribbon [aria-label="Open quick switcher"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Ccircle cx='17' cy='17' r='11' fill='%23ffffff' stroke='%23000000' stroke-width='4'/%3E%3Cpath d='m25 25 11 11' stroke='%23aa907c' stroke-width='6'/%3E%3C/svg%3E"); }
 body.theme-light .workspace-ribbon [aria-label="Open graph view"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M8 29 20 10l14 20M8 29h26' fill='none' stroke='%23000000' stroke-width='3'/%3E%3Ccircle cx='8' cy='29' r='5' fill='%23aa907c' stroke='%23000000' stroke-width='2'/%3E%3Ccircle cx='20' cy='10' r='5' fill='%23ffffff' stroke='%23000000' stroke-width='2'/%3E%3Ccircle cx='34' cy='30' r='5' fill='%23aa907c' stroke='%23000000' stroke-width='2'/%3E%3C/svg%3E"); }
 body.theme-light .workspace-ribbon [aria-label="Create new canvas"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect x='4' y='6' width='16' height='12' fill='%23ffffff' stroke='%23000000' stroke-width='3'/%3E%3Crect x='22' y='24' width='16' height='12' fill='%23ffffff' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M20 12h10v12' fill='none' stroke='%23aa907c' stroke-width='3'/%3E%3C/svg%3E"); }
 body.theme-light .workspace-ribbon [aria-label="Insert template"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M8 4h19l7 7v27H8z' fill='%23ffffff' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M27 4v8h7' fill='%23aa907c' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M13 19h16m-16 6h16m-16 6h11' stroke='%23000000' stroke-width='2'/%3E%3C/svg%3E"); }
 body.theme-light .workspace-ribbon [aria-label="Open command palette"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect x='5' y='8' width='32' height='26' fill='%23ffffff' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M5 17h32M14 17v17m14-17v17' stroke='%23000000' stroke-width='2'/%3E%3Crect x='16' y='20' width='8' height='5' fill='%23aa907c' stroke='%23000000' stroke-width='1'/%3E%3C/svg%3E"); }
 body.theme-light .workspace-ribbon [aria-label="Create new base"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cellipse cx='21' cy='9' rx='14' ry='5' fill='%23ffffff' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M7 9v20c0 7 28 7 28 0V9M7 19c0 7 28 7 28 0' fill='none' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M29 24h9m-4-4v8' stroke='%23aa907c' stroke-width='3'/%3E%3C/svg%3E"); }
-body.theme-light .workspace-ribbon [aria-label="Open format converter"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M5 8h13v12H5zM24 22h13v12H24z' fill='%23ffffff' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M20 12h12m-4-5 5 5-5 5M22 30H10m4-5-5 5 5 5' fill='none' stroke='%23aa907c' stroke-width='3'/%3E%3C/svg%3E"); }
-body.theme-light .workspace-ribbon [aria-label="Create excel file"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect x='5' y='5' width='32' height='32' fill='%23ffffff' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M5 15h32M5 25h32M15 5v32M26 5v32' stroke='%23000000' stroke-width='2'/%3E%3Crect x='17' y='17' width='7' height='6' fill='%23aa907c'/%3E%3C/svg%3E"); }
 body.theme-light .workspace-ribbon [aria-label="Templater"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M8 4h20l6 6v28H8z' fill='%23ffffff' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M28 4v7h6' fill='%23aa907c' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M23 16l-9 11h6l-2 9 9-11h-6z' fill='%23aa907c' stroke='%23000000' stroke-width='2'/%3E%3C/svg%3E"); }
 body.theme-light .workspace-ribbon [aria-label="Open Git source control"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M10 9v24m0-12h13m0-12v24' fill='none' stroke='%23000000' stroke-width='3'/%3E%3Ccircle cx='10' cy='9' r='5' fill='%23ffffff' stroke='%23000000' stroke-width='2'/%3E%3Ccircle cx='10' cy='33' r='5' fill='%23aa907c' stroke='%23000000' stroke-width='2'/%3E%3Ccircle cx='23' cy='21' r='5' fill='%23ffffff' stroke='%23000000' stroke-width='2'/%3E%3Ccircle cx='23' cy='9' r='5' fill='%23aa907c' stroke='%23000000' stroke-width='2'/%3E%3Ccircle cx='23' cy='33' r='5' fill='%23ffffff' stroke='%23000000' stroke-width='2'/%3E%3C/svg%3E"); }
-body.theme-light .workspace-ribbon [aria-label="Open panel"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect x='4' y='7' width='34' height='28' fill='%23ffffff' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M4 15h34M15 15v20' stroke='%23000000' stroke-width='2'/%3E%3Crect x='19' y='19' width='14' height='4' fill='%23aa907c'/%3E%3Crect x='19' y='27' width='10' height='3' fill='%23000000'/%3E%3C/svg%3E"); }
-body.theme-light .workspace-ribbon [aria-label="Open Docker Connector"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M7 21h28M12 12v18m9-18v18m9-18v18' stroke='%23000000' stroke-width='3'/%3E%3Ccircle cx='7' cy='21' r='5' fill='%23aa907c' stroke='%23000000' stroke-width='2'/%3E%3Ccircle cx='35' cy='21' r='5' fill='%23ffffff' stroke='%23000000' stroke-width='2'/%3E%3C/svg%3E"); }
-body.theme-light .workspace-ribbon [aria-label="Open Cadence"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect x='6' y='8' width='30' height='28' fill='%23ffffff' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M6 17h30M14 5v7m14-7v7M13 23h6m4 0h6m-16 7h6m4 0h6' stroke='%23000000' stroke-width='3'/%3E%3Crect x='23' y='23' width='6' height='6' fill='%23aa907c'/%3E%3C/svg%3E"); }
-body.theme-light .workspace-ribbon [aria-label="Cadence quick capture"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M8 5h20l6 6v26H8z' fill='%23ffffff' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M28 5v7h6' fill='%23aa907c' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M13 22h16m-8-8v16' stroke='%23000000' stroke-width='3'/%3E%3C/svg%3E"); }
 
 
 /* Workbench ribbon pictograms. Generated per personality by tools/build.mjs.
+   Only actions every vault has, plus two ubiquitous community plugins, are
+   drawn; anything else keeps its own icon under the shared ribbon treatment.
    %23d8d2ca, %23100f0e and %23aa907c are substituted from each personality's icon tokens. */
-body.theme-dark .workspace-ribbon [aria-label="Publishing Manager"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M4 8h15v25H4zM23 8h15v25H23z' fill='%23d8d2ca' stroke='%23100f0e' stroke-width='3'/%3E%3Cpath d='M21 8v25' stroke='%23aa907c' stroke-width='4'/%3E%3Cpath d='M7 14h9m9 0h10' stroke='%23100f0e' stroke-width='2'/%3E%3C/svg%3E"); }
 body.theme-dark .workspace-ribbon [aria-label="Open quick switcher"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Ccircle cx='17' cy='17' r='11' fill='%23d8d2ca' stroke='%23100f0e' stroke-width='4'/%3E%3Cpath d='m25 25 11 11' stroke='%23aa907c' stroke-width='6'/%3E%3C/svg%3E"); }
 body.theme-dark .workspace-ribbon [aria-label="Open graph view"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M8 29 20 10l14 20M8 29h26' fill='none' stroke='%23100f0e' stroke-width='3'/%3E%3Ccircle cx='8' cy='29' r='5' fill='%23aa907c' stroke='%23100f0e' stroke-width='2'/%3E%3Ccircle cx='20' cy='10' r='5' fill='%23d8d2ca' stroke='%23100f0e' stroke-width='2'/%3E%3Ccircle cx='34' cy='30' r='5' fill='%23aa907c' stroke='%23100f0e' stroke-width='2'/%3E%3C/svg%3E"); }
 body.theme-dark .workspace-ribbon [aria-label="Create new canvas"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect x='4' y='6' width='16' height='12' fill='%23d8d2ca' stroke='%23100f0e' stroke-width='3'/%3E%3Crect x='22' y='24' width='16' height='12' fill='%23d8d2ca' stroke='%23100f0e' stroke-width='3'/%3E%3Cpath d='M20 12h10v12' fill='none' stroke='%23aa907c' stroke-width='3'/%3E%3C/svg%3E"); }
 body.theme-dark .workspace-ribbon [aria-label="Insert template"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M8 4h19l7 7v27H8z' fill='%23d8d2ca' stroke='%23100f0e' stroke-width='3'/%3E%3Cpath d='M27 4v8h7' fill='%23aa907c' stroke='%23100f0e' stroke-width='3'/%3E%3Cpath d='M13 19h16m-16 6h16m-16 6h11' stroke='%23100f0e' stroke-width='2'/%3E%3C/svg%3E"); }
 body.theme-dark .workspace-ribbon [aria-label="Open command palette"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect x='5' y='8' width='32' height='26' fill='%23d8d2ca' stroke='%23100f0e' stroke-width='3'/%3E%3Cpath d='M5 17h32M14 17v17m14-17v17' stroke='%23100f0e' stroke-width='2'/%3E%3Crect x='16' y='20' width='8' height='5' fill='%23aa907c' stroke='%23100f0e' stroke-width='1'/%3E%3C/svg%3E"); }
 body.theme-dark .workspace-ribbon [aria-label="Create new base"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cellipse cx='21' cy='9' rx='14' ry='5' fill='%23d8d2ca' stroke='%23100f0e' stroke-width='3'/%3E%3Cpath d='M7 9v20c0 7 28 7 28 0V9M7 19c0 7 28 7 28 0' fill='none' stroke='%23100f0e' stroke-width='3'/%3E%3Cpath d='M29 24h9m-4-4v8' stroke='%23aa907c' stroke-width='3'/%3E%3C/svg%3E"); }
-body.theme-dark .workspace-ribbon [aria-label="Open format converter"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M5 8h13v12H5zM24 22h13v12H24z' fill='%23d8d2ca' stroke='%23100f0e' stroke-width='3'/%3E%3Cpath d='M20 12h12m-4-5 5 5-5 5M22 30H10m4-5-5 5 5 5' fill='none' stroke='%23aa907c' stroke-width='3'/%3E%3C/svg%3E"); }
-body.theme-dark .workspace-ribbon [aria-label="Create excel file"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect x='5' y='5' width='32' height='32' fill='%23d8d2ca' stroke='%23100f0e' stroke-width='3'/%3E%3Cpath d='M5 15h32M5 25h32M15 5v32M26 5v32' stroke='%23100f0e' stroke-width='2'/%3E%3Crect x='17' y='17' width='7' height='6' fill='%23aa907c'/%3E%3C/svg%3E"); }
 body.theme-dark .workspace-ribbon [aria-label="Templater"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M8 4h20l6 6v28H8z' fill='%23d8d2ca' stroke='%23100f0e' stroke-width='3'/%3E%3Cpath d='M28 4v7h6' fill='%23aa907c' stroke='%23100f0e' stroke-width='3'/%3E%3Cpath d='M23 16l-9 11h6l-2 9 9-11h-6z' fill='%23aa907c' stroke='%23100f0e' stroke-width='2'/%3E%3C/svg%3E"); }
 body.theme-dark .workspace-ribbon [aria-label="Open Git source control"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M10 9v24m0-12h13m0-12v24' fill='none' stroke='%23100f0e' stroke-width='3'/%3E%3Ccircle cx='10' cy='9' r='5' fill='%23d8d2ca' stroke='%23100f0e' stroke-width='2'/%3E%3Ccircle cx='10' cy='33' r='5' fill='%23aa907c' stroke='%23100f0e' stroke-width='2'/%3E%3Ccircle cx='23' cy='21' r='5' fill='%23d8d2ca' stroke='%23100f0e' stroke-width='2'/%3E%3Ccircle cx='23' cy='9' r='5' fill='%23aa907c' stroke='%23100f0e' stroke-width='2'/%3E%3Ccircle cx='23' cy='33' r='5' fill='%23d8d2ca' stroke='%23100f0e' stroke-width='2'/%3E%3C/svg%3E"); }
-body.theme-dark .workspace-ribbon [aria-label="Open panel"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect x='4' y='7' width='34' height='28' fill='%23d8d2ca' stroke='%23100f0e' stroke-width='3'/%3E%3Cpath d='M4 15h34M15 15v20' stroke='%23100f0e' stroke-width='2'/%3E%3Crect x='19' y='19' width='14' height='4' fill='%23aa907c'/%3E%3Crect x='19' y='27' width='10' height='3' fill='%23100f0e'/%3E%3C/svg%3E"); }
-body.theme-dark .workspace-ribbon [aria-label="Open Docker Connector"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M7 21h28M12 12v18m9-18v18m9-18v18' stroke='%23100f0e' stroke-width='3'/%3E%3Ccircle cx='7' cy='21' r='5' fill='%23aa907c' stroke='%23100f0e' stroke-width='2'/%3E%3Ccircle cx='35' cy='21' r='5' fill='%23d8d2ca' stroke='%23100f0e' stroke-width='2'/%3E%3C/svg%3E"); }
-body.theme-dark .workspace-ribbon [aria-label="Open Cadence"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect x='6' y='8' width='30' height='28' fill='%23d8d2ca' stroke='%23100f0e' stroke-width='3'/%3E%3Cpath d='M6 17h30M14 5v7m14-7v7M13 23h6m4 0h6m-16 7h6m4 0h6' stroke='%23100f0e' stroke-width='3'/%3E%3Crect x='23' y='23' width='6' height='6' fill='%23aa907c'/%3E%3C/svg%3E"); }
-body.theme-dark .workspace-ribbon [aria-label="Cadence quick capture"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M8 5h20l6 6v26H8z' fill='%23d8d2ca' stroke='%23100f0e' stroke-width='3'/%3E%3Cpath d='M28 5v7h6' fill='%23aa907c' stroke='%23100f0e' stroke-width='3'/%3E%3Cpath d='M13 22h16m-8-8v16' stroke='%23100f0e' stroke-width='3'/%3E%3C/svg%3E"); }
+
+
+/* @settings
+name: Amiga Workbench
+id: amiga-workbench
+settings:
+  - id: amiga-flat
+    title: Flat gadgets
+    description: Remove the raised and recessed bevels from controls and windows.
+    type: class-toggle
+  - id: amiga-comfortable
+    title: Comfortable spacing
+    description: Increase padding, row height and control height throughout the interface.
+    type: class-toggle
+  - id: amiga-large-controls
+    title: Larger controls
+    description: Enlarge buttons, gadgets and touch targets without changing spacing.
+    type: class-toggle
+  - id: amiga-strong-borders
+    title: Stronger borders
+    description: Draw mid-tone frames in the darkest border colour and widen the focus ring.
+    type: class-toggle
+  - id: amiga-quiet-icons
+    title: Quiet ribbon icons
+    description: Draw ribbon pictograms in the text colour instead of the accent colour.
+    type: class-toggle
+*/
+
+/* Style Settings is optional. Every control below is a class toggle, so the theme's
+   own values apply whenever the plugin is absent or the toggle is off. */
+body.amiga-flat {
+  --amiga-window-bevel: none;
+  --amiga-raised-bevel: none;
+  --amiga-recessed-bevel: none;
+  --amiga-pressed-bevel: none;
+}
+
+body.amiga-comfortable {
+  --amiga-spacing-unit: 0.5rem;
+  --amiga-control-height: 2.125rem;
+  --amiga-tree-step: 9px;
+  --amiga-window-gap: 5px;
+}
+
+body.amiga-large-controls {
+  --amiga-control-height: 2.5rem;
+  --amiga-gadget-size: 2.5rem;
+  --amiga-scrollbar-width: 17px;
+}
+
+body.amiga-strong-borders {
+  --amiga-border-middle: var(--amiga-border-dark);
+  --amiga-text-muted: var(--amiga-text);
+  --amiga-focus-width: 3px;
+}
+
+body.amiga-quiet-icons {
+  --amiga-icon-accent: var(--amiga-icon-ink);
+}
