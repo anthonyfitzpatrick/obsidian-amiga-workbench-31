@@ -696,102 +696,104 @@ body.is-popout-modal .modal.mod-settings :is(.setting-item, .setting-items, .ins
 body.is-popout-modal :is(.menu, .suggestion-container, .popover, .tooltip) { border: 1px solid var(--amiga-border-dark); border-radius: 0; background: var(--amiga-window); color: var(--amiga-text); box-shadow: inset 1px 1px 0 var(--amiga-border-light), inset -1px -1px 0 var(--amiga-border-middle); }
 
 
-/* Mature Workbench: grey screen, blue title bars, warm orange accents.
+/* Mature Workbench: the 3.1 grey screen, blue title bars, and the warm beige and
+   salmon that the 8-colour Workbench palette adds over 2.04's cool four colours.
    Colour only: the structural contract lives in src/components/workbench-chrome.css. */
 body.theme-light {
   --amiga-personality: "Workbench 3.1";
-  --amiga-desktop: #969c9c;
-  --amiga-window: #d5d5d1;
-  --amiga-panel: #c3c4c1;
-  --amiga-surface-raised: #deded9;
-  --amiga-surface-recessed: #a9aaa7;
-  --amiga-input-background: #f0f1ed;
-  --amiga-text: #18212b;
-  --amiga-text-muted: #56606a;
-  --amiga-text-disabled: #79838a;
+  --amiga-desktop: #959595;
+  --amiga-window: #afafaf;
+  --amiga-panel: #a3a3a3;
+  --amiga-surface-raised: #bbbbbb;
+  --amiga-surface-recessed: #7b7b7b;
+  --amiga-input-background: #bbbbbb;
+  --amiga-text: #000000;
+  --amiga-text-muted: #333333;
+  --amiga-text-disabled: #494949;
   --amiga-text-title: #ffffff;
-  --amiga-text-accent: #064f89;
-  --amiga-titlebar: #16649c;
-  --amiga-titlebar-inactive: #737a7c;
+  --amiga-text-accent: #1e3d6d;
+  --amiga-titlebar: #3b67a2;
+  --amiga-titlebar-inactive: #7b7b7b;
   --amiga-border-light: #ffffff;
-  --amiga-border-middle: #777d7d;
-  --amiga-border-dark: #253037;
-  --amiga-accent: #d47129;
-  --amiga-hover: #c2e2f1;
-  --amiga-active: #99c8df;
-  --amiga-selection: #16649c;
-  --amiga-focus: #d47129;
+  --amiga-border-middle: #7b7b7b;
+  --amiga-border-dark: #000000;
+  --amiga-accent: #ffa997;
+  --amiga-hover: #bbbbbb;
+  --amiga-active: #3b67a2;
+  --amiga-selection: #3b67a2;
+  --amiga-focus: #1e3d6d;
   --amiga-icon-paper: #ffffff;
-  --amiga-icon-ink: #253037;
-  --amiga-icon-accent: #d47129;
+  --amiga-icon-ink: #000000;
+  --amiga-icon-accent: #aa907c;
 }
 
 
-/* Mature Workbench after dark: slate screen, blue title bars, warm accents.
+/* Mature Workbench after dark: the same blue title hierarchy and warm 8-colour
+   accents carried onto a neutral dark screen.
    Colour only: the structural contract lives in src/components/workbench-chrome.css. */
 body.theme-dark {
   --amiga-personality: "Workbench 3.1";
   color-scheme: dark;
-  --amiga-desktop: #34464d;
-  --amiga-window: #222d33;
-  --amiga-panel: #37464b;
-  --amiga-surface-raised: #46575c;
-  --amiga-surface-recessed: #192329;
-  --amiga-input-background: #1d282e;
-  --amiga-text: #e9eef0;
-  --amiga-text-muted: #b7c2c7;
-  --amiga-text-disabled: #85949a;
+  --amiga-desktop: #2b2b2b;
+  --amiga-window: #3a3a3a;
+  --amiga-panel: #333333;
+  --amiga-surface-raised: #454545;
+  --amiga-surface-recessed: #242424;
+  --amiga-input-background: #2a2a2a;
+  --amiga-text: #ececec;
+  --amiga-text-muted: #b8b8b8;
+  --amiga-text-disabled: #9c9c9c;
   --amiga-text-title: #ffffff;
-  --amiga-text-accent: #94d5f0;
-  --amiga-titlebar: #16649c;
-  --amiga-titlebar-inactive: #53666d;
-  --amiga-border-light: #778b92;
-  --amiga-border-middle: #304147;
-  --amiga-border-dark: #101a1e;
-  --amiga-accent: #ee9453;
-  --amiga-hover: #456875;
-  --amiga-active: #527f90;
-  --amiga-selection: #16649c;
-  --amiga-focus: #f4a65c;
-  --amiga-icon-paper: #c9d3d7;
-  --amiga-icon-ink: #101a1e;
-  --amiga-icon-accent: #ee9453;
+  --amiga-text-accent: #a8c4ea;
+  --amiga-titlebar: #3b67a2;
+  --amiga-titlebar-inactive: #555555;
+  --amiga-border-light: #767676;
+  --amiga-border-middle: #262626;
+  --amiga-border-dark: #101010;
+  --amiga-accent: #ffa997;
+  --amiga-hover: #4d4d4d;
+  --amiga-active: #3b67a2;
+  --amiga-selection: #3b67a2;
+  --amiga-focus: #ffa997;
+  --amiga-icon-paper: #d2d2d2;
+  --amiga-icon-ink: #101010;
+  --amiga-icon-accent: #aa907c;
 }
 
 
 /* Workbench ribbon pictograms. Generated per personality by tools/build.mjs.
-   %23ffffff, %23253037 and %23d47129 are substituted from each personality's icon tokens. */
-body.theme-light .workspace-ribbon [aria-label="Publishing Manager"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M4 8h15v25H4zM23 8h15v25H23z' fill='%23ffffff' stroke='%23253037' stroke-width='3'/%3E%3Cpath d='M21 8v25' stroke='%23d47129' stroke-width='4'/%3E%3Cpath d='M7 14h9m9 0h10' stroke='%23253037' stroke-width='2'/%3E%3C/svg%3E"); }
-body.theme-light .workspace-ribbon [aria-label="Open quick switcher"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Ccircle cx='17' cy='17' r='11' fill='%23ffffff' stroke='%23253037' stroke-width='4'/%3E%3Cpath d='m25 25 11 11' stroke='%23d47129' stroke-width='6'/%3E%3C/svg%3E"); }
-body.theme-light .workspace-ribbon [aria-label="Open graph view"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M8 29 20 10l14 20M8 29h26' fill='none' stroke='%23253037' stroke-width='3'/%3E%3Ccircle cx='8' cy='29' r='5' fill='%23d47129' stroke='%23253037' stroke-width='2'/%3E%3Ccircle cx='20' cy='10' r='5' fill='%23ffffff' stroke='%23253037' stroke-width='2'/%3E%3Ccircle cx='34' cy='30' r='5' fill='%23d47129' stroke='%23253037' stroke-width='2'/%3E%3C/svg%3E"); }
-body.theme-light .workspace-ribbon [aria-label="Create new canvas"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M7 30 20 12l15 18M7 30h28' fill='none' stroke='%23253037' stroke-width='3'/%3E%3Ccircle cx='7' cy='30' r='4' fill='%23d47129' stroke='%23253037' stroke-width='2'/%3E%3Ccircle cx='20' cy='12' r='4' fill='%23ffffff' stroke='%23253037' stroke-width='2'/%3E%3Ccircle cx='35' cy='30' r='4' fill='%23d47129' stroke='%23253037' stroke-width='2'/%3E%3C/svg%3E"); }
-body.theme-light .workspace-ribbon [aria-label="Insert template"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M8 4h19l7 7v27H8z' fill='%23ffffff' stroke='%23253037' stroke-width='3'/%3E%3Cpath d='M27 4v8h7' fill='%23d47129' stroke='%23253037' stroke-width='3'/%3E%3Cpath d='M13 19h16m-16 6h16m-16 6h11' stroke='%23253037' stroke-width='2'/%3E%3C/svg%3E"); }
-body.theme-light .workspace-ribbon [aria-label="Open command palette"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect x='5' y='8' width='32' height='26' fill='%23ffffff' stroke='%23253037' stroke-width='3'/%3E%3Cpath d='M5 17h32M14 17v17m14-17v17' stroke='%23253037' stroke-width='2'/%3E%3Crect x='16' y='20' width='8' height='5' fill='%23d47129' stroke='%23253037' stroke-width='1'/%3E%3C/svg%3E"); }
-body.theme-light .workspace-ribbon [aria-label="Create new base"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cellipse cx='21' cy='9' rx='14' ry='5' fill='%23ffffff' stroke='%23253037' stroke-width='3'/%3E%3Cpath d='M7 9v20c0 7 28 7 28 0V9M7 19c0 7 28 7 28 0' fill='none' stroke='%23253037' stroke-width='3'/%3E%3Cpath d='M29 24h9m-4-4v8' stroke='%23d47129' stroke-width='3'/%3E%3C/svg%3E"); }
-body.theme-light .workspace-ribbon [aria-label="Open format converter"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M5 8h13v12H5zM24 22h13v12H24z' fill='%23ffffff' stroke='%23253037' stroke-width='3'/%3E%3Cpath d='M20 12h12m-4-5 5 5-5 5M22 30H10m4-5-5 5 5 5' fill='none' stroke='%23d47129' stroke-width='3'/%3E%3C/svg%3E"); }
-body.theme-light .workspace-ribbon [aria-label="Create excel file"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect x='5' y='5' width='32' height='32' fill='%23ffffff' stroke='%23253037' stroke-width='3'/%3E%3Cpath d='M5 15h32M5 25h32M15 5v32M26 5v32' stroke='%23253037' stroke-width='2'/%3E%3Crect x='17' y='17' width='7' height='6' fill='%23d47129'/%3E%3C/svg%3E"); }
-body.theme-light .workspace-ribbon [aria-label="Templater"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M8 4h20l6 6v28H8z' fill='%23ffffff' stroke='%23253037' stroke-width='3'/%3E%3Cpath d='M28 4v7h6' fill='%23d47129' stroke='%23253037' stroke-width='3'/%3E%3Cpath d='M13 20h16m-16 7h16' stroke='%23253037' stroke-width='3'/%3E%3C/svg%3E"); }
-body.theme-light .workspace-ribbon [aria-label="Open Git source control"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M10 9v24m0-12h13m0-12v24' fill='none' stroke='%23253037' stroke-width='3'/%3E%3Ccircle cx='10' cy='9' r='5' fill='%23ffffff' stroke='%23253037' stroke-width='2'/%3E%3Ccircle cx='10' cy='33' r='5' fill='%23d47129' stroke='%23253037' stroke-width='2'/%3E%3Ccircle cx='23' cy='21' r='5' fill='%23ffffff' stroke='%23253037' stroke-width='2'/%3E%3Ccircle cx='23' cy='9' r='5' fill='%23d47129' stroke='%23253037' stroke-width='2'/%3E%3Ccircle cx='23' cy='33' r='5' fill='%23ffffff' stroke='%23253037' stroke-width='2'/%3E%3C/svg%3E"); }
-body.theme-light .workspace-ribbon [aria-label="Open panel"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect x='4' y='7' width='34' height='28' fill='%23ffffff' stroke='%23253037' stroke-width='3'/%3E%3Cpath d='M4 15h34M15 15v20' stroke='%23253037' stroke-width='2'/%3E%3Crect x='19' y='19' width='14' height='4' fill='%23d47129'/%3E%3Crect x='19' y='27' width='10' height='3' fill='%23253037'/%3E%3C/svg%3E"); }
-body.theme-light .workspace-ribbon [aria-label="Open Docker Connector"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M7 21h28M12 12v18m9-18v18m9-18v18' stroke='%23253037' stroke-width='3'/%3E%3Ccircle cx='7' cy='21' r='5' fill='%23d47129' stroke='%23253037' stroke-width='2'/%3E%3Ccircle cx='35' cy='21' r='5' fill='%23ffffff' stroke='%23253037' stroke-width='2'/%3E%3C/svg%3E"); }
-body.theme-light .workspace-ribbon [aria-label="Open Cadence"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect x='6' y='8' width='30' height='28' fill='%23ffffff' stroke='%23253037' stroke-width='3'/%3E%3Cpath d='M6 17h30M14 5v7m14-7v7M13 23h6m4 0h6m-16 7h6m4 0h6' stroke='%23253037' stroke-width='3'/%3E%3Crect x='23' y='23' width='6' height='6' fill='%23d47129'/%3E%3C/svg%3E"); }
-body.theme-light .workspace-ribbon [aria-label="Cadence quick capture"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M8 5h20l6 6v26H8z' fill='%23ffffff' stroke='%23253037' stroke-width='3'/%3E%3Cpath d='M28 5v7h6' fill='%23d47129' stroke='%23253037' stroke-width='3'/%3E%3Cpath d='M13 22h16m-8-8v16' stroke='%23253037' stroke-width='3'/%3E%3C/svg%3E"); }
+   %23ffffff, %23000000 and %23aa907c are substituted from each personality's icon tokens. */
+body.theme-light .workspace-ribbon [aria-label="Publishing Manager"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M4 8h15v25H4zM23 8h15v25H23z' fill='%23ffffff' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M21 8v25' stroke='%23aa907c' stroke-width='4'/%3E%3Cpath d='M7 14h9m9 0h10' stroke='%23000000' stroke-width='2'/%3E%3C/svg%3E"); }
+body.theme-light .workspace-ribbon [aria-label="Open quick switcher"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Ccircle cx='17' cy='17' r='11' fill='%23ffffff' stroke='%23000000' stroke-width='4'/%3E%3Cpath d='m25 25 11 11' stroke='%23aa907c' stroke-width='6'/%3E%3C/svg%3E"); }
+body.theme-light .workspace-ribbon [aria-label="Open graph view"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M8 29 20 10l14 20M8 29h26' fill='none' stroke='%23000000' stroke-width='3'/%3E%3Ccircle cx='8' cy='29' r='5' fill='%23aa907c' stroke='%23000000' stroke-width='2'/%3E%3Ccircle cx='20' cy='10' r='5' fill='%23ffffff' stroke='%23000000' stroke-width='2'/%3E%3Ccircle cx='34' cy='30' r='5' fill='%23aa907c' stroke='%23000000' stroke-width='2'/%3E%3C/svg%3E"); }
+body.theme-light .workspace-ribbon [aria-label="Create new canvas"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M7 30 20 12l15 18M7 30h28' fill='none' stroke='%23000000' stroke-width='3'/%3E%3Ccircle cx='7' cy='30' r='4' fill='%23aa907c' stroke='%23000000' stroke-width='2'/%3E%3Ccircle cx='20' cy='12' r='4' fill='%23ffffff' stroke='%23000000' stroke-width='2'/%3E%3Ccircle cx='35' cy='30' r='4' fill='%23aa907c' stroke='%23000000' stroke-width='2'/%3E%3C/svg%3E"); }
+body.theme-light .workspace-ribbon [aria-label="Insert template"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M8 4h19l7 7v27H8z' fill='%23ffffff' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M27 4v8h7' fill='%23aa907c' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M13 19h16m-16 6h16m-16 6h11' stroke='%23000000' stroke-width='2'/%3E%3C/svg%3E"); }
+body.theme-light .workspace-ribbon [aria-label="Open command palette"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect x='5' y='8' width='32' height='26' fill='%23ffffff' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M5 17h32M14 17v17m14-17v17' stroke='%23000000' stroke-width='2'/%3E%3Crect x='16' y='20' width='8' height='5' fill='%23aa907c' stroke='%23000000' stroke-width='1'/%3E%3C/svg%3E"); }
+body.theme-light .workspace-ribbon [aria-label="Create new base"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cellipse cx='21' cy='9' rx='14' ry='5' fill='%23ffffff' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M7 9v20c0 7 28 7 28 0V9M7 19c0 7 28 7 28 0' fill='none' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M29 24h9m-4-4v8' stroke='%23aa907c' stroke-width='3'/%3E%3C/svg%3E"); }
+body.theme-light .workspace-ribbon [aria-label="Open format converter"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M5 8h13v12H5zM24 22h13v12H24z' fill='%23ffffff' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M20 12h12m-4-5 5 5-5 5M22 30H10m4-5-5 5 5 5' fill='none' stroke='%23aa907c' stroke-width='3'/%3E%3C/svg%3E"); }
+body.theme-light .workspace-ribbon [aria-label="Create excel file"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect x='5' y='5' width='32' height='32' fill='%23ffffff' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M5 15h32M5 25h32M15 5v32M26 5v32' stroke='%23000000' stroke-width='2'/%3E%3Crect x='17' y='17' width='7' height='6' fill='%23aa907c'/%3E%3C/svg%3E"); }
+body.theme-light .workspace-ribbon [aria-label="Templater"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M8 4h20l6 6v28H8z' fill='%23ffffff' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M28 4v7h6' fill='%23aa907c' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M13 20h16m-16 7h16' stroke='%23000000' stroke-width='3'/%3E%3C/svg%3E"); }
+body.theme-light .workspace-ribbon [aria-label="Open Git source control"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M10 9v24m0-12h13m0-12v24' fill='none' stroke='%23000000' stroke-width='3'/%3E%3Ccircle cx='10' cy='9' r='5' fill='%23ffffff' stroke='%23000000' stroke-width='2'/%3E%3Ccircle cx='10' cy='33' r='5' fill='%23aa907c' stroke='%23000000' stroke-width='2'/%3E%3Ccircle cx='23' cy='21' r='5' fill='%23ffffff' stroke='%23000000' stroke-width='2'/%3E%3Ccircle cx='23' cy='9' r='5' fill='%23aa907c' stroke='%23000000' stroke-width='2'/%3E%3Ccircle cx='23' cy='33' r='5' fill='%23ffffff' stroke='%23000000' stroke-width='2'/%3E%3C/svg%3E"); }
+body.theme-light .workspace-ribbon [aria-label="Open panel"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect x='4' y='7' width='34' height='28' fill='%23ffffff' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M4 15h34M15 15v20' stroke='%23000000' stroke-width='2'/%3E%3Crect x='19' y='19' width='14' height='4' fill='%23aa907c'/%3E%3Crect x='19' y='27' width='10' height='3' fill='%23000000'/%3E%3C/svg%3E"); }
+body.theme-light .workspace-ribbon [aria-label="Open Docker Connector"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M7 21h28M12 12v18m9-18v18m9-18v18' stroke='%23000000' stroke-width='3'/%3E%3Ccircle cx='7' cy='21' r='5' fill='%23aa907c' stroke='%23000000' stroke-width='2'/%3E%3Ccircle cx='35' cy='21' r='5' fill='%23ffffff' stroke='%23000000' stroke-width='2'/%3E%3C/svg%3E"); }
+body.theme-light .workspace-ribbon [aria-label="Open Cadence"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect x='6' y='8' width='30' height='28' fill='%23ffffff' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M6 17h30M14 5v7m14-7v7M13 23h6m4 0h6m-16 7h6m4 0h6' stroke='%23000000' stroke-width='3'/%3E%3Crect x='23' y='23' width='6' height='6' fill='%23aa907c'/%3E%3C/svg%3E"); }
+body.theme-light .workspace-ribbon [aria-label="Cadence quick capture"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M8 5h20l6 6v26H8z' fill='%23ffffff' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M28 5v7h6' fill='%23aa907c' stroke='%23000000' stroke-width='3'/%3E%3Cpath d='M13 22h16m-8-8v16' stroke='%23000000' stroke-width='3'/%3E%3C/svg%3E"); }
 
 
 /* Workbench ribbon pictograms. Generated per personality by tools/build.mjs.
-   %23c9d3d7, %23101a1e and %23ee9453 are substituted from each personality's icon tokens. */
-body.theme-dark .workspace-ribbon [aria-label="Publishing Manager"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M4 8h15v25H4zM23 8h15v25H23z' fill='%23c9d3d7' stroke='%23101a1e' stroke-width='3'/%3E%3Cpath d='M21 8v25' stroke='%23ee9453' stroke-width='4'/%3E%3Cpath d='M7 14h9m9 0h10' stroke='%23101a1e' stroke-width='2'/%3E%3C/svg%3E"); }
-body.theme-dark .workspace-ribbon [aria-label="Open quick switcher"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Ccircle cx='17' cy='17' r='11' fill='%23c9d3d7' stroke='%23101a1e' stroke-width='4'/%3E%3Cpath d='m25 25 11 11' stroke='%23ee9453' stroke-width='6'/%3E%3C/svg%3E"); }
-body.theme-dark .workspace-ribbon [aria-label="Open graph view"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M8 29 20 10l14 20M8 29h26' fill='none' stroke='%23101a1e' stroke-width='3'/%3E%3Ccircle cx='8' cy='29' r='5' fill='%23ee9453' stroke='%23101a1e' stroke-width='2'/%3E%3Ccircle cx='20' cy='10' r='5' fill='%23c9d3d7' stroke='%23101a1e' stroke-width='2'/%3E%3Ccircle cx='34' cy='30' r='5' fill='%23ee9453' stroke='%23101a1e' stroke-width='2'/%3E%3C/svg%3E"); }
-body.theme-dark .workspace-ribbon [aria-label="Create new canvas"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M7 30 20 12l15 18M7 30h28' fill='none' stroke='%23101a1e' stroke-width='3'/%3E%3Ccircle cx='7' cy='30' r='4' fill='%23ee9453' stroke='%23101a1e' stroke-width='2'/%3E%3Ccircle cx='20' cy='12' r='4' fill='%23c9d3d7' stroke='%23101a1e' stroke-width='2'/%3E%3Ccircle cx='35' cy='30' r='4' fill='%23ee9453' stroke='%23101a1e' stroke-width='2'/%3E%3C/svg%3E"); }
-body.theme-dark .workspace-ribbon [aria-label="Insert template"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M8 4h19l7 7v27H8z' fill='%23c9d3d7' stroke='%23101a1e' stroke-width='3'/%3E%3Cpath d='M27 4v8h7' fill='%23ee9453' stroke='%23101a1e' stroke-width='3'/%3E%3Cpath d='M13 19h16m-16 6h16m-16 6h11' stroke='%23101a1e' stroke-width='2'/%3E%3C/svg%3E"); }
-body.theme-dark .workspace-ribbon [aria-label="Open command palette"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect x='5' y='8' width='32' height='26' fill='%23c9d3d7' stroke='%23101a1e' stroke-width='3'/%3E%3Cpath d='M5 17h32M14 17v17m14-17v17' stroke='%23101a1e' stroke-width='2'/%3E%3Crect x='16' y='20' width='8' height='5' fill='%23ee9453' stroke='%23101a1e' stroke-width='1'/%3E%3C/svg%3E"); }
-body.theme-dark .workspace-ribbon [aria-label="Create new base"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cellipse cx='21' cy='9' rx='14' ry='5' fill='%23c9d3d7' stroke='%23101a1e' stroke-width='3'/%3E%3Cpath d='M7 9v20c0 7 28 7 28 0V9M7 19c0 7 28 7 28 0' fill='none' stroke='%23101a1e' stroke-width='3'/%3E%3Cpath d='M29 24h9m-4-4v8' stroke='%23ee9453' stroke-width='3'/%3E%3C/svg%3E"); }
-body.theme-dark .workspace-ribbon [aria-label="Open format converter"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M5 8h13v12H5zM24 22h13v12H24z' fill='%23c9d3d7' stroke='%23101a1e' stroke-width='3'/%3E%3Cpath d='M20 12h12m-4-5 5 5-5 5M22 30H10m4-5-5 5 5 5' fill='none' stroke='%23ee9453' stroke-width='3'/%3E%3C/svg%3E"); }
-body.theme-dark .workspace-ribbon [aria-label="Create excel file"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect x='5' y='5' width='32' height='32' fill='%23c9d3d7' stroke='%23101a1e' stroke-width='3'/%3E%3Cpath d='M5 15h32M5 25h32M15 5v32M26 5v32' stroke='%23101a1e' stroke-width='2'/%3E%3Crect x='17' y='17' width='7' height='6' fill='%23ee9453'/%3E%3C/svg%3E"); }
-body.theme-dark .workspace-ribbon [aria-label="Templater"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M8 4h20l6 6v28H8z' fill='%23c9d3d7' stroke='%23101a1e' stroke-width='3'/%3E%3Cpath d='M28 4v7h6' fill='%23ee9453' stroke='%23101a1e' stroke-width='3'/%3E%3Cpath d='M13 20h16m-16 7h16' stroke='%23101a1e' stroke-width='3'/%3E%3C/svg%3E"); }
-body.theme-dark .workspace-ribbon [aria-label="Open Git source control"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M10 9v24m0-12h13m0-12v24' fill='none' stroke='%23101a1e' stroke-width='3'/%3E%3Ccircle cx='10' cy='9' r='5' fill='%23c9d3d7' stroke='%23101a1e' stroke-width='2'/%3E%3Ccircle cx='10' cy='33' r='5' fill='%23ee9453' stroke='%23101a1e' stroke-width='2'/%3E%3Ccircle cx='23' cy='21' r='5' fill='%23c9d3d7' stroke='%23101a1e' stroke-width='2'/%3E%3Ccircle cx='23' cy='9' r='5' fill='%23ee9453' stroke='%23101a1e' stroke-width='2'/%3E%3Ccircle cx='23' cy='33' r='5' fill='%23c9d3d7' stroke='%23101a1e' stroke-width='2'/%3E%3C/svg%3E"); }
-body.theme-dark .workspace-ribbon [aria-label="Open panel"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect x='4' y='7' width='34' height='28' fill='%23c9d3d7' stroke='%23101a1e' stroke-width='3'/%3E%3Cpath d='M4 15h34M15 15v20' stroke='%23101a1e' stroke-width='2'/%3E%3Crect x='19' y='19' width='14' height='4' fill='%23ee9453'/%3E%3Crect x='19' y='27' width='10' height='3' fill='%23101a1e'/%3E%3C/svg%3E"); }
-body.theme-dark .workspace-ribbon [aria-label="Open Docker Connector"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M7 21h28M12 12v18m9-18v18m9-18v18' stroke='%23101a1e' stroke-width='3'/%3E%3Ccircle cx='7' cy='21' r='5' fill='%23ee9453' stroke='%23101a1e' stroke-width='2'/%3E%3Ccircle cx='35' cy='21' r='5' fill='%23c9d3d7' stroke='%23101a1e' stroke-width='2'/%3E%3C/svg%3E"); }
-body.theme-dark .workspace-ribbon [aria-label="Open Cadence"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect x='6' y='8' width='30' height='28' fill='%23c9d3d7' stroke='%23101a1e' stroke-width='3'/%3E%3Cpath d='M6 17h30M14 5v7m14-7v7M13 23h6m4 0h6m-16 7h6m4 0h6' stroke='%23101a1e' stroke-width='3'/%3E%3Crect x='23' y='23' width='6' height='6' fill='%23ee9453'/%3E%3C/svg%3E"); }
-body.theme-dark .workspace-ribbon [aria-label="Cadence quick capture"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M8 5h20l6 6v26H8z' fill='%23c9d3d7' stroke='%23101a1e' stroke-width='3'/%3E%3Cpath d='M28 5v7h6' fill='%23ee9453' stroke='%23101a1e' stroke-width='3'/%3E%3Cpath d='M13 22h16m-8-8v16' stroke='%23101a1e' stroke-width='3'/%3E%3C/svg%3E"); }
+   %23d2d2d2, %23101010 and %23aa907c are substituted from each personality's icon tokens. */
+body.theme-dark .workspace-ribbon [aria-label="Publishing Manager"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M4 8h15v25H4zM23 8h15v25H23z' fill='%23d2d2d2' stroke='%23101010' stroke-width='3'/%3E%3Cpath d='M21 8v25' stroke='%23aa907c' stroke-width='4'/%3E%3Cpath d='M7 14h9m9 0h10' stroke='%23101010' stroke-width='2'/%3E%3C/svg%3E"); }
+body.theme-dark .workspace-ribbon [aria-label="Open quick switcher"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Ccircle cx='17' cy='17' r='11' fill='%23d2d2d2' stroke='%23101010' stroke-width='4'/%3E%3Cpath d='m25 25 11 11' stroke='%23aa907c' stroke-width='6'/%3E%3C/svg%3E"); }
+body.theme-dark .workspace-ribbon [aria-label="Open graph view"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M8 29 20 10l14 20M8 29h26' fill='none' stroke='%23101010' stroke-width='3'/%3E%3Ccircle cx='8' cy='29' r='5' fill='%23aa907c' stroke='%23101010' stroke-width='2'/%3E%3Ccircle cx='20' cy='10' r='5' fill='%23d2d2d2' stroke='%23101010' stroke-width='2'/%3E%3Ccircle cx='34' cy='30' r='5' fill='%23aa907c' stroke='%23101010' stroke-width='2'/%3E%3C/svg%3E"); }
+body.theme-dark .workspace-ribbon [aria-label="Create new canvas"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M7 30 20 12l15 18M7 30h28' fill='none' stroke='%23101010' stroke-width='3'/%3E%3Ccircle cx='7' cy='30' r='4' fill='%23aa907c' stroke='%23101010' stroke-width='2'/%3E%3Ccircle cx='20' cy='12' r='4' fill='%23d2d2d2' stroke='%23101010' stroke-width='2'/%3E%3Ccircle cx='35' cy='30' r='4' fill='%23aa907c' stroke='%23101010' stroke-width='2'/%3E%3C/svg%3E"); }
+body.theme-dark .workspace-ribbon [aria-label="Insert template"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M8 4h19l7 7v27H8z' fill='%23d2d2d2' stroke='%23101010' stroke-width='3'/%3E%3Cpath d='M27 4v8h7' fill='%23aa907c' stroke='%23101010' stroke-width='3'/%3E%3Cpath d='M13 19h16m-16 6h16m-16 6h11' stroke='%23101010' stroke-width='2'/%3E%3C/svg%3E"); }
+body.theme-dark .workspace-ribbon [aria-label="Open command palette"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect x='5' y='8' width='32' height='26' fill='%23d2d2d2' stroke='%23101010' stroke-width='3'/%3E%3Cpath d='M5 17h32M14 17v17m14-17v17' stroke='%23101010' stroke-width='2'/%3E%3Crect x='16' y='20' width='8' height='5' fill='%23aa907c' stroke='%23101010' stroke-width='1'/%3E%3C/svg%3E"); }
+body.theme-dark .workspace-ribbon [aria-label="Create new base"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cellipse cx='21' cy='9' rx='14' ry='5' fill='%23d2d2d2' stroke='%23101010' stroke-width='3'/%3E%3Cpath d='M7 9v20c0 7 28 7 28 0V9M7 19c0 7 28 7 28 0' fill='none' stroke='%23101010' stroke-width='3'/%3E%3Cpath d='M29 24h9m-4-4v8' stroke='%23aa907c' stroke-width='3'/%3E%3C/svg%3E"); }
+body.theme-dark .workspace-ribbon [aria-label="Open format converter"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M5 8h13v12H5zM24 22h13v12H24z' fill='%23d2d2d2' stroke='%23101010' stroke-width='3'/%3E%3Cpath d='M20 12h12m-4-5 5 5-5 5M22 30H10m4-5-5 5 5 5' fill='none' stroke='%23aa907c' stroke-width='3'/%3E%3C/svg%3E"); }
+body.theme-dark .workspace-ribbon [aria-label="Create excel file"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect x='5' y='5' width='32' height='32' fill='%23d2d2d2' stroke='%23101010' stroke-width='3'/%3E%3Cpath d='M5 15h32M5 25h32M15 5v32M26 5v32' stroke='%23101010' stroke-width='2'/%3E%3Crect x='17' y='17' width='7' height='6' fill='%23aa907c'/%3E%3C/svg%3E"); }
+body.theme-dark .workspace-ribbon [aria-label="Templater"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M8 4h20l6 6v28H8z' fill='%23d2d2d2' stroke='%23101010' stroke-width='3'/%3E%3Cpath d='M28 4v7h6' fill='%23aa907c' stroke='%23101010' stroke-width='3'/%3E%3Cpath d='M13 20h16m-16 7h16' stroke='%23101010' stroke-width='3'/%3E%3C/svg%3E"); }
+body.theme-dark .workspace-ribbon [aria-label="Open Git source control"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M10 9v24m0-12h13m0-12v24' fill='none' stroke='%23101010' stroke-width='3'/%3E%3Ccircle cx='10' cy='9' r='5' fill='%23d2d2d2' stroke='%23101010' stroke-width='2'/%3E%3Ccircle cx='10' cy='33' r='5' fill='%23aa907c' stroke='%23101010' stroke-width='2'/%3E%3Ccircle cx='23' cy='21' r='5' fill='%23d2d2d2' stroke='%23101010' stroke-width='2'/%3E%3Ccircle cx='23' cy='9' r='5' fill='%23aa907c' stroke='%23101010' stroke-width='2'/%3E%3Ccircle cx='23' cy='33' r='5' fill='%23d2d2d2' stroke='%23101010' stroke-width='2'/%3E%3C/svg%3E"); }
+body.theme-dark .workspace-ribbon [aria-label="Open panel"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect x='4' y='7' width='34' height='28' fill='%23d2d2d2' stroke='%23101010' stroke-width='3'/%3E%3Cpath d='M4 15h34M15 15v20' stroke='%23101010' stroke-width='2'/%3E%3Crect x='19' y='19' width='14' height='4' fill='%23aa907c'/%3E%3Crect x='19' y='27' width='10' height='3' fill='%23101010'/%3E%3C/svg%3E"); }
+body.theme-dark .workspace-ribbon [aria-label="Open Docker Connector"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M7 21h28M12 12v18m9-18v18m9-18v18' stroke='%23101010' stroke-width='3'/%3E%3Ccircle cx='7' cy='21' r='5' fill='%23aa907c' stroke='%23101010' stroke-width='2'/%3E%3Ccircle cx='35' cy='21' r='5' fill='%23d2d2d2' stroke='%23101010' stroke-width='2'/%3E%3C/svg%3E"); }
+body.theme-dark .workspace-ribbon [aria-label="Open Cadence"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Crect x='6' y='8' width='30' height='28' fill='%23d2d2d2' stroke='%23101010' stroke-width='3'/%3E%3Cpath d='M6 17h30M14 5v7m14-7v7M13 23h6m4 0h6m-16 7h6m4 0h6' stroke='%23101010' stroke-width='3'/%3E%3Crect x='23' y='23' width='6' height='6' fill='%23aa907c'/%3E%3C/svg%3E"); }
+body.theme-dark .workspace-ribbon [aria-label="Cadence quick capture"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 42 42'%3E%3Cpath d='M8 5h20l6 6v26H8z' fill='%23d2d2d2' stroke='%23101010' stroke-width='3'/%3E%3Cpath d='M28 5v7h6' fill='%23aa907c' stroke='%23101010' stroke-width='3'/%3E%3Cpath d='M13 22h16m-8-8v16' stroke='%23101010' stroke-width='3'/%3E%3C/svg%3E"); }
