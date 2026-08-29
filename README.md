@@ -13,21 +13,31 @@
 ---
 
 <!-- SCREENSHOT 01 -->
-> ### 📷 Screenshot 01 — Amiga Workbench 3.1 in light mode
-> **Save as:** `docs/images/01-workspace-light.png`
+> ### 📷 Screenshot 01 — Store listing image **(required for submission)**
+> **Save as:** `screenshot.png` — in the **root** of this repository, not in a subfolder
 >
-> **What this image must show:** The full Obsidian window in light mode: ribbon on the left, file explorer with a few folders expanded, a note open in the editor with a heading and a paragraph or two, and the status bar visible. This is the image people judge the theme by, so it should look like a real workspace rather than an empty one.
+> **This is the image the Obsidian community theme store displays.** The directory entry
+> points at it by name, so it must exist at the root and it must be called exactly
+> `screenshot.png`.
+>
+> **Required dimensions: 512 × 288 pixels.** This is a wide, small format — a full
+> workspace scaled down. Do not submit a crop; capture the whole window and scale it.
+>
+> **What it must show:** the full Obsidian window in light mode — ribbon, file explorer
+> with a few folders expanded, a note open with real content, status bar visible. It
+> should look like a workspace in use, because this thumbnail is the only thing most
+> people will judge the theme on.
 >
 > **How to capture it:**
-> 1. Settings → Appearance → set **Base theme** to *Light*.
+> 1. Settings → Appearance → **Base theme: Light**.
 > 2. Settings → Appearance → Themes → select **Amiga Workbench 3.1**.
-> 3. Resize the Obsidian window to roughly **1400 × 900**. Avoid full screen; the window edges are part of the look.
-> 4. Expand two or three folders in the file explorer so the indentation and connector rails are visible.
-> 5. Open a note with a heading, a couple of paragraphs and ideally a list.
-> 6. Close any modal or sidebar you do not want in the shot.
-> 7. On macOS press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>4</kbd>, then press <kbd>Space</kbd>, then click the Obsidian window — this captures the window cleanly with its shadow. On Windows use <kbd>Alt</kbd>+<kbd>PrtScn</kbd>, or Snipping Tool set to Window mode.
+> 3. Resize the window to roughly **1600 × 900** — a 16:9 shape so it scales to 512 × 288 without distortion.
+> 4. Expand two or three folders; open a note with a heading and a couple of paragraphs.
+> 5. On macOS press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>4</kbd>, then <kbd>Space</kbd>, then click the window. On Windows use Snipping Tool in Window mode.
+> 6. Scale the result to **exactly 512 × 288** and save as PNG. On macOS: open in Preview → Tools → Adjust Size.
+> 7. Place it at the repository root as `screenshot.png`.
 >
-> *Delete this block and replace it with:* `![Amiga Workbench 3.1 in light mode](docs/images/01-workspace-light.png)`
+> *Delete this block and replace it with:* `![Amiga Workbench 3.1](screenshot.png)`
 
 ## What this is
 
