@@ -83,20 +83,7 @@ The theme styles the whole application, not just the editor:
 - **Canvas, graph, Bases and backlinks** — consistent surface and control treatment
 - **Settings** — including when opened in its own window
 
-<!-- SCREENSHOT 04 -->
-> ### 📷 Screenshot 04 — Editor, properties and callouts
-> **Save as:** `docs/images/04-editor-and-properties.png`
->
-> **What this image must show:** A note open in the editor showing the properties table at the top with four or five fields filled in, a heading, body text, an inline code span, a fenced code block and a callout. This demonstrates the reading surface rather than the chrome.
->
-> **How to capture it:**
-> 1. Light mode.
-> 2. Create or open a note with frontmatter containing at least **four properties** of mixed types — text, list, date, checkbox.
-> 3. Below it add a heading, a paragraph, a `> [!note]` callout and a fenced code block.
-> 4. Make sure the properties table is **expanded**, not collapsed.
-> 5. Capture the editor pane only — collapse the sidebars first if it helps — roughly **900 × 800**.
->
-> *Delete this block and replace it with:* `![Editor, properties and callouts](docs/images/04-editor-and-properties.png)`
+![Editor and properties](docs/images/04-editor-and-properties.png)
 
 ## Installation
 
