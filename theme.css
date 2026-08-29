@@ -840,13 +840,16 @@ body .nav-folder-children.tree-item-children {
 
 /* The triangle stays in the inline flow and rows without one reserve its width, so
    labels align at every depth without depending on a positioned ancestor. */
-body :is(.nav-folder-title, .nav-file-title) { padding-left: var(--amiga-tree-pad); }
+body :is(.nav-folder-title, .nav-file-title) { align-items: center; padding-left: var(--amiga-tree-pad); }
 body .tree-item-self:not(.mod-collapsible) { padding-left: calc(var(--amiga-tree-pad) + var(--amiga-tree-gutter)); }
-body .nav-folder-title > .collapse-icon { position: static; display: grid; flex: 0 0 12px; place-items: center; width: 12px; min-width: 12px; height: auto; margin: 0 5px 0 0; padding: 0; background: none; color: var(--amiga-accent); transform: none; }
+/* Centre the triangle explicitly rather than inheriting the row's alignment. A 0x0
+   element drawn entirely from borders takes its baseline from its bottom edge, so under
+   baseline alignment it sits below the label instead of beside it. */
+body .nav-folder-title > .collapse-icon { position: static; display: flex; flex: 0 0 12px; align-items: center; align-self: center; justify-content: center; width: 12px; min-width: 12px; height: 1.2em; margin: 0 5px 0 0; padding: 0; background: none; color: var(--amiga-accent); transform: none; }
 body .nav-folder-title > .collapse-icon::before { content: none; }
 body .nav-folder-title > .collapse-icon svg { visibility: hidden; transform: none; }
-body .nav-folder-title > .collapse-icon::after { width: 0; height: 0; border-block: 5px solid transparent; border-left: 8px solid var(--amiga-accent); content: ""; }
-body .nav-folder-title > .collapse-icon:not(.is-collapsed)::after { margin-top: 2px; border: 6px solid transparent; border-top: 8px solid var(--amiga-accent); }
+body .nav-folder-title > .collapse-icon::after { width: 0; height: 0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 8px solid var(--amiga-accent); content: ""; }
+body .nav-folder-title > .collapse-icon:not(.is-collapsed)::after { border: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid var(--amiga-accent); }
 body :is(.nav-file-title.is-active, .tree-item-self.is-active, .tree-item-self[aria-selected="true"]) { border: 1px solid var(--amiga-border-dark); background: var(--amiga-selection); color: var(--amiga-text-title); box-shadow: none; }
 
 /* One native metadata list, rendered as a single Workbench requester table. */
