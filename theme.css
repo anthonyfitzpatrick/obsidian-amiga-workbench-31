@@ -877,7 +877,10 @@ body .metadata-properties-heading .collapse-indicator { color: inherit; }
 
 body .metadata-property {
   display: grid;
-  grid-template-columns: minmax(6rem, 12rem) minmax(0, 1fr);
+  /* Three explicit columns: key, value, and anything a plugin adds. Every child is
+     placed by name into row 1, so the layout does not depend on DOM order — a plugin
+     that injects its control between the key and the value cannot displace either. */
+  grid-template-columns: minmax(6rem, 12rem) minmax(0, 1fr) auto;
   align-items: stretch;
   margin: 0;
   padding: 0;
@@ -890,6 +893,8 @@ body .metadata-property {
 body .metadata-property:last-child { border-bottom: 0; }
 
 body .metadata-property-key {
+  grid-column: 1;
+  grid-row: 1;
   display: flex;
   gap: 0.35rem;
   align-items: center;
@@ -920,6 +925,8 @@ body .metadata-property-key-input {
 }
 
 body .metadata-property-value {
+  grid-column: 2;
+  grid-row: 1;
   display: flex;
   flex-wrap: wrap;
   gap: 0.25rem;
@@ -935,13 +942,18 @@ body .metadata-property-value {
 }
 body .metadata-property-value:focus-within { outline: var(--amiga-focus-width) solid var(--amiga-focus); outline-offset: -2px; }
 
-/* A plugin may add controls to a property row. Place them beside the value instead of
-   letting grid auto-placement drop them into a row of their own beneath the key. */
+/* A plugin may add controls to a property row, and may insert them anywhere among the
+   children. They get their own column so they can neither start a new row nor take the
+   value's cell. */
 body .metadata-property > *:not(.metadata-property-key):not(.metadata-property-value) {
-  grid-column: 2;
-  align-self: center;
-  justify-self: end;
-  padding-right: 0.35rem;
+  grid-column: 3;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  padding: 0 0.35rem;
+  background: var(--amiga-panel);
+  border-left: var(--amiga-border-width) solid var(--amiga-border-dark);
 }
 
 /* The field itself carries no chrome; the row around it is the recess. */
