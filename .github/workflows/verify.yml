@@ -20,3 +20,6 @@ jobs:
         run: git diff --exit-code -- theme.css
       - name: Verify
         run: npm test
+
+      - name: Audit
+        run: python3 tools/audit.py

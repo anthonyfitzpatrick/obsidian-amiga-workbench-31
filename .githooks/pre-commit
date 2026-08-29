@@ -3,6 +3,7 @@
 set -eu
 npm run build
 npm test
+python3 tools/audit.py
 if ! git diff --quiet -- theme.css; then
   echo
   echo "pre-commit: theme.css was stale and has been rebuilt. Stage it and commit again."

@@ -6,6 +6,7 @@
   "description": "Amiga Workbench 3.1 \u2014 an independent Amiga Workbench-inspired theme for Obsidian.",
   "scripts": {
     "build": "node tools/build.mjs",
-    "test": "node tools/verify.mjs"
+    "test": "node tools/verify.mjs",
+    "audit": "python3 tools/audit.py"
   }
 }
