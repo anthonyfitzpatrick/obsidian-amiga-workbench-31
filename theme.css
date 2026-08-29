@@ -60,8 +60,8 @@
   --amiga-ui-font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --amiga-editor-font: ui-serif, Georgia, Cambria, serif;
   --amiga-code-font: ui-monospace, "SFMono-Regular", Consolas, monospace;
-  --amiga-ui-font-size: 1rem;
-  --amiga-editor-font-size: 1rem;
+  --amiga-ui-font-size: var(--font-ui-medium);
+  --amiga-editor-font-size: var(--font-text-size);
   --amiga-code-font-size: 0.875em;
   --amiga-ui-line-height: 1.4;
   --amiga-editor-line-height: 1.65;
@@ -89,10 +89,13 @@
   --interactive-normal: var(--amiga-surface-raised);
   --interactive-hover: var(--amiga-hover);
   --interactive-accent-hover: var(--amiga-active);
-  --font-interface: var(--amiga-ui-font);
-  --font-text: var(--amiga-editor-font);
-  --font-monospace: var(--amiga-code-font);
-  --font-text-size: var(--amiga-editor-font-size);
+  /* Obsidian resolves --font-interface as override, then theme, then default, so a
+     theme supplies the -theme layer only. Setting --font-interface directly would
+     discard the reader's Appearance choice. --font-text-size belongs to the font-size
+     slider and is never set here. */
+  --font-interface-theme: var(--amiga-ui-font);
+  --font-text-theme: var(--amiga-editor-font);
+  --font-monospace-theme: var(--amiga-code-font);
   --code-size: var(--amiga-code-font-size);
   --line-height-normal: var(--amiga-editor-line-height);
   --file-line-width: var(--amiga-content-line-width);
@@ -140,10 +143,13 @@
   --interactive-normal: var(--amiga-surface-raised);
   --interactive-hover: var(--amiga-hover);
   --interactive-accent-hover: var(--amiga-active);
-  --font-interface: var(--amiga-ui-font);
-  --font-text: var(--amiga-editor-font);
-  --font-monospace: var(--amiga-code-font);
-  --font-text-size: var(--amiga-editor-font-size);
+  /* Obsidian resolves --font-interface as override, then theme, then default, so a
+     theme supplies the -theme layer only. Setting --font-interface directly would
+     discard the reader's Appearance choice. --font-text-size belongs to the font-size
+     slider and is never set here. */
+  --font-interface-theme: var(--amiga-ui-font);
+  --font-text-theme: var(--amiga-editor-font);
+  --font-monospace-theme: var(--amiga-code-font);
   --code-size: var(--amiga-code-font-size);
   --line-height-normal: var(--amiga-editor-line-height);
   --radius-s: var(--amiga-radius);
@@ -227,7 +233,7 @@ body.is-mobile { --amiga-control-height: 2.5rem; }
 
 .markdown-preview-view,
 .markdown-source-view.mod-cm6 .cm-content {
-  font-family: var(--amiga-editor-font);
+  font-family: var(--font-text);
   line-height: var(--amiga-editor-line-height);
 }
 
@@ -239,7 +245,7 @@ body.is-mobile { --amiga-control-height: 2.5rem; }
 .markdown-preview-view :is(h1, h2, h3, h4, h5, h6),
 .cm-header {
   color: var(--amiga-text-accent);
-  font-family: var(--amiga-ui-font);
+  font-family: var(--font-interface);
   line-height: 1.2;
   letter-spacing: var(--amiga-heading-tracking);
 }
@@ -288,7 +294,7 @@ body.is-mobile { --amiga-control-height: 2.5rem; }
 }
 
 
-button, .button, input, select, textarea { min-height: var(--amiga-control-height); font-family: var(--amiga-ui-font); }
+button, .button, input, select, textarea { min-height: var(--amiga-control-height); font-family: var(--font-interface); }
 button, .button, .clickable-icon, .view-action { font-weight: var(--amiga-control-weight); }
 button, .button { background: var(--amiga-surface-raised); color: var(--amiga-text); }
 button:hover, .button:hover, .clickable-icon:hover { background: var(--amiga-hover); }
@@ -321,7 +327,7 @@ input[type="checkbox"] { accent-color: var(--amiga-accent); }
 
 code,
 pre {
-  font-family: var(--amiga-code-font);
+  font-family: var(--font-monospace);
 }
 
 pre,
@@ -460,10 +466,13 @@ body {
   --amiga-pressed-bevel: inset 1px 1px 0 var(--amiga-border-dark);
   --amiga-window-gap: 3px;
   --amiga-gadget-size: 1.75rem;
-  --amiga-chrome-font: var(--amiga-ui-font);
-  --amiga-chrome-size: 13px;
-  --amiga-chrome-size-small: 11px;
-  --amiga-chrome-size-large: 15px;
+  /* Chrome text follows the reader's interface font and font-size setting: Obsidian
+     derives --font-ui-* from --font-text-size, so the shell scales with the slider
+     instead of sitting at a fixed 13px. */
+  --amiga-chrome-font: var(--font-interface);
+  --amiga-chrome-size: var(--font-ui-small);
+  --amiga-chrome-size-small: var(--font-ui-smaller);
+  --amiga-chrome-size-large: var(--font-ui-medium);
 }
 
 /* Screen and hard-framed windows. */
@@ -604,7 +613,7 @@ body :is(.view-actions .clickable-icon, .view-actions .view-action, .markdown-so
 
 /* Explorer lanes: connector, clear gap, accent disclosure, clear gap, label. */
 body :is(.nav-files-container, .workspace-leaf-content[data-type="file-explorer"]) { padding-left: 0.35rem; background: var(--amiga-window); font: var(--amiga-chrome-size) var(--amiga-chrome-font); }
-body :is(.nav-folder-title, .nav-file-title, .tree-item-self) { min-height: 27px; padding: 0 0.25rem; border: 0; border-radius: 0; color: var(--amiga-text); font: 600 var(--amiga-chrome-size)/27px var(--amiga-chrome-font); }
+body :is(.nav-folder-title, .nav-file-title, .tree-item-self) { min-height: 27px; padding: 0 0.25rem; border: 0; border-radius: 0; color: var(--amiga-text); font: 600 var(--amiga-chrome-size)/1.5 var(--amiga-chrome-font); }
 body .nav-folder-title { font-weight: 700; }
 body .nav-folder-children.tree-item-children { margin-left: 0; padding-left: 7px; border-left: 1px solid color-mix(in srgb, var(--amiga-accent) 42%, var(--amiga-border-middle)); }
 body .nav-folder-title > .collapse-icon { position: relative; flex: 0 0 12px; width: 12px; min-width: 12px; height: 27px; margin: 0 5px 0 0; padding: 0; background: none; color: var(--amiga-accent); transform: none; }
