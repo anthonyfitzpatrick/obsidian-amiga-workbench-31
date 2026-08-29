@@ -850,32 +850,166 @@ body .nav-folder-title > .collapse-icon::after { width: 0; height: 0; border-top
 body .nav-folder-title > .collapse-icon:not(.is-collapsed)::after { border: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid var(--amiga-accent); }
 body :is(.nav-file-title.is-active, .tree-item-self.is-active, .tree-item-self[aria-selected="true"]) { border: 1px solid var(--amiga-border-dark); background: var(--amiga-selection); color: var(--amiga-text-title); box-shadow: none; }
 
-/* One native metadata list, rendered as a single Workbench requester table. */
-body .metadata-container { overflow: hidden; padding: 0; border: 2px solid var(--amiga-border-dark); border-radius: 0; background: var(--amiga-window); box-shadow: none; font-family: var(--font-interface); font-size: var(--font-ui-small); line-height: 1.25; }
-body .metadata-properties { margin: 0; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; font-family: var(--font-interface); font-size: var(--font-ui-small); line-height: 1.25; }
-body .metadata-container::before { display: block; min-height: 29px; box-sizing: border-box; padding: 6px 0.5rem; border-bottom: 1px solid var(--amiga-border-dark); background: var(--amiga-titlebar); color: var(--amiga-text-title); content: "PROPERTIES"; font-family: var(--font-interface); font-size: var(--font-ui-small); font-weight: 700; line-height: 1.25; }
-body .metadata-container :is(.metadata-properties-heading, .metadata-properties-title) { display: none; }
-body .metadata-property { position: relative; display: grid; grid-template-columns: 240px minmax(0, 1fr); grid-template-rows: minmax(36px, auto); align-items: stretch; min-height: 36px; height: auto; margin: 0; padding: 0; border: 0; border-bottom: 1px solid var(--amiga-border-dark); border-radius: 0; background: var(--amiga-window); box-shadow: none; }
-body .metadata-property-key { display: flex; box-sizing: border-box; grid-column: 1; grid-row: 1; align-items: flex-start; align-self: stretch; width: 100%; min-width: 0; min-height: 36px; padding: 6px 10px; border: 0; border-right: 1px solid var(--amiga-border-dark); background: var(--amiga-panel); color: var(--amiga-text); font-family: var(--font-interface); font-size: var(--font-ui-small); font-weight: 700; line-height: 1.25; }
-body .metadata-property-icon { display: none !important; }
-body .metadata-property-key-input { flex: 1 1 auto; width: 100%; min-width: 0; margin: 0; padding: 0; border: 0 !important; outline: 0; border-radius: 0; appearance: none; background: transparent !important; box-shadow: none; color: inherit; font-family: var(--font-interface); font-size: var(--font-ui-small); font-weight: inherit; line-height: 1.25; white-space: normal; overflow: visible; overflow-wrap: break-word; word-break: normal; text-overflow: clip; }
-body .metadata-property-value { display: flex; box-sizing: border-box; flex-flow: row nowrap; grid-column: 2; grid-row: 1; align-items: center; width: 100%; min-width: 0; min-height: 36px; height: auto; margin: 0; padding: 6px 6px 6px 6px; border: 0; border-radius: 0; overflow: visible; background: var(--amiga-input-background); box-shadow: var(--amiga-window-bevel); color: var(--amiga-text); font-family: var(--font-text); font-size: var(--font-ui-small); font-weight: 400; line-height: 1.25; }
-body .metadata-property-value :is(.metadata-input-text, .metadata-input-number, .metadata-input-longtext, .metadata-link, .metadata-link-inner) { font-family: var(--font-text); font-size: var(--font-ui-small); font-weight: 400; line-height: 1.25; }
-body .metadata-property-value .multi-select-container { display: flex; flex: 1 1 auto; flex-flow: row nowrap; align-items: center; width: 100%; min-width: 0; height: 36px; min-height: 36px; padding-right: 4px; overflow: hidden; background: transparent; white-space: nowrap; font-family: var(--font-interface); font-size: var(--font-ui-small); font-weight: 400; line-height: 1.25; }
-body .metadata-property-value .multi-select-pill { flex: 1 1 auto; min-width: 0; margin: 0; padding: 0; border: 0; border-radius: 0; overflow: hidden; background: transparent; box-shadow: none; color: inherit; white-space: nowrap; text-overflow: ellipsis; font-family: var(--font-interface); font-size: var(--font-ui-small); font-weight: 400; line-height: 1.25; }
-body .metadata-property-value .multi-select-pill :is(.clickable-icon, button) { display: none; }
-body .metadata-property-value .multi-select-input { min-width: 0; margin: 0; padding: 0; border: 0; background: transparent; color: inherit; font-family: var(--font-interface); font-size: var(--font-ui-small); font-weight: 400; line-height: 1.25; }
-body .metadata-property-warning-icon { position: absolute; display: none !important; }
-body .metadata-property-value:focus-within { outline: 2px solid var(--amiga-focus); outline-offset: -2px; }
-body .metadata-add-button { min-height: 30px; margin: 3px 0.4rem; padding: 0.1rem 0.55rem; border: 2px solid var(--amiga-border-dark); border-radius: 0; background: var(--amiga-accent); box-shadow: var(--amiga-raised-bevel); color: var(--amiga-border-dark); font-family: var(--font-interface); font-size: var(--font-ui-small); font-weight: 700; line-height: 1.25; text-transform: uppercase; }
+/* Properties, drawn as a Workbench requester: a titled strip, a keyed column, and values
+   in recessed fields. Everything is sized from its content rather than pinned to fixed
+   pixels, so long values, many tags, a narrow pane and plugin-added controls all fit. */
+body .metadata-container {
+  padding: 0;
+  border: var(--amiga-bevel-width) solid var(--amiga-border-dark);
+  border-radius: 0;
+  background: var(--amiga-window);
+  box-shadow: var(--amiga-window-bevel);
+}
+body .metadata-properties { margin: 0; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
 
-/* Metadata suggestion popups are scoped to the focused metadata chooser. */
-body:has(.metadata-property-value .multi-select-input:focus) .suggestion-container { padding: 2px; border: 2px solid var(--amiga-border-dark); border-radius: 0; background: var(--amiga-window); box-shadow: none; color: var(--amiga-text); font-family: var(--font-interface); font-size: var(--font-ui-small); font-weight: 400; line-height: 1.25; }
-body:has(.metadata-property-value .multi-select-input:focus) .suggestion-container input { height: 26px; margin: 0 0 2px; border: 1px solid var(--amiga-border-dark); border-radius: 0; background: var(--amiga-input-background); box-shadow: inset 1px 1px 0 var(--amiga-border-middle); color: var(--amiga-text); font-family: var(--font-interface); font-size: var(--font-ui-small); font-weight: 400; line-height: 1.25; }
-body:has(.metadata-property-value .multi-select-input:focus) .suggestion-container input:focus { outline: 2px solid var(--amiga-focus); outline-offset: -2px; }
-body:has(.metadata-property-value .multi-select-input:focus) .suggestion-item { min-height: 28px; margin: 0; padding: 0 8px; border-radius: 0; background: var(--amiga-window); color: var(--amiga-text); font-family: var(--font-interface); font-size: var(--font-ui-small); font-weight: 400; line-height: 1.25; }
-body:has(.metadata-property-value .multi-select-input:focus) .suggestion-item.is-selected { background: var(--amiga-titlebar); color: var(--amiga-text-title); }
-body:has(.metadata-property-value .multi-select-input:focus) .suggestion-container :is(button, .button) { min-height: 24px; border: 1px solid var(--amiga-border-dark); border-radius: 0; background: var(--amiga-window); box-shadow: var(--amiga-raised-bevel); color: var(--amiga-text); font-family: var(--font-interface); font-size: var(--font-ui-small); font-weight: 700; line-height: 1.25; }
+/* The native heading is kept and restyled rather than replaced, so its collapse control
+   keeps working. */
+body .metadata-properties-heading {
+  padding: 0.3rem 0.5rem;
+  border-bottom: var(--amiga-border-width) solid var(--amiga-border-dark);
+  background: var(--amiga-titlebar);
+  color: var(--amiga-text-title);
+  font: 700 var(--font-ui-small)/1.35 var(--font-interface);
+  text-transform: uppercase;
+  letter-spacing: var(--amiga-heading-tracking);
+}
+body .metadata-properties-heading .collapse-indicator { color: inherit; }
+
+body .metadata-property {
+  display: grid;
+  grid-template-columns: minmax(6rem, 12rem) minmax(0, 1fr);
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-bottom: var(--amiga-border-width) solid var(--amiga-border-dark);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+body .metadata-property:last-child { border-bottom: 0; }
+
+body .metadata-property-key {
+  display: flex;
+  gap: 0.35rem;
+  align-items: center;
+  min-width: 0;
+  padding: 0.35rem 0.5rem;
+  border: 0;
+  border-right: var(--amiga-border-width) solid var(--amiga-border-dark);
+  background: var(--amiga-panel);
+  color: var(--amiga-text);
+  font: var(--amiga-control-weight) var(--font-ui-small)/1.35 var(--font-interface);
+}
+/* The type icon is informative; show it in the key rather than hiding it. */
+body .metadata-property-icon { flex: 0 0 auto; color: var(--amiga-text-muted); opacity: 1; }
+body .metadata-property-key-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  border-radius: 0;
+  appearance: none;
+  background: transparent;
+  box-shadow: none;
+  color: inherit;
+  font: inherit;
+  overflow-wrap: anywhere;
+}
+
+body .metadata-property-value {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  align-items: center;
+  min-width: 0;
+  padding: 0.35rem 0.5rem;
+  border: 0;
+  border-radius: 0;
+  background: var(--amiga-input-background);
+  box-shadow: var(--amiga-recessed-bevel);
+  color: var(--amiga-text);
+  font: var(--font-ui-small)/1.35 var(--font-text);
+}
+body .metadata-property-value:focus-within { outline: var(--amiga-focus-width) solid var(--amiga-focus); outline-offset: -2px; }
+
+/* A plugin may add controls to a property row. Place them beside the value instead of
+   letting grid auto-placement drop them into a row of their own beneath the key. */
+body .metadata-property > *:not(.metadata-property-key):not(.metadata-property-value) {
+  grid-column: 2;
+  align-self: center;
+  justify-self: end;
+  padding-right: 0.35rem;
+}
+
+/* The field itself carries no chrome; the row around it is the recess. */
+body .metadata-property-value :is(input, textarea, .metadata-input-text, .metadata-input-number, .metadata-input-longtext, .metadata-link, .metadata-link-inner) {
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: inherit;
+  font: inherit;
+}
+
+body .metadata-property-value .multi-select-container {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  background: transparent;
+}
+/* Pills sit next to each other. Growing them spreads a two-tag list across the pane. */
+body .metadata-property-value .multi-select-pill {
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 0.2rem;
+  align-items: center;
+  max-width: 100%;
+  margin: 0;
+  padding: 0 0.3rem;
+  border: var(--amiga-border-width) solid var(--amiga-border-dark);
+  border-radius: 0;
+  background: var(--amiga-surface-raised);
+  box-shadow: var(--amiga-raised-bevel);
+  color: var(--amiga-text);
+  font: var(--font-ui-smaller)/1.5 var(--font-interface);
+}
+body .metadata-property-value .multi-select-pill-content { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+body .metadata-property-value .multi-select-pill-remove-button { flex: 0 0 auto; color: var(--amiga-text-muted); }
+body .metadata-property-value .multi-select-pill-remove-button:hover { color: var(--amiga-text); }
+body .metadata-property-value .multi-select-input {
+  flex: 1 1 4rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+
+body .metadata-property-warning-icon { color: var(--amiga-accent); }
+body .metadata-add-button {
+  margin: 0.3rem 0.5rem;
+  padding: 0.15rem 0.55rem;
+  border: var(--amiga-border-width) solid var(--amiga-border-dark);
+  border-radius: 0;
+  background: var(--amiga-surface-raised);
+  box-shadow: var(--amiga-raised-bevel);
+  color: var(--amiga-text);
+  font: var(--amiga-control-weight) var(--font-ui-small) var(--font-interface);
+}
+body .metadata-add-button:hover { background: var(--amiga-hover); }
 
 /* Graph Links and status information use the same requester compartments. */
 body :is(.graph-controls, .graph-control-section, .workspace-leaf-content[data-type="outgoing-link"], .workspace-leaf-content[data-type="backlink"]) { border: 2px solid var(--amiga-border-dark); border-radius: 0; background: var(--amiga-window); font: var(--amiga-chrome-size) var(--amiga-chrome-font); }
