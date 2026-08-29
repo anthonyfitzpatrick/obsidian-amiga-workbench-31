@@ -1,0 +1,34 @@
+/* Mature Workbench after dark: the same blue title hierarchy and warm eight-colour
+   accents carried onto a warm-tinted dark screen, keeping it distinct from 2.04's
+   neutral charcoal.
+   Colour only: the structural contract lives in src/components/workbench-chrome.css. */
+.theme-dark.amiga-workbench-31 {
+  --amiga-personality: "Workbench 3.1";
+  color-scheme: dark;
+  --amiga-desktop: #2e2b28;
+  --amiga-window: #3d3a36;
+  --amiga-panel: #363330;
+  --amiga-surface-raised: #494540;
+  --amiga-surface-recessed: #262421;
+  --amiga-input-background: #2c2a27;
+  --amiga-text: #efece8;
+  --amiga-text-muted: #bcb6ae;
+  --amiga-text-disabled: #9c968e;
+  --amiga-text-on-accent: #100f0e;
+  --amiga-text-on-selection: #ffffff;
+  --amiga-text-title: #ffffff;
+  --amiga-text-accent: #a8c4ea;
+  --amiga-titlebar: #3b67a2;
+  --amiga-titlebar-inactive: #5a544e;
+  --amiga-border-light: #7a746d;
+  --amiga-border-middle: #282522;
+  --amiga-border-dark: #100f0e;
+  --amiga-accent: #ffa997;
+  --amiga-hover: #514c46;
+  --amiga-active: #3b67a2;
+  --amiga-selection: #3b67a2;
+  --amiga-focus: #ffa997;
+  --amiga-icon-paper: #d8d2ca;
+  --amiga-icon-ink: #100f0e;
+  --amiga-icon-accent: #aa907c;
+}

@@ -1,0 +1,10 @@
+#!/bin/sh
+# Rebuild and refuse the commit if the committed theme.css is stale.
+set -eu
+npm run build
+npm test
+if ! git diff --quiet -- theme.css; then
+  echo
+  echo "pre-commit: theme.css was stale and has been rebuilt. Stage it and commit again."
+  exit 1
+fi

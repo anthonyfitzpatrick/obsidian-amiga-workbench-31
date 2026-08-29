@@ -140,16 +140,25 @@ complete and unchanged.
 - **[User Guide](USERGUIDE.md)** — a fuller walkthrough, including customisation and
   troubleshooting
 
-## Where this comes from
+## Building from source
 
-This theme is generated from a shared source repository,
-[obsidian-amiga-inspired-theme](https://github.com/anthonyfitzpatrick/obsidian-amiga-inspired-theme),
-which builds Workbench 1.3, 2.04 and 3.1 from one structural contract. The three differ in
-colour and in a small, declared set of style values — relief depth, spacing, control size —
-and nothing else.
+This repository is self-contained. The CSS is authored as modules under `src/` and
+`theme.css` is generated from them:
 
-`theme.css` in this repository is a **generated build artifact**. Please send fixes and
-suggestions to the source repository rather than editing it here.
+```sh
+npm run build    # regenerate theme.css from src/
+npm test         # verify packaging, isolation, tokens and contrast
+```
+
+There are no dependencies to install — the build is plain Node. `src/variants/` holds this
+theme's light and dark palettes; `src/components/workbench-chrome.css` holds the shared
+Workbench structure; `src/icons/` holds the ribbon pictograms, which are coloured from the
+palette at build time so they can never drift from it.
+
+`theme.css` is generated. Edit the modules under `src/` and rebuild rather than editing it
+directly; the pre-commit hook enforces this if you enable it with
+`git config core.hooksPath .githooks`.
+
 
 ## Trademarks, affiliation and intellectual property
 

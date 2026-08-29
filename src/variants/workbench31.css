@@ -1,0 +1,46 @@
+/* Mature Workbench. Workbench 2.0 introduced this look and 3.x kept it, so the
+   honest difference is colour depth: 3.x defaulted to eight colours on AGA and the
+   four it added over 2.04 were a mid grey, a light grey, a warm beige (#aa907c) and
+   a salmon (#ffa997). Those warm extras are what made a 3.1 desktop read warmer than
+   a 2.04 one, so the greys here are tinted toward the beige while 2.04 stays neutral.
+   Colour only: the structural contract lives in src/components/workbench-chrome.css. */
+.amiga-workbench-31 {
+  --amiga-personality: "Workbench 3.1";
+  --amiga-desktop: #9b948e;
+  --amiga-window: #aea6a0;
+  --amiga-panel: #a59d97;
+  --amiga-surface-raised: #bcb5ae;
+  --amiga-surface-recessed: #7f7873;
+  --amiga-input-background: #bcb5ae;
+  --amiga-text: #000000;
+  --amiga-text-muted: #33302d;
+  --amiga-text-disabled: #4b4844;
+  --amiga-text-on-accent: #000000;
+  --amiga-text-on-selection: #ffffff;
+  --amiga-text-title: #ffffff;
+  --amiga-text-accent: #1e3d6d;
+  --amiga-titlebar: #3b67a2;
+  --amiga-titlebar-inactive: #7b746f;
+  --amiga-border-light: #ffffff;
+  --amiga-border-middle: #7f7873;
+  --amiga-border-dark: #000000;
+  --amiga-accent: #ffa997;
+  --amiga-hover: #c3bdb6;
+  --amiga-active: #3b67a2;
+  --amiga-selection: #3b67a2;
+  --amiga-focus: #1e3d6d;
+  --amiga-icon-paper: #ffffff;
+  --amiga-icon-ink: #000000;
+  --amiga-icon-accent: #aa907c;
+
+  /* 3.x kept 2.0's 3D gadget, so the relief is the same depth. What the later style
+     guide added was discipline: a mid-tone step inside the window frame and more
+     generous spacing around controls. */
+  --amiga-bevel-width: 2px;
+  --amiga-spacing-unit: 0.5rem;
+  --amiga-control-height: 2.125rem;
+  --amiga-window-bevel: inset 2px 2px 0 var(--amiga-border-light), inset -2px -2px 0 var(--amiga-border-middle), inset 3px 3px 0 var(--amiga-panel);
+  --amiga-raised-bevel: inset 2px 2px 0 var(--amiga-border-light), inset -2px -2px 0 var(--amiga-border-middle);
+  --amiga-recessed-bevel: inset 2px 2px 0 var(--amiga-border-middle), inset -2px -2px 0 var(--amiga-border-light);
+  --amiga-pressed-bevel: inset 2px 2px 0 var(--amiga-border-middle), inset -2px -2px 0 var(--amiga-border-light);
+}

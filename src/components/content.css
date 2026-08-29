@@ -1,0 +1,85 @@
+code,
+pre {
+  font-family: var(--font-monospace);
+}
+
+pre,
+.markdown-rendered code {
+  background: var(--code-background);
+  border: var(--amiga-border-width) solid var(--amiga-border-dark);
+  border-radius: 0;
+  color: var(--code-normal);
+}
+
+.markdown-rendered pre {
+  line-height: var(--amiga-code-line-height);
+  padding: calc(var(--amiga-spacing-unit) * 1.5);
+}
+
+.markdown-rendered :is(strong, em, del, mark) {
+  text-underline-offset: 0.12em;
+}
+
+.markdown-rendered mark {
+  background: var(--text-highlight-bg);
+  color: var(--amiga-text);
+}
+
+.markdown-rendered :is(ul, ol) {
+  padding-inline-start: calc(var(--amiga-spacing-unit) * 4);
+}
+
+.markdown-rendered li::marker {
+  color: var(--list-marker-color);
+}
+
+.markdown-rendered .task-list-item-checkbox {
+  accent-color: var(--amiga-accent);
+}
+
+.markdown-rendered blockquote {
+  background: var(--amiga-panel);
+  border-left: calc(var(--amiga-bevel-width) * 2) solid var(--blockquote-border-color);
+  margin-inline: 0;
+  padding: var(--amiga-spacing-unit) calc(var(--amiga-spacing-unit) * 1.5);
+}
+
+.markdown-rendered table {
+  border: var(--amiga-border-width) solid var(--amiga-border-dark);
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.markdown-rendered th {
+  background: var(--table-header-background);
+  color: var(--amiga-text-title);
+}
+
+.markdown-rendered :is(td, th) {
+  border: var(--amiga-border-width) solid var(--table-border-color);
+  padding: var(--amiga-spacing-unit);
+}
+
+.callout {
+  background: var(--amiga-panel);
+  border: var(--callout-border-width) solid var(--amiga-border-dark);
+  border-radius: var(--callout-radius);
+  padding: var(--callout-padding);
+}
+
+.markdown-rendered hr {
+  border: 0;
+  border-top: var(--amiga-bevel-width) solid var(--amiga-border-dark);
+  margin-block: calc(var(--amiga-content-block-spacing) * 1.5);
+}
+
+.markdown-rendered :is(.footnotes, .footnote-ref) {
+  color: var(--amiga-text-muted);
+}
+
+.tag {
+  background: var(--amiga-surface-raised);
+  border: var(--amiga-border-width) solid var(--amiga-border-dark);
+  border-radius: 0;
+  color: var(--amiga-text-accent);
+}

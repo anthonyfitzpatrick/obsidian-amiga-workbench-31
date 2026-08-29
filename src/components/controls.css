@@ -1,0 +1,21 @@
+button, .button, input, select, textarea { min-height: var(--amiga-control-height); font-family: var(--font-interface); }
+button, .button, .clickable-icon, .view-action { font-weight: var(--amiga-control-weight); }
+button, .button { background: var(--amiga-surface-raised); color: var(--amiga-text); }
+button:hover, .button:hover, .clickable-icon:hover { background: var(--amiga-hover); }
+input, select, textarea { background: var(--amiga-input-background); color: var(--amiga-text); }
+.search-input-container { background: var(--amiga-surface-recessed); min-height: var(--amiga-control-height); }
+.search-input-container input { background: transparent; border: 0; border-radius: 0; box-shadow: none; min-height: 0; }
+input[type="checkbox"] { accent-color: var(--amiga-accent); }
+.vertical-tab-header, .setting-item, .metadata-container, .metadata-properties { background: var(--amiga-panel); box-shadow: var(--amiga-window-bevel); }
+.vertical-tab-nav-item, .setting-item, .metadata-property { border-radius: 0; }
+.vertical-tab-nav-item:hover, .metadata-add-button:hover { background: var(--amiga-hover); }
+.vertical-tab-nav-item.is-active { background: var(--amiga-selection); color: var(--amiga-text-on-selection); }
+.setting-item, .metadata-property { border-bottom: var(--amiga-border-width) solid var(--amiga-border-middle); }
+.checkbox-container, .metadata-add-button { background: var(--amiga-surface-raised); }
+.metadata-property-key { color: var(--amiga-text-muted); }
+.metadata-property-value { color: var(--amiga-text); }
+.slider { background: var(--amiga-surface-recessed); }
+.slider-thumb { background: var(--amiga-surface-raised); }
+::-webkit-scrollbar { width: var(--amiga-scrollbar-width); height: var(--amiga-scrollbar-width); }
+::-webkit-scrollbar-track { background: var(--amiga-surface-recessed); }
+::-webkit-scrollbar-thumb { background: var(--amiga-surface-raised); }

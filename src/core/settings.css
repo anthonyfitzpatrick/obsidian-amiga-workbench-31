@@ -1,0 +1,57 @@
+/* @settings
+name: Amiga Workbench
+id: amiga-workbench
+settings:
+  - id: amiga-flat
+    title: Flat gadgets
+    description: Remove the raised and recessed bevels from controls and windows.
+    type: class-toggle
+  - id: amiga-comfortable
+    title: Comfortable spacing
+    description: Increase padding, row height and control height throughout the interface.
+    type: class-toggle
+  - id: amiga-large-controls
+    title: Larger controls
+    description: Enlarge buttons, gadgets and touch targets without changing spacing.
+    type: class-toggle
+  - id: amiga-strong-borders
+    title: Stronger borders
+    description: Draw mid-tone frames in the darkest border colour and widen the focus ring.
+    type: class-toggle
+  - id: amiga-quiet-icons
+    title: Quiet ribbon icons
+    description: Draw ribbon pictograms in the text colour instead of the accent colour.
+    type: class-toggle
+*/
+
+/* Style Settings is optional. Every control below is a class toggle, so the theme's
+   own values apply whenever the plugin is absent or the toggle is off. */
+body.amiga-flat {
+  --amiga-window-bevel: none;
+  --amiga-raised-bevel: none;
+  --amiga-recessed-bevel: none;
+  --amiga-pressed-bevel: none;
+}
+
+body.amiga-comfortable {
+  --amiga-spacing-unit: 0.5rem;
+  --amiga-control-height: 2.125rem;
+  --amiga-tree-step: 9px;
+  --amiga-window-gap: 5px;
+}
+
+body.amiga-large-controls {
+  --amiga-control-height: 2.5rem;
+  --amiga-gadget-size: 2.5rem;
+  --amiga-scrollbar-width: 17px;
+}
+
+body.amiga-strong-borders {
+  --amiga-border-middle: var(--amiga-border-dark);
+  --amiga-text-muted: var(--amiga-text);
+  --amiga-focus-width: 3px;
+}
+
+body.amiga-quiet-icons {
+  --amiga-icon-accent: var(--amiga-icon-ink);
+}

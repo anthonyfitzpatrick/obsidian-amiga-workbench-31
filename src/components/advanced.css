@@ -1,0 +1,20 @@
+.canvas, .graph-view { background: var(--amiga-desktop); }
+.canvas-controls, .graph-controls, .bases-toolbar { background: var(--amiga-panel); }
+.canvas-control-item, .graph-control-section, .bases-toolbar button { background: var(--amiga-surface-raised); }
+.canvas-control-item:hover, .graph-control-section:hover, .bases-toolbar button:hover { background: var(--amiga-hover); }
+.canvas-control-item:active, .graph-control-section:active, .bases-toolbar button:active { background: var(--amiga-active); }
+.canvas-node, .canvas-group, .bases-card { background: var(--amiga-window); border-color: var(--amiga-border-dark); border-radius: var(--amiga-radius); }
+.canvas-node.is-selected, .canvas-group.is-selected { border-color: var(--amiga-focus); }
+.canvas-node-label, .canvas-group-label { color: var(--amiga-text); }
+.graph-view.color-fill { color: var(--amiga-desktop); }
+
+.bases-view, .bases-table-container, .bases-cards { background: var(--amiga-window); }
+.bases-table { --table-header-background: var(--amiga-titlebar); --table-header-color: var(--amiga-text-title); }
+.bases-table-header, .bases-table-cell { border-color: var(--amiga-border-middle); }
+.bases-table-cell:hover, .bases-card:hover { background: var(--amiga-hover); }
+.bases-table-cell.is-selected, .bases-card.is-selected { background: var(--amiga-selection); color: var(--amiga-text-on-selection); }
+
+.workspace-leaf-content:is([data-type="backlink"], [data-type="localgraph"]) { background: var(--amiga-panel); }
+.backlink-pane { background: var(--amiga-panel); }
+.backlink-pane .tree-item-self { border-radius: 0; }
+.backlink-pane .search-result-file-matches { border-color: var(--amiga-border-middle); }

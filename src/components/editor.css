@@ -1,0 +1,66 @@
+.markdown-source-view,
+.markdown-reading-view {
+  background: var(--amiga-window);
+}
+
+.markdown-preview-view,
+.markdown-source-view.mod-cm6 .cm-content {
+  font-family: var(--font-text);
+  line-height: var(--amiga-editor-line-height);
+}
+
+.markdown-preview-view p,
+.markdown-rendered p {
+  margin-block: var(--amiga-content-block-spacing);
+}
+
+.markdown-preview-view :is(h1, h2, h3, h4, h5, h6),
+.cm-header {
+  color: var(--amiga-text-accent);
+  font-family: var(--font-interface);
+  line-height: 1.2;
+  letter-spacing: var(--amiga-heading-tracking);
+}
+
+.markdown-preview-view h1,
+.cm-header-1 { font-size: 1.8em; }
+.markdown-preview-view h2,
+.cm-header-2 { font-size: 1.5em; }
+.markdown-preview-view h3,
+.cm-header-3 { font-size: 1.25em; }
+.markdown-preview-view h4,
+.cm-header-4 { font-size: 1.1em; }
+.markdown-preview-view h5,
+.cm-header-5 { font-size: 1em; }
+.markdown-preview-view h6,
+.cm-header-6 { font-size: 0.9em; }
+
+.markdown-preview-view :is(h1, h2, h3, h4, h5, h6) {
+  margin-block: calc(var(--amiga-content-block-spacing) * 1.5) var(--amiga-spacing-unit);
+}
+
+.cm-active,
+.markdown-source-view.mod-cm6 .cm-active {
+  background: color-mix(in srgb, var(--amiga-hover) 50%, transparent);
+}
+
+.cm-selectionBackground,
+.markdown-source-view.mod-cm6 .cm-selectionBackground {
+  background: var(--amiga-selection) !important;
+}
+
+.cm-line ::selection {
+  color: var(--amiga-text-on-selection);
+}
+
+.internal-link,
+.external-link {
+  color: var(--link-color);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.12em;
+}
+
+.internal-link:hover,
+.external-link:hover {
+  color: var(--link-color-hover);
+}

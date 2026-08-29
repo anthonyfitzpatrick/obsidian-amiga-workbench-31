@@ -1,0 +1,60 @@
+body :where(button, .button, input, select, textarea, a, .clickable-icon, .workspace-tab-header, .workspace-tab-header-inner-close-button, .view-action, .vertical-tab-nav-item, .tree-item-self, .search-result-file-title, .search-result-file-match, .metadata-add-button, .canvas-control-item, .graph-control-section, .bases-table-cell, .backlink-pane):focus-visible {
+  outline: var(--amiga-focus-width) solid var(--amiga-focus);
+  outline-offset: var(--amiga-focus-offset);
+}
+
+::selection { background: var(--amiga-selection); color: var(--amiga-text-on-selection); }
+
+@media (prefers-reduced-motion: reduce) {
+  :where(button, .button, .clickable-icon, .workspace-tab-header, .workspace-tab-header-inner-close-button, .view-action, .canvas-control-item, .graph-control-section, .bases-toolbar button) {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+body.is-mobile { --amiga-control-height: 2.5rem; }
+
+/* Mobile. The Workbench chrome is drawn for a pointer and a wide pane; a phone needs
+   bigger targets and a properties table that stacks instead of reserving a fixed
+   240px key column that cannot fit. */
+body.is-mobile {
+  --amiga-scrollbar-width: 10px;
+  --amiga-tree-gutter: 24px;
+  --amiga-window-gap: 2px;
+}
+body.is-mobile .metadata-property { grid-template-columns: minmax(0, 1fr); }
+body.is-mobile .metadata-property-key { border-right: 0; border-bottom: var(--amiga-border-width) solid var(--amiga-border-dark); }
+body.is-mobile :is(.workspace-tab-header, .view-header, .status-bar-item) { min-height: var(--amiga-control-height); }
+body.is-phone .workspace-ribbon { width: auto; min-width: 0; }
+
+@media (prefers-contrast: more) {
+  body {
+    --amiga-border-middle: var(--amiga-border-dark);
+    --amiga-text-muted: var(--amiga-text);
+    --amiga-focus-width: 3px;
+  }
+}
+
+/* Print and PDF export. A desktop palette belongs on screen, not on paper. */
+@media print {
+  body {
+    --amiga-desktop: #ffffff;
+    --amiga-window: #ffffff;
+    --amiga-panel: #ffffff;
+    --amiga-surface-raised: #ffffff;
+    --amiga-surface-recessed: #ffffff;
+    --amiga-input-background: #ffffff;
+    --amiga-text: #000000;
+    --amiga-text-muted: #333333;
+    --amiga-text-title: #000000;
+    --amiga-titlebar: #ffffff;
+    --amiga-selection: transparent;
+    --amiga-border-light: #ffffff;
+    --amiga-border-middle: #808080;
+    --amiga-border-dark: #000000;
+    --amiga-window-bevel: none;
+    --amiga-raised-bevel: none;
+    --amiga-recessed-bevel: none;
+    --amiga-pressed-bevel: none;
+  }
+}

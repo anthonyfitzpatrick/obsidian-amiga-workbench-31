@@ -1,0 +1,25 @@
+.workspace, .app-container { background: var(--amiga-desktop); }
+
+.workspace-leaf, .modal, .menu, .popover, .prompt, .suggestion-container {
+  background: var(--amiga-window);
+  border: var(--amiga-border-width) solid var(--amiga-border-dark);
+  box-shadow: var(--amiga-window-bevel);
+}
+
+.amiga-raised, button, .button, .clickable-icon, .workspace-tab-header, .workspace-tab-header-inner-close-button, .view-action, .slider-thumb, .status-bar, .notice, .canvas-node, ::-webkit-scrollbar-thumb {
+  border: var(--amiga-border-width) solid var(--amiga-border-dark);
+  border-radius: var(--amiga-radius);
+  box-shadow: var(--amiga-raised-bevel);
+}
+
+.amiga-recessed, input, textarea, select, .search-input-container, .slider, ::-webkit-scrollbar-track {
+  border: var(--amiga-border-width) solid var(--amiga-border-dark);
+  border-radius: var(--amiga-radius);
+  box-shadow: var(--amiga-recessed-bevel);
+}
+
+.amiga-pressed, button:active, .button:active, .clickable-icon:active, .workspace-tab-header.is-active, .workspace-tab-header-inner-close-button:active, .view-action:active, .slider-thumb:active, ::-webkit-scrollbar-thumb:active {
+  border: var(--amiga-border-width) solid var(--amiga-border-dark);
+  border-radius: var(--amiga-radius);
+  box-shadow: var(--amiga-pressed-bevel);
+}

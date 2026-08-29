@@ -1,0 +1,172 @@
+/* Semantic design tokens. Personalities override values, never component contracts. */
+:root {
+  /* Surfaces */
+  --amiga-desktop: #738698;
+  --amiga-window: #d8e0e4;
+  --amiga-panel: #c7d1d7;
+  --amiga-surface-raised: #dce5e9;
+  --amiga-surface-recessed: #aebcc5;
+  --amiga-input-background: #f3f7f8;
+
+  /* Text */
+  --amiga-text: #16242d;
+  --amiga-text-muted: #53636d;
+  --amiga-text-disabled: #78858c;
+  --amiga-text-title: #ffffff;
+  --amiga-text-on-accent: var(--amiga-text-title);
+  --amiga-text-on-selection: var(--amiga-text-title);
+  --amiga-text-accent: #063b62;
+
+  /* Chrome and borders */
+  --amiga-titlebar: #17628d;
+  --amiga-titlebar-inactive: #71818a;
+  --amiga-border-light: #ffffff;
+  --amiga-border-middle: #8a9aa4;
+  --amiga-border-dark: #263943;
+  --amiga-bevel-highlight: var(--amiga-border-light);
+  --amiga-bevel-mid: var(--amiga-border-middle);
+  --amiga-bevel-deep: var(--amiga-border-dark);
+
+  /* Interaction */
+  --amiga-accent: #d36a24;
+  --amiga-hover: #c2e1f0;
+  --amiga-active: #9ccde4;
+  --amiga-selection: #2a719d;
+  --amiga-focus: #e47724;
+
+  /* Geometry */
+  --amiga-bevel-width: 2px;
+  --amiga-border-width: 1px;
+  --amiga-focus-width: 3px;
+  --amiga-focus-offset: 2px;
+  --amiga-control-height: 2rem;
+  --amiga-scrollbar-width: 13px;
+  --amiga-radius: 3px;
+  --amiga-spacing-unit: 0.5rem;
+  --amiga-content-line-width: 72ch;
+  --amiga-content-block-spacing: 1rem;
+  --amiga-window-bevel: inset var(--amiga-bevel-width) var(--amiga-bevel-width) 0 var(--amiga-bevel-highlight), inset calc(var(--amiga-bevel-width) * -1) calc(var(--amiga-bevel-width) * -1) 0 var(--amiga-bevel-mid);
+  --amiga-raised-bevel: inset var(--amiga-bevel-width) var(--amiga-bevel-width) 0 var(--amiga-bevel-highlight), inset calc(var(--amiga-bevel-width) * -1) calc(var(--amiga-bevel-width) * -1) 0 var(--amiga-bevel-mid);
+  --amiga-recessed-bevel: inset var(--amiga-bevel-width) var(--amiga-bevel-width) 0 var(--amiga-bevel-deep), inset calc(var(--amiga-bevel-width) * -1) calc(var(--amiga-bevel-width) * -1) 0 var(--amiga-bevel-highlight);
+  --amiga-pressed-bevel: inset var(--amiga-border-width) var(--amiga-border-width) 0 var(--amiga-bevel-deep), inset calc(var(--amiga-border-width) * -1) calc(var(--amiga-border-width) * -1) 0 var(--amiga-bevel-highlight);
+  --amiga-tab-margin: 3px 2px 0;
+  --amiga-tab-padding: 0 8px;
+  --amiga-control-weight: 600;
+  --amiga-heading-tracking: 0.01em;
+
+  /* Typography */
+  --amiga-ui-font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --amiga-editor-font: ui-serif, Georgia, Cambria, serif;
+  --amiga-code-font: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  --amiga-code-font-size: 0.875em;
+  --amiga-ui-line-height: 1.4;
+  --amiga-editor-line-height: 1.65;
+  --amiga-code-line-height: 1.5;
+}
+
+/* Scoped to body.theme-*, which is load-bearing in two directions. It must be on body
+   because a personality declares its palette there and a custom property substitutes
+   var() against the element it is declared on, so mapping at :root would resolve every
+   token against the generic defaults. It must carry the theme class because Obsidian
+   declares its own tokens on .theme-light and .theme-dark at (0,1,0); a bare body
+   selector is (0,0,1) and loses to them. */
+body.theme-light,
+body.theme-dark {
+  /* Derived from other semantic tokens, so they must resolve here rather than at
+     :root, where the personality's values are not yet in scope. */
+  --amiga-bevel-highlight: var(--amiga-border-light);
+  --amiga-bevel-mid: var(--amiga-border-middle);
+  --amiga-bevel-deep: var(--amiga-border-dark);
+
+  --background-primary: var(--amiga-window);
+  --background-primary-alt: var(--amiga-panel);
+  --background-secondary: var(--amiga-desktop);
+  --background-secondary-alt: var(--amiga-panel);
+  --background-modifier-border: var(--amiga-border-dark);
+  --background-modifier-border-hover: var(--amiga-border-middle);
+  --background-modifier-border-focus: var(--amiga-focus);
+  --background-modifier-hover: var(--amiga-hover);
+  --background-modifier-active-hover: var(--amiga-active);
+  --background-modifier-form-field: var(--amiga-input-background);
+  --background-modifier-form-field-highlight: var(--amiga-surface-raised);
+  --text-normal: var(--amiga-text);
+  --text-muted: var(--amiga-text-muted);
+  --text-faint: var(--amiga-text-disabled);
+  --text-on-accent: var(--amiga-text-on-accent);
+  --text-accent: var(--amiga-text-accent);
+  --text-selection: var(--amiga-selection);
+  --interactive-accent: var(--amiga-accent);
+  --interactive-normal: var(--amiga-surface-raised);
+  --interactive-hover: var(--amiga-hover);
+  --interactive-accent-hover: var(--amiga-active);
+  /* Obsidian resolves --font-interface as override, then theme, then default, so a
+     theme supplies the -theme layer only. Setting --font-interface directly would
+     discard the reader's Appearance choice. --font-text-size belongs to the font-size
+     slider and is never set here. */
+  --font-interface-theme: var(--amiga-ui-font);
+  --font-text-theme: var(--amiga-editor-font);
+  --font-monospace-theme: var(--amiga-code-font);
+  --code-size: var(--amiga-code-font-size);
+  --line-height-normal: var(--amiga-editor-line-height);
+  --file-line-width: var(--amiga-content-line-width);
+  --text-highlight-bg: var(--amiga-hover);
+  --text-highlight-bg-active: var(--amiga-active);
+  --link-color: var(--amiga-text-accent);
+  --link-color-hover: var(--amiga-accent);
+  --link-external-color: var(--amiga-text-accent);
+  --link-external-color-hover: var(--amiga-accent);
+  --list-marker-color: var(--amiga-text-accent);
+  --checklist-done-color: var(--amiga-text-muted);
+  --blockquote-border-color: var(--amiga-accent);
+  --callout-radius: 0;
+  --callout-border-width: var(--amiga-bevel-width);
+  --callout-padding: var(--amiga-spacing-unit);
+  --table-header-background: var(--amiga-titlebar);
+  --table-border-color: var(--amiga-border-middle);
+  --code-background: var(--amiga-surface-recessed);
+  --code-normal: var(--amiga-text);
+  --radius-s: var(--amiga-radius);
+  --radius-m: var(--amiga-radius);
+  --input-height: var(--amiga-control-height);
+  --scrollbar-width: var(--amiga-scrollbar-width);
+  /* Obsidian draws parts of its own chrome from these. Left unmapped they are drawn
+     to Obsidian's defaults and disagree with the Workbench geometry beside them —
+     curved tab corners behind square tabs, a second pane divider, indentation guides
+     that cut across the disclosure triangles. */
+  --tab-curve: 0px;
+  --tab-radius: 0px;
+  --tab-radius-active: 0px;
+  --tab-outline-width: 0px;
+  --tab-outline-color: var(--amiga-border-dark);
+  --tab-divider-color: var(--amiga-border-dark);
+  --divider-color: var(--amiga-border-dark);
+  --divider-color-hover: var(--amiga-focus);
+  --divider-width: var(--amiga-border-width);
+  --nav-item-radius: 0px;
+  --nav-item-color: var(--amiga-text);
+  --nav-item-color-hover: var(--amiga-text);
+  --nav-item-color-active: var(--amiga-text-title);
+  --nav-item-color-selected: var(--amiga-text-title);
+  --nav-item-background-hover: var(--amiga-hover);
+  --nav-item-background-active: var(--amiga-selection);
+  --nav-item-background-selected: var(--amiga-selection);
+  --collapse-icon-color: var(--amiga-accent);
+  --collapse-icon-color-collapsed: var(--amiga-accent);
+  --indentation-guide-color: var(--amiga-border-middle);
+  --indentation-guide-color-active: var(--amiga-accent);
+  --indentation-guide-width: var(--amiga-border-width);
+  --scrollbar-radius: 0px;
+  --scrollbar-bg: var(--amiga-surface-recessed);
+  --scrollbar-thumb-bg: var(--amiga-surface-raised);
+  --scrollbar-active-thumb-bg: var(--amiga-active);
+  --checkbox-radius: 0px;
+  --checkbox-color: var(--amiga-accent);
+  --checkbox-color-hover: var(--amiga-active);
+  --checkbox-border-color: var(--amiga-border-dark);
+  --checkbox-border-color-hover: var(--amiga-border-dark);
+  --checkbox-marker-color: var(--amiga-border-dark);
+}
+
+
+
+.theme-light, .theme-dark { color-scheme: light; }

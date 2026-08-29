@@ -1,0 +1,126 @@
+/* Menus, palettes, requesters and notices share one Workbench overlay idiom: a hard
+   frame with no radius or blur, a title strip where there is a title, square rows, and
+   a solid selection bar. These are the surfaces a reader touches every few minutes. */
+
+.menu,
+.suggestion-container,
+.prompt,
+.modal,
+.popover {
+  padding: var(--amiga-spacing-unit);
+  border: var(--amiga-border-width) solid var(--amiga-border-dark);
+  border-radius: 0;
+  background: var(--amiga-window);
+  color: var(--amiga-text);
+  box-shadow: var(--amiga-window-bevel);
+}
+
+.modal-bg { backdrop-filter: none; }
+
+.modal-title {
+  padding: calc(var(--amiga-spacing-unit) / 2);
+  border-bottom: var(--amiga-border-width) solid var(--amiga-border-dark);
+  background: var(--amiga-titlebar);
+  color: var(--amiga-text-title);
+  box-shadow: var(--amiga-raised-bevel);
+  font-family: var(--font-interface);
+  font-weight: var(--amiga-control-weight);
+}
+
+.modal-close-button {
+  border: var(--amiga-border-width) solid var(--amiga-border-dark);
+  border-radius: 0;
+  background: var(--amiga-surface-raised);
+  color: var(--amiga-text);
+}
+
+/* Command palette and quick switcher: a recessed entry field over square result rows. */
+.prompt-input-container .prompt-input,
+.prompt-input {
+  border: var(--amiga-border-width) solid var(--amiga-border-dark);
+  border-radius: 0;
+  background: var(--amiga-input-background);
+  box-shadow: var(--amiga-recessed-bevel);
+  color: var(--amiga-text);
+  font-family: var(--font-interface);
+}
+
+.prompt-results { padding: 0; }
+
+.menu-item,
+.suggestion-item {
+  min-height: var(--amiga-control-height);
+  padding: 0 var(--amiga-spacing-unit);
+  border-radius: 0;
+  color: var(--amiga-text);
+  font-family: var(--font-interface);
+  font-size: var(--font-ui-small);
+}
+
+.menu-item:hover,
+.suggestion-item:hover { background: var(--amiga-hover); color: var(--amiga-text); }
+
+.menu-item.selected,
+.suggestion-item.is-selected {
+  background: var(--amiga-selection);
+  color: var(--amiga-text-on-selection);
+}
+
+/* Secondary text inside a selected row must follow the bar, not the page. */
+.menu-item.selected :is(.menu-item-icon, .menu-item-title),
+.suggestion-item.is-selected :is(.suggestion-note, .suggestion-prefix, .suggestion-flair, .suggestion-aux) { color: inherit; }
+
+.menu-item-icon,
+.suggestion-flair { color: var(--amiga-text-accent); }
+
+.suggestion-note,
+.suggestion-prefix,
+.suggestion-empty { color: var(--amiga-text-muted); }
+
+.menu-separator {
+  margin: calc(var(--amiga-spacing-unit) / 2) 0;
+  border-top: var(--amiga-border-width) solid var(--amiga-border-middle);
+}
+
+/* Keyboard hints read as small raised gadgets, the way Workbench drew key labels. */
+.suggestion-hotkey,
+.prompt-instruction-command {
+  padding: 0 calc(var(--amiga-spacing-unit) / 2);
+  border: var(--amiga-border-width) solid var(--amiga-border-dark);
+  border-radius: 0;
+  background: var(--amiga-surface-raised);
+  box-shadow: var(--amiga-raised-bevel);
+  color: var(--amiga-text);
+  font-family: var(--font-monospace);
+  font-size: var(--font-ui-smaller);
+}
+
+.prompt-instructions {
+  padding-top: calc(var(--amiga-spacing-unit) / 2);
+  border-top: var(--amiga-border-width) solid var(--amiga-border-dark);
+  background: var(--amiga-panel);
+  color: var(--amiga-text-muted);
+  font-size: var(--font-ui-smaller);
+}
+
+.notice {
+  border: var(--amiga-border-width) solid var(--amiga-border-dark);
+  border-radius: 0;
+  background: var(--amiga-panel);
+  box-shadow: var(--amiga-raised-bevel);
+  color: var(--amiga-text);
+  font-family: var(--font-interface);
+  font-size: var(--font-ui-small);
+}
+
+.tooltip {
+  border: var(--amiga-border-width) solid var(--amiga-border-dark);
+  border-radius: 0;
+  background: var(--amiga-titlebar);
+  color: var(--amiga-text-title);
+  box-shadow: none;
+  font-family: var(--font-interface);
+  font-size: var(--font-ui-smaller);
+}
+
+.tooltip .tooltip-arrow { display: none; }

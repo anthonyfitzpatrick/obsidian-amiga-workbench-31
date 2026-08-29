@@ -1,0 +1,530 @@
+/* Shared Workbench chrome: the single structural contract for every historical
+   personality. Workbench 1.3 established this geometry; 2.04 and 3.1 inherit it
+   unchanged and differ only in the semantic token values they supply.
+
+   Selectors are written against the .amiga-workbench marker. tools/build.mjs
+   retargets it: to :is(.amiga-workbench-13, .amiga-workbench-204,
+   .amiga-workbench-31) in the master theme, and to body in each standalone
+   distribution. Token-only: this module must never carry a palette literal. */
+
+/* Shared Workbench geometry. Every historical personality is dimensionally
+   identical; only the palette below each personality differs. */
+.amiga-workbench {
+  --amiga-bevel-width: 1px;
+  --amiga-border-width: 1px;
+  --amiga-focus-width: 2px;
+  --amiga-focus-offset: 1px;
+  --amiga-radius: 0;
+  --amiga-spacing-unit: 0.25rem;
+  --amiga-control-height: 1.75rem;
+  --amiga-scrollbar-width: 14px;
+  --amiga-ui-font: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  --amiga-control-weight: 600;
+  --amiga-heading-tracking: 0.01em;
+  --amiga-tab-margin: 0;
+  --amiga-tab-padding: 0 0.35rem;
+  /* Flat by default, which is Workbench 1.x. A personality may raise these — the 3D
+     bevel was the whole visual argument of Workbench 2.0 — through the declared style
+     tokens, which is the only geometry a variant is allowed to touch. */
+  --amiga-window-bevel: inset 1px 1px 0 var(--amiga-border-light);
+  --amiga-raised-bevel: inset 1px 1px 0 var(--amiga-border-light), inset -1px -1px 0 var(--amiga-border-middle);
+  --amiga-recessed-bevel: inset 1px 1px 0 var(--amiga-border-middle), inset -1px -1px 0 var(--amiga-border-light);
+  --amiga-pressed-bevel: inset 1px 1px 0 var(--amiga-border-dark), inset -1px -1px 0 var(--amiga-border-light);
+  --amiga-window-gap: 3px;
+  --amiga-gadget-size: 36px;
+  /* Explorer indent. Every row reserves the same left gutter and the disclosure
+     triangle hangs inside it, so a file's label lines up with its folder's label
+     instead of sitting to the left of it. */
+  --amiga-tree-pad: 4px;
+  --amiga-tree-gutter: 17px;
+  --amiga-tree-rail: 10px;
+  --amiga-tree-step: 4px;
+  /* Obsidian computes its own nav layout from these. Telling it the gutter and the
+     indent step keeps its measurements identical to the rules below, rather than
+     leaving it to lay the tree out to different numbers underneath them. */
+  --nav-item-padding: 0 0.25rem 0 var(--amiga-tree-pad);
+  --nav-item-children-margin-start: var(--amiga-tree-rail);
+  --nav-item-children-padding-start: var(--amiga-tree-step);
+  --nav-item-margin-bottom: 0px;
+  --nav-item-size: var(--amiga-chrome-size);
+  --nav-item-weight: var(--amiga-control-weight);
+  --nav-item-weight-active: 700;
+  /* Chrome text follows the reader's interface font and font-size setting: Obsidian
+     derives --font-ui-* from --font-text-size, so the shell scales with the slider
+     instead of sitting at a fixed 13px. */
+  /* Obsidian draws icons in a muted colour at reduced opacity. A Workbench gadget has
+     no dimmed state — it is either drawn or it is not — so every icon takes the text
+     colour at full strength. Without this the vault profile controls at the foot of the
+     sidebar are barely visible against the panel. */
+  --icon-color: var(--amiga-text);
+  --icon-color-hover: var(--amiga-text);
+  --icon-color-active: var(--amiga-text);
+  --icon-color-focus: var(--amiga-text);
+  --icon-color-focused: var(--amiga-text);
+  --icon-opacity: 1;
+  --icon-opacity-hover: 1;
+  --icon-opacity-active: 1;
+  --amiga-chrome-font: var(--font-interface);
+  --amiga-chrome-size: var(--font-ui-small);
+  --amiga-chrome-size-small: var(--font-ui-smaller);
+  --amiga-chrome-size-large: var(--font-ui-medium);
+}
+
+/* Screen and hard-framed windows. */
+.amiga-workbench :is(.app-container, .workspace, .workspace-split, .workspace-tabs) { background: var(--amiga-desktop); }
+.amiga-workbench :is(.workspace-leaf, .workspace-sidedock, .mod-left-split, .mod-right-split) {
+  margin: var(--amiga-window-gap);
+  border: 1px solid var(--amiga-border-dark);
+  border-radius: 0;
+  background: var(--amiga-window);
+  box-shadow: var(--amiga-window-bevel);
+}
+.amiga-workbench :is(.workspace-leaf-content, .workspace-sidedock .workspace-leaf-content, .markdown-source-view, .markdown-reading-view) { background: var(--amiga-window); }
+.amiga-workbench .workspace-sidedock-vault-profile .clickable-icon { color: var(--amiga-text); opacity: 1; }
+.amiga-workbench .workspace-sidedock-vault-profile .clickable-icon svg { color: currentColor; opacity: 1; }
+.amiga-workbench .workspace-leaf-resize-handle { background: var(--amiga-desktop); border-inline: 1px solid var(--amiga-border-dark); }
+
+/* Native actions retain their handlers; each known action gets its own pictogram. */
+.amiga-workbench .workspace-ribbon {
+  box-sizing: border-box;
+  width: 46px;
+  min-width: 46px;
+  padding: 3px 4px;
+  border: 0;
+  border-right: 2px solid var(--amiga-border-dark);
+  border-radius: 0;
+  background: var(--amiga-panel);
+  box-shadow: inset 1px 0 0 var(--amiga-border-light);
+}
+.amiga-workbench .workspace-ribbon :is(.side-dock-ribbon-action, .clickable-icon) {
+  position: relative;
+  display: grid;
+  box-sizing: border-box;
+  width: var(--amiga-gadget-size);
+  min-width: var(--amiga-gadget-size);
+  height: calc(var(--amiga-gadget-size) + 2px);
+  min-height: calc(var(--amiga-gadget-size) + 2px);
+  place-items: center;
+  margin: 0 0 3px;
+  padding: 2px;
+  border: 1px solid var(--amiga-border-dark);
+  border-radius: 0;
+  background: var(--amiga-window);
+  box-shadow: var(--amiga-raised-bevel);
+  color: var(--amiga-text);
+  opacity: 1;
+}
+.amiga-workbench .workspace-ribbon :is(.side-dock-ribbon-action, .clickable-icon) svg { visibility: visible; width: 26px; height: 26px; color: var(--amiga-text); stroke-width: 2; stroke-linecap: square; stroke-linejoin: miter; }
+.amiga-workbench .workspace-ribbon [aria-label]::before { position: absolute; width: 26px; height: 26px; pointer-events: none; content: ""; background: center / 26px 26px no-repeat; }
+.amiga-workbench .workspace-ribbon :is([aria-label="Open quick switcher"], [aria-label="Open graph view"], [aria-label="Create new canvas"], [aria-label="Insert template"], [aria-label="Open command palette"], [aria-label="Create new base"], [aria-label="Templater"], [aria-label="Open Git source control"]) svg { visibility: hidden; }
+.amiga-workbench .workspace-ribbon :is(.side-dock-ribbon-action, .clickable-icon):hover { background: color-mix(in srgb, var(--amiga-accent) 16%, var(--amiga-window)); color: var(--amiga-text); }
+.amiga-workbench .workspace-ribbon :is(.side-dock-ribbon-action, .clickable-icon):is(:active, .is-active, [aria-pressed="true"]) {
+  background: var(--amiga-accent);
+  box-shadow: var(--amiga-pressed-bevel);
+  color: var(--amiga-border-dark);
+}
+.amiga-workbench .workspace-ribbon :is(.side-dock-ribbon-action, .clickable-icon)[aria-disabled="true"] { background: var(--amiga-panel); color: var(--amiga-text-muted); opacity: 1; }
+
+/* Attached rectangular window selectors over a title bar. */
+.amiga-workbench :is(.workspace-tab-header-container, .workspace-tab-header-container-inner, .workspace-tabs) {
+  display: flex;
+  gap: 0;
+  min-height: 32px;
+  padding: 2px;
+  border-block: 1px solid var(--amiga-border-dark);
+  background: var(--amiga-titlebar);
+}
+.amiga-workbench .workspace-tab-header {
+  min-width: 0;
+  max-width: 14rem;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 0.5rem;
+  border: 1px solid var(--amiga-border-dark);
+  border-right: 0;
+  border-radius: 0;
+  background: var(--amiga-panel);
+  color: var(--amiga-text);
+  font-family: var(--amiga-chrome-font);
+  font-size: var(--amiga-chrome-size);
+  font-weight: 700;
+  line-height: 1;
+}
+/* Selected, not titled: Workbench 1.3 marked the active item with its highlight
+   colour, and 2.04/3.1 set selection to the same value as their title bars. */
+.amiga-workbench .workspace-tab-header.is-active { background: var(--amiga-selection); color: var(--amiga-text-on-selection); box-shadow: var(--amiga-window-bevel); }
+.amiga-workbench :is(.workspace-tab-header-new, .workspace-tab-header-inner-close-button) { width: 28px; min-width: 28px; height: 28px; min-height: 28px; margin: 0; padding: 0; border: 1px solid var(--amiga-border-dark); border-radius: 0; background: var(--amiga-window); }
+
+/* Obsidian dims inactive tab icons and titles through its own tab text variables and
+   an icon opacity. A Workbench selector strip has no dimmed state, so every tab keeps
+   full contrast and the close gadget sits on its own tab rather than punching a
+   window-coloured hole through it. */
+.amiga-workbench .workspace-tab-header {
+  --tab-text-color: var(--amiga-text);
+  --tab-text-color-active: var(--amiga-text);
+  --tab-text-color-focused: var(--amiga-text);
+  --tab-text-color-focused-active: var(--amiga-text-title);
+  --tab-text-color-focused-highlighted: var(--amiga-text-title);
+  --icon-color: currentColor;
+  --icon-opacity: 1;
+  --icon-color-focused: currentColor;
+}
+.amiga-workbench :is(.workspace-tab-header-inner, .workspace-tab-header-inner-icon, .workspace-tab-header-inner-title) { opacity: 1; color: inherit; }
+.amiga-workbench .workspace-tab-header-inner-icon svg { color: currentColor; opacity: 1; stroke-width: 2; stroke-linecap: square; stroke-linejoin: miter; }
+.amiga-workbench .workspace-tab-header-inner-close-button { background: transparent; color: inherit; opacity: 1; }
+.amiga-workbench :is(.view-header, .modal-title, .vertical-tab-header-group-title) {
+  display: flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0.15rem 0.45rem;
+  border: 1px solid var(--amiga-border-dark);
+  border-radius: 0;
+  background: var(--amiga-titlebar);
+  color: var(--amiga-text-title);
+  font-family: var(--amiga-chrome-font);
+  font-size: var(--amiga-chrome-size-large);
+  font-weight: 700;
+}
+.amiga-workbench .view-header-title-container { flex: 0 1 auto; min-width: 0; color: inherit; font: inherit; }
+/* The path reads as a path: plain clickable text with separators between the segments,
+   the way a Workbench path was written out. Drawing each segment as a bordered gadget
+   turned the header into a row of boxes and cost so much width that every segment
+   truncated. */
+.amiga-workbench :is(.view-header-breadcrumb, .view-header-title-parent) {
+  flex: 0 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  /* The header strip is the title bar, so the path takes the title colour. An accent
+     meant for the page measures under 2:1 against a blue title bar. Hover underlines
+     rather than recolouring, which stays legible in every palette. */
+  color: var(--amiga-text-title);
+  font: var(--amiga-chrome-size) var(--amiga-chrome-font);
+  cursor: pointer;
+}
+.amiga-workbench :is(.view-header-breadcrumb, .view-header-title-parent):hover { text-decoration: underline; }
+.amiga-workbench .view-header-breadcrumb-separator { margin-inline: 0.3rem; color: var(--amiga-text-title); opacity: 0.65; }
+.amiga-workbench .view-header .view-actions { margin-left: auto; }
+/* Workbench dimmed the title bar of any window that was not in front. Obsidian marks the
+   focused pane with mod-active, so every other pane takes the inactive title colour. */
+/* Stated at leaf level so no generic .view-header rule, ours or Obsidian's, can
+   outrank it and reintroduce the panel background. */
+.amiga-workbench .workspace-leaf .view-header { background: var(--amiga-titlebar); color: var(--amiga-text-title); }
+.amiga-workbench .workspace-leaf:not(.mod-active) .view-header { background: var(--amiga-titlebar-inactive); }
+
+/* Existing commands are adjoining gadgets, never floating icon buttons. */
+.amiga-workbench .view-actions { display: flex; gap: 0; min-height: 34px; padding: 2px; border-block: 1px solid var(--amiga-border-dark); background: var(--amiga-panel); }
+.amiga-workbench :is(.view-actions .clickable-icon, .view-actions .view-action) {
+  width: 30px;
+  min-width: 30px;
+  height: 30px;
+  min-height: 30px;
+  margin: 0;
+  padding: 2px;
+  border: 1px solid var(--amiga-border-dark);
+  border-right: 0;
+  border-radius: 0;
+  background: var(--amiga-window);
+  box-shadow: var(--amiga-raised-bevel);
+  color: var(--amiga-text);
+}
+.amiga-workbench :is(.view-actions .clickable-icon, .view-actions .view-action):is(:active, .is-active, [aria-pressed="true"]) { background: var(--amiga-accent); box-shadow: inset 1px 1px 0 var(--amiga-border-dark); }
+
+/* Explorer lanes: connector, clear gap, accent disclosure, clear gap, label. */
+/* The side panels carry the panel tone, the same one the settings navigation uses,
+   so the left of the workspace reads as chrome and the editor keeps the canvas. */
+.amiga-workbench :is(.nav-files-container, .workspace-leaf-content[data-type="file-explorer"]) { padding-left: 0.35rem; background: var(--amiga-panel); font: var(--amiga-chrome-size) var(--amiga-chrome-font); }
+.amiga-workbench .workspace-leaf-content:is([data-type="file-explorer"], [data-type="search"], [data-type="bookmarks"], [data-type="outline"], [data-type="tag"], [data-type="backlink"], [data-type="outgoing-link"], [data-type="all-properties"], [data-type="starred"]) { background: var(--amiga-panel); }
+.amiga-workbench :is(.nav-folder-title, .nav-file-title, .tree-item-self) { min-height: 27px; padding: 0 0.25rem; border: 0; border-radius: 0; color: var(--amiga-text); font: 600 var(--amiga-chrome-size)/var(--amiga-ui-line-height) var(--amiga-chrome-font); }
+.amiga-workbench .nav-folder-title { font-weight: 700; }
+
+/* Obsidian gives every nav row a left inset that the disclosure triangle hangs into,
+   which is what keeps a file's label aligned with its folder's. Restore that here:
+   both row types reserve the gutter and the triangle is taken out of the inline flow,
+   so no row can sit to the left of its own parent. */
+.amiga-workbench :is(.nav-folder-title, .nav-file-title) { position: relative; padding-left: var(--amiga-tree-gutter); }
+/* One connector rail per level, drawn by the theme. Obsidian's own indentation guides
+   are suppressed because it positions them from its own metrics and they land across
+   the disclosure triangles. This rail drops from directly under the parent's triangle
+   and sits 8px clear of every triangle below it at any depth, because the triangle is
+   in the inline flow and its position is therefore known. */
+.amiga-workbench { --nav-indentation-guide-color: transparent; }
+.amiga-workbench .nav-indentation-guide { display: none; }
+.amiga-workbench .nav-folder-children.tree-item-children {
+  margin-left: var(--amiga-tree-rail);
+  padding-left: var(--amiga-tree-step);
+  border-left: 1px solid color-mix(in srgb, var(--amiga-accent) 42%, var(--amiga-border-middle));
+}
+
+/* The triangle stays in the inline flow and rows without one reserve its width, so
+   labels align at every depth without depending on a positioned ancestor. */
+.amiga-workbench :is(.nav-folder-title, .nav-file-title) { align-items: center; padding-left: var(--amiga-tree-pad); }
+.amiga-workbench .tree-item-self:not(.mod-collapsible) { padding-left: calc(var(--amiga-tree-pad) + var(--amiga-tree-gutter)); }
+/* Centre the triangle explicitly rather than inheriting the row's alignment. A 0x0
+   element drawn entirely from borders takes its baseline from its bottom edge, so under
+   baseline alignment it sits below the label instead of beside it. */
+.amiga-workbench .nav-folder-title > .collapse-icon { position: static; display: flex; flex: 0 0 12px; align-items: center; align-self: center; justify-content: center; width: 12px; min-width: 12px; height: 1.2em; margin: 0 5px 0 0; padding: 0; background: none; color: var(--amiga-accent); transform: none; }
+.amiga-workbench .nav-folder-title > .collapse-icon::before { content: none; }
+.amiga-workbench .nav-folder-title > .collapse-icon svg { visibility: hidden; transform: none; }
+.amiga-workbench .nav-folder-title > .collapse-icon::after { width: 0; height: 0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 8px solid var(--amiga-accent); content: ""; }
+.amiga-workbench .nav-folder-title > .collapse-icon:not(.is-collapsed)::after { border: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid var(--amiga-accent); }
+.amiga-workbench :is(.nav-file-title.is-active, .tree-item-self.is-active, .tree-item-self[aria-selected="true"]) { border: 1px solid var(--amiga-border-dark); background: var(--amiga-selection); color: var(--amiga-text-on-selection); box-shadow: none; }
+
+/* Properties, drawn as a Workbench requester: a titled strip, a keyed column, and values
+   in recessed fields. Everything is sized from its content rather than pinned to fixed
+   pixels, so long values, many tags, a narrow pane and plugin-added controls all fit. */
+.amiga-workbench .metadata-container {
+  padding: 0;
+  border: var(--amiga-bevel-width) solid var(--amiga-border-dark);
+  border-radius: 0;
+  background: var(--amiga-window);
+  box-shadow: var(--amiga-window-bevel);
+}
+.amiga-workbench .metadata-properties { margin: 0; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+
+/* The native heading is kept and restyled rather than replaced, so its collapse control
+   keeps working. */
+.amiga-workbench .metadata-properties-heading {
+  padding: 0.3rem 0.5rem;
+  border-bottom: var(--amiga-border-width) solid var(--amiga-border-dark);
+  background: var(--amiga-titlebar);
+  color: var(--amiga-text-title);
+  font: 700 var(--font-ui-small)/1.35 var(--font-interface);
+  text-transform: uppercase;
+  letter-spacing: var(--amiga-heading-tracking);
+}
+.amiga-workbench .metadata-properties-heading .collapse-indicator { color: inherit; }
+
+.amiga-workbench .metadata-property {
+  display: grid;
+  /* Three explicit columns: key, value, and anything a plugin adds. Every child is
+     placed by name into row 1, so the layout does not depend on DOM order — a plugin
+     that injects its control between the key and the value cannot displace either. */
+  /* The key holds an <input>, whose intrinsic width reflects its size attribute rather
+     than its text, so the track will not grow to fit a long label and Obsidian truncates
+     it, and the key element does not stretch to fill its track either, which leaves a
+     dead gap beside it. The column is therefore a fixed width and both cells are made to
+     occupy it, so the label gets the whole column and the value starts where the key
+     ends. */
+  grid-template-columns: 12rem minmax(0, 1fr) auto;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-bottom: var(--amiga-border-width) solid var(--amiga-border-dark);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.amiga-workbench .metadata-property:last-child { border-bottom: 0; }
+
+.amiga-workbench .metadata-property-key {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  gap: 0.3rem;
+  align-items: center;
+  min-width: 0;
+  padding: 0.35rem 0.5rem;
+  border: 0;
+  border-right: var(--amiga-border-width) solid var(--amiga-border-dark);
+  background: var(--amiga-panel);
+  color: var(--amiga-text);
+  font: var(--amiga-control-weight) var(--font-ui-small)/1.35 var(--font-interface);
+}
+/* The type icon is informative; show it in the key rather than hiding it. */
+.amiga-workbench .metadata-property-icon { flex: 0 0 auto; color: var(--amiga-text-muted); opacity: 1; }
+.amiga-workbench .metadata-property-key-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  border-radius: 0;
+  appearance: none;
+  background: transparent;
+  box-shadow: none;
+  color: inherit;
+  font: inherit;
+  overflow-wrap: anywhere;
+}
+
+.amiga-workbench .metadata-property-value {
+  grid-column: 2;
+  grid-row: 1;
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  align-items: center;
+  min-width: 0;
+  padding: 0.35rem 0.5rem;
+  border: 0;
+  border-radius: 0;
+  background: var(--amiga-input-background);
+  box-shadow: var(--amiga-recessed-bevel);
+  color: var(--amiga-text);
+  font: var(--font-ui-small)/1.35 var(--font-text);
+}
+.amiga-workbench .metadata-property-value:focus-within { outline: var(--amiga-focus-width) solid var(--amiga-focus); outline-offset: -2px; }
+
+/* A plugin may add controls to a property row, and may insert them anywhere among the
+   children. They get their own column so they can neither start a new row nor take the
+   value's cell. */
+.amiga-workbench .metadata-property > *:not(.metadata-property-key):not(.metadata-property-value) {
+  grid-column: 3;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  padding: 0 0.35rem;
+  background: var(--amiga-panel);
+  border-left: var(--amiga-border-width) solid var(--amiga-border-dark);
+}
+
+/* The field itself carries no chrome; the row around it is the recess. */
+.amiga-workbench .metadata-property-value :is(input, textarea, .metadata-input-text, .metadata-input-number, .metadata-input-longtext, .metadata-link, .metadata-link-inner) {
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: inherit;
+  font: inherit;
+}
+
+.amiga-workbench .metadata-property-value .multi-select-container {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  background: transparent;
+}
+/* Pills sit next to each other. Growing them spreads a two-tag list across the pane. */
+.amiga-workbench .metadata-property-value .multi-select-pill {
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 0.2rem;
+  align-items: center;
+  max-width: 100%;
+  margin: 0;
+  padding: 0 0.3rem;
+  border: var(--amiga-border-width) solid var(--amiga-border-dark);
+  border-radius: 0;
+  background: var(--amiga-surface-raised);
+  box-shadow: var(--amiga-raised-bevel);
+  color: var(--amiga-text);
+  font: var(--font-ui-smaller)/1.5 var(--font-interface);
+}
+.amiga-workbench .metadata-property-value .multi-select-pill-content { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.amiga-workbench .metadata-property-value .multi-select-pill-remove-button { flex: 0 0 auto; color: var(--amiga-text-muted); }
+.amiga-workbench .metadata-property-value .multi-select-pill-remove-button:hover { color: var(--amiga-text); }
+.amiga-workbench .metadata-property-value .multi-select-input {
+  flex: 1 1 4rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+
+.amiga-workbench .metadata-property-warning-icon { color: var(--amiga-accent); }
+.amiga-workbench .metadata-add-button {
+  margin: 0.3rem 0.5rem;
+  padding: 0.15rem 0.55rem;
+  border: var(--amiga-border-width) solid var(--amiga-border-dark);
+  border-radius: 0;
+  background: var(--amiga-surface-raised);
+  box-shadow: var(--amiga-raised-bevel);
+  color: var(--amiga-text);
+  font: var(--amiga-control-weight) var(--font-ui-small) var(--font-interface);
+}
+.amiga-workbench .metadata-add-button:hover { background: var(--amiga-hover); }
+
+/* Graph Links and status information use the same requester compartments. */
+.amiga-workbench :is(.graph-controls, .graph-control-section, .workspace-leaf-content[data-type="outgoing-link"], .workspace-leaf-content[data-type="backlink"]) { border: 2px solid var(--amiga-border-dark); border-radius: 0; background: var(--amiga-window); font: var(--amiga-chrome-size) var(--amiga-chrome-font); }
+.amiga-workbench :is(.workspace-leaf-content[data-type="outgoing-link"], .workspace-leaf-content[data-type="backlink"]) .view-header { background: var(--amiga-titlebar); color: var(--amiga-text-title); }
+.amiga-workbench .status-bar { display: flex; gap: 0; min-height: 28px; padding: 2px; border-top: 1px solid var(--amiga-border-dark); background: var(--amiga-titlebar); color: var(--amiga-text); font: var(--amiga-chrome-size-small) var(--amiga-chrome-font); }
+.amiga-workbench .status-bar-item { min-height: 24px; margin: 0; padding: 0.2rem 0.45rem; border: 1px solid var(--amiga-border-dark); border-right: 0; border-radius: 0; background: var(--amiga-window); box-shadow: none; }
+.amiga-workbench :is(.checkbox-container, .checkbox-container::after) { border-radius: 0; }
+.amiga-workbench :where(button, .button, .clickable-icon, .workspace-tab-header, .view-action, input, select, textarea):focus-visible { outline: 2px solid var(--amiga-focus); outline-offset: -2px; }
+/* ::-webkit-scrollbar-thumb remains provided by the shared component contract. */
+
+/* Settings opens in a separate Obsidian renderer whose body carries theme-light or
+   theme-dark, so it inherits this distribution’s tokens without restating them. */
+.amiga-workbench.is-popout-modal { background: var(--amiga-desktop); color: var(--amiga-text); }
+.amiga-workbench.is-popout-modal .modal.mod-settings {
+  border: 2px solid var(--amiga-border-dark);
+  border-radius: 0;
+  background: var(--amiga-window);
+  box-shadow: var(--amiga-raised-bevel);
+  color: var(--amiga-text);
+}
+.amiga-workbench.is-popout-modal .modal.mod-settings :is(.modal-header, .modal-content, .vertical-tab-content-container, .vertical-tab-content) { background: var(--amiga-window); color: var(--amiga-text); }
+.amiga-workbench.is-popout-modal .modal.mod-settings .modal-title {
+  border-color: var(--amiga-border-dark);
+  background: var(--amiga-titlebar);
+  color: var(--amiga-text-title);
+}
+.amiga-workbench.is-popout-modal .modal.mod-settings .vertical-tab-header {
+  border-right: 2px solid var(--amiga-border-dark);
+  background: var(--amiga-panel);
+  box-shadow: inset 1px 0 0 var(--amiga-border-light);
+  color: var(--amiga-text);
+}
+.amiga-workbench.is-popout-modal .modal.mod-settings .setting-search-container { border-bottom: 1px solid var(--amiga-border-dark); }
+.amiga-workbench.is-popout-modal .modal.mod-settings .search-input-container,
+.amiga-workbench.is-popout-modal .modal.mod-settings :is(input:not([type="checkbox"]):not([type="range"]):not([type="color"]), select, textarea, .dropdown, .setting-hotkey) {
+  border: 1px solid var(--amiga-border-dark);
+  border-radius: 0;
+  background: var(--amiga-input-background);
+  box-shadow: var(--amiga-recessed-bevel);
+  color: var(--amiga-text);
+}
+.amiga-workbench.is-popout-modal .modal.mod-settings :is(input, select, textarea):focus { outline: 2px solid var(--amiga-focus); outline-offset: -2px; }
+.amiga-workbench.is-popout-modal .modal.mod-settings .vertical-tab-nav-item {
+  border: 1px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: var(--amiga-text);
+}
+.amiga-workbench.is-popout-modal .modal.mod-settings .vertical-tab-nav-item:is(:hover, .is-active) {
+  border-color: var(--amiga-border-dark);
+  background: var(--amiga-selection);
+  color: var(--amiga-text-on-selection);
+  box-shadow: var(--amiga-window-bevel);
+}
+.amiga-workbench.is-popout-modal .modal.mod-settings :is(.vertical-tab-header-group-title, .setting-item-heading, h1, h2, h3) { color: var(--amiga-text); }
+.amiga-workbench.is-popout-modal .modal.mod-settings .setting-item {
+  border-top-color: var(--amiga-border-middle);
+  color: var(--amiga-text);
+}
+.amiga-workbench.is-popout-modal .modal.mod-settings .setting-item-description { color: var(--amiga-text-muted); }
+.amiga-workbench.is-popout-modal .modal.mod-settings :is(button, .button, .modal-header-button, .setting-item-control button) {
+  border: 1px solid var(--amiga-border-dark);
+  border-radius: 0;
+  background: var(--amiga-panel);
+  box-shadow: var(--amiga-raised-bevel);
+  color: var(--amiga-text);
+}
+.amiga-workbench.is-popout-modal .modal.mod-settings :is(button, .button, .modal-header-button, .setting-item-control button):is(:hover, .mod-cta) { background: var(--amiga-accent); color: var(--amiga-text-title); }
+.amiga-workbench.is-popout-modal .modal.mod-settings :is(button, .button, .modal-header-button, .setting-item-control button):active { box-shadow: var(--amiga-pressed-bevel); }
+.amiga-workbench.is-popout-modal .modal.mod-settings :is(.checkbox-container, .checkbox-container::after, input[type="range"], input[type="color"]) { border-radius: 0; }
+.amiga-workbench.is-popout-modal .modal.mod-settings :is(.setting-item, .setting-items, .installed-plugin, .community-item) { background-color: var(--amiga-window); }
+.amiga-workbench.is-popout-modal :is(.menu, .suggestion-container, .popover, .tooltip) { border: 1px solid var(--amiga-border-dark); border-radius: 0; background: var(--amiga-window); color: var(--amiga-text); box-shadow: var(--amiga-raised-bevel); }
