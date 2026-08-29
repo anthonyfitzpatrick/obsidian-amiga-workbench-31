@@ -1,0 +1,426 @@
+# Amiga Workbench 3.1 — User Guide
+
+A complete guide to installing, using, customising and troubleshooting this theme.
+
+> **This is an independent, unofficial, fan-made theme.**
+> It is **not affiliated with, endorsed by, sponsored by, approved by, or connected to**
+> Amiga Corporation, Amiga Inc., Cloanto, Hyperion Entertainment, the former Commodore
+> International, or any other present or former owner of the Amiga, Commodore, Kickstart
+> or Workbench trademarks. Nothing here is official. The developer has no relationship
+> with any of those parties. The theme is *inspired by* a remembered visual style — it is
+> not a reproduction of one, and it ships no original Amiga assets of any kind.
+
+---
+
+## Contents
+
+1. [Before you start](#before-you-start)
+2. [Installing](#installing)
+3. [Choosing light or dark](#choosing-light-or-dark)
+4. [What the theme changes](#what-the-theme-changes)
+5. [Typography and sizing](#typography-and-sizing)
+6. [Optional Style Settings](#optional-style-settings)
+7. [Accessibility](#accessibility)
+8. [On mobile](#on-mobile)
+9. [Printing and PDF export](#printing-and-pdf-export)
+10. [Working alongside plugins and snippets](#working-alongside-plugins-and-snippets)
+11. [Troubleshooting](#troubleshooting)
+12. [Uninstalling](#uninstalling)
+13. [Reporting problems](#reporting-problems)
+14. [Trademarks, affiliation and intellectual property](#trademarks-affiliation-and-intellectual-property)
+
+---
+
+## Before you start
+
+You need **Obsidian 1.6.0 or later**. You do not need any plugins — this theme is plain
+CSS and is complete on its own.
+
+It is worth knowing what this theme is trying to do, because it will explain some of its
+choices. Warm grey, blue title bars, and the salmon and beige of the eight-colour desktop. It is drawn from the mature Workbench of 1992–94, and it deliberately keeps the
+proportions and restraint of that era rather than smoothing them into a generic modern
+theme. Corners are square. Edges are hard. Nothing fades.
+
+Where historical accuracy and everyday usability disagreed, **usability won**. The most
+visible example: real Workbench drawer windows had coloured interiors, but a coloured
+writing surface is tiring, so the editor canvas here is light and calm. That is a
+deliberate departure and there are only a handful of them.
+
+## Installing
+
+<!-- SCREENSHOT 01 -->
+> ### 📷 Screenshot 01 — Selecting the theme
+> **Save as:** `docs/images/g01-select-theme.png`
+>
+> **What this image must show:** The Settings → Appearance pane with the Themes dropdown open and this theme highlighted, so a new user can see exactly where the setting lives.
+>
+> **How to capture it:**
+> 1. Open **Settings** (the gear icon, bottom-left of the ribbon).
+> 2. Go to **Appearance**.
+> 3. Scroll to **Themes** and click the dropdown so the list of installed themes is open.
+> 4. Make sure **Amiga Workbench 3.1** is visible and highlighted in the list.
+> 5. On macOS press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>4</kbd>, then press <kbd>Space</kbd>, then click the Obsidian window — this captures the window cleanly with its shadow. On Windows use <kbd>Alt</kbd>+<kbd>PrtScn</kbd>, or Snipping Tool set to Window mode.
+>
+> *Delete this block and replace it with:* `![Selecting the theme](docs/images/g01-select-theme.png)`
+
+
+### From the Community Themes browser
+
+1. Open **Settings** — the gear icon at the bottom of the ribbon, or <kbd>Cmd/Ctrl</kbd>+<kbd>,</kbd>.
+2. Choose **Appearance** in the left-hand list.
+3. Scroll to **Themes** and click **Manage**.
+4. Search for **Amiga Workbench 3.1**.
+5. Click it, then click **Use**.
+
+### Manually
+
+Useful if you are working offline, or want a specific version.
+
+1. Download **`theme.css`** and **`manifest.json`** from this repository.
+2. Find your vault folder on disk, then open the hidden `.obsidian` folder inside it.
+3. Create `themes/Amiga Workbench 3.1/` inside `.obsidian` if it does not already exist. **The folder name
+   must match the theme name exactly**, including capitals and spaces, or Obsidian will
+   not list it.
+4. Put both files in that folder.
+5. Back in Obsidian, go to **Settings → Appearance → Themes** and pick **Amiga Workbench 3.1**.
+6. If nothing appears, close Obsidian completely and reopen it.
+
+## Choosing light or dark
+
+Both modes were designed separately. Neither is a mechanical inversion of the other.
+
+Go to **Settings → Appearance → Base theme** and choose *Light* or *Dark*.
+
+<!-- SCREENSHOT 02 -->
+> ### 📷 Screenshot 02 — Light mode
+> **Save as:** `docs/images/g02-light-mode.png`
+>
+> **What this image must show:** The full workspace in light mode with a note open. Same guidance as the README hero image — a populated, realistic workspace rather than an empty one.
+>
+> **How to capture it:**
+> 1. Settings → Appearance → **Base theme: Light**.
+> 2. Open a note with real content and expand a few explorer folders.
+> 3. Window at roughly **1400 × 900**.
+> 4. On macOS press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>4</kbd>, then press <kbd>Space</kbd>, then click the Obsidian window — this captures the window cleanly with its shadow. On Windows use <kbd>Alt</kbd>+<kbd>PrtScn</kbd>, or Snipping Tool set to Window mode.
+>
+> *Delete this block and replace it with:* `![Light mode](docs/images/g02-light-mode.png)`
+
+
+<!-- SCREENSHOT 03 -->
+> ### 📷 Screenshot 03 — Dark mode
+> **Save as:** `docs/images/g03-dark-mode.png`
+>
+> **What this image must show:** The identical window and note in dark mode, for direct comparison with the previous image.
+>
+> **How to capture it:**
+> 1. Change **only** the Base theme to *Dark*. Change nothing else.
+> 2. On macOS press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>4</kbd>, then press <kbd>Space</kbd>, then click the Obsidian window — this captures the window cleanly with its shadow. On Windows use <kbd>Alt</kbd>+<kbd>PrtScn</kbd>, or Snipping Tool set to Window mode.
+>
+> *Delete this block and replace it with:* `![Dark mode](docs/images/g03-dark-mode.png)`
+
+
+Dark mode carries the blue title hierarchy and the warm accents onto a warm-tinted
+dark screen, keeping it distinct from 2.04's neutral charcoal.
+
+## What the theme changes
+
+Almost everything. It is not an accent-colour swap.
+
+### The workspace shell
+
+The ribbon, tab bar, view headers and status bar are rebuilt as Workbench chrome — hard
+outlines, square gadgets, and a title strip treatment on the surfaces that behave like
+window titles.
+
+<!-- SCREENSHOT 04 -->
+> ### 📷 Screenshot 04 — The ribbon pictograms
+> **Save as:** `docs/images/g04-ribbon.png`
+>
+> **What this image must show:** A tight crop of the left ribbon showing the hand-drawn pictograms for the core actions — quick switcher, graph, canvas, command palette — alongside any plugin icons you have, so readers can see how both are treated.
+>
+> **How to capture it:**
+> 1. Light mode.
+> 2. Make sure the ribbon is visible: Settings → Appearance → **Show ribbon** enabled.
+> 3. Capture the window, then crop to the ribbon strip only — roughly **80 × 600**.
+> 4. Do not resize the crop afterwards. These are small pixel drawings and rescaling destroys them.
+>
+> *Delete this block and replace it with:* `![The ribbon pictograms](docs/images/g04-ribbon.png)`
+
+
+Ribbon icons for the core Obsidian actions — quick switcher, graph view, canvas, command
+palette, templates, bases — are **original pictograms drawn for this theme** rather than
+the default line icons. Icons belonging to plugins keep their own artwork, restyled to
+match: square line caps, mitred joins, consistent weight. Nothing looks out of place
+whichever plugins you have.
+
+### The file explorer
+
+<!-- SCREENSHOT 05 -->
+> ### 📷 Screenshot 05 — File explorer and indentation
+> **Save as:** `docs/images/g05-explorer.png`
+>
+> **What this image must show:** The file explorer with folders expanded at least four levels deep, showing the disclosure triangles, the per-level connector rails, and files aligned with their parent folders.
+>
+> **How to capture it:**
+> 1. Light mode.
+> 2. Expand a deep folder chain — **four or more levels** — so the rails are clearly visible.
+> 3. Include at least one folder that is **collapsed** so both triangle states appear.
+> 4. Crop to the explorer pane, roughly **400 × 700**.
+>
+> *Delete this block and replace it with:* `![File explorer and indentation](docs/images/g05-explorer.png)`
+
+
+Each nesting level is marked by a connector rail dropping from beneath its parent's
+disclosure triangle. Folder and file labels align at every depth. Disclosure triangles are
+drawn in the accent colour and point right when collapsed, down when open.
+
+### The editor and reading view
+
+Headings, lists, links, inline code, code blocks, tables, callouts and blockquotes are all
+covered. The reading surface is kept deliberately calm — this is where you actually work,
+and the Workbench character belongs in the chrome around it rather than in your prose.
+
+### Properties
+
+<!-- SCREENSHOT 06 -->
+> ### 📷 Screenshot 06 — The properties requester
+> **Save as:** `docs/images/g06-properties.png`
+>
+> **What this image must show:** The properties table at the top of a note, expanded, with several fields of different types. This is one of the most heavily restyled surfaces in the theme.
+>
+> **How to capture it:**
+> 1. Open a note with **five or six** frontmatter properties of mixed types.
+> 2. Make sure the properties section is **expanded**.
+> 3. Crop to the properties block plus the note title above it, roughly **900 × 400**.
+>
+> *Delete this block and replace it with:* `![The properties requester](docs/images/g06-properties.png)`
+
+
+The properties block is rebuilt as a Workbench requester: a titled frame, a keyed column
+on the left, values in recessed fields on the right.
+
+### Command palette, menus and notices
+
+<!-- SCREENSHOT 07 -->
+> ### 📷 Screenshot 07 — Command palette
+> **Save as:** `docs/images/g07-command-palette.png`
+>
+> **What this image must show:** The command palette open over a note, showing the recessed search field, the result rows, the selected row highlighted, and the keyboard hint gadgets on the right.
+>
+> **How to capture it:**
+> 1. Press <kbd>Cmd/Ctrl</kbd>+<kbd>P</kbd> to open the command palette.
+> 2. Type a few letters so several results appear, with one highlighted.
+> 3. Capture the whole window so the palette is shown in context, then crop to roughly **900 × 700**.
+> 4. Do not press Escape before capturing — use the screenshot shortcut with the palette still open.
+>
+> *Delete this block and replace it with:* `![Command palette](docs/images/g07-command-palette.png)`
+
+
+The palette gets a recessed entry field over square result rows, with a solid selection
+bar and keyboard hints drawn as small raised gadgets — the way Workbench drew key labels.
+Menus, modals, tooltips and notices share the same frame treatment.
+
+## Typography and sizing
+
+**The theme follows your settings.** It sets its own fonts only as a fallback.
+
+Go to **Settings → Appearance** and set any of:
+
+- **Interface font** — the shell: tabs, explorer, headers, status bar
+- **Text font** — the editor and reading view
+- **Monospace font** — code blocks and inline code
+- **Font size** — scales the whole interface, not just body text
+
+Anything you set wins. Anything you leave unset falls back to the theme's own choice: a
+monospace face for the shell, in keeping with the era.
+
+If you increase the font size, the chrome scales with it — tab bars, headers, explorer
+rows and the status bar all grow. It is not pinned to a fixed pixel size.
+
+## Optional Style Settings
+
+The theme needs no plugins. If you already use the **Style Settings** community plugin,
+five extra toggles appear under an **Amiga Workbench** section.
+
+<!-- SCREENSHOT 08 -->
+> ### 📷 Screenshot 08 — Optional Style Settings controls
+> **Save as:** `docs/images/g08-style-settings.png`
+>
+> **What this image must show:** The Style Settings plugin panel showing this theme's five toggles. Only include this image if you have the Style Settings plugin installed; the theme does not require it.
+>
+> **How to capture it:**
+> 1. Install and enable the **Style Settings** community plugin.
+> 2. Open Settings → **Style Settings**.
+> 3. Expand the **Amiga Workbench** section so all five toggles are visible.
+> 4. Crop to the settings panel, roughly **800 × 500**.
+> 5. If you would rather not document the plugin at all, delete this placeholder and the *Optional Style Settings* section that follows it.
+>
+> *Delete this block and replace it with:* `![Optional Style Settings controls](docs/images/g08-style-settings.png)`
+
+
+| Toggle | What it does |
+| --- | --- |
+| **Flat gadgets** | Removes the raised and recessed bevels |
+| **Comfortable spacing** | Increases padding, row height and control height |
+| **Larger controls** | Enlarges buttons and touch targets without changing spacing |
+| **Stronger borders** | Draws mid-tone frames in the darkest border colour, widens the focus ring |
+| **Quiet ribbon icons** | Draws pictograms in the text colour rather than the accent |
+
+Every one is **off by default**, so the theme looks identical whether or not the plugin is
+installed.
+
+## Accessibility
+
+- **Contrast** — every text and background pair is checked in both modes. Body text sits
+  far above the WCAG AA threshold, and interactive labels, links and focus indicators are
+  all verified rather than assumed.
+- **Keyboard focus** — always visible, using a dedicated focus colour that is never the
+  same as the selection colour, so focus and selection are never confused.
+- **Reduced motion** — `prefers-reduced-motion` removes theme-owned transitions without
+  disabling Obsidian's own scrolling.
+- **Increased contrast** — `prefers-contrast: more` strengthens frames and removes muted
+  text in favour of full-strength text.
+- **Larger controls** — available through Style Settings if you want bigger targets.
+
+## On mobile
+
+The theme works on Obsidian mobile. Controls grow to touch size, the scrollbars narrow,
+and the properties table **stacks vertically** instead of reserving a fixed key column
+that cannot fit a phone screen.
+
+The Workbench look is drawn for a pointer and a wide window, so it is at its best on
+desktop or a tablet.
+
+## Printing and PDF export
+
+Exporting to PDF drops the screen palette entirely and prints black on white. You will not
+get a coloured desktop or a highlighted selection in an exported document.
+
+## Working alongside plugins and snippets
+
+The theme sets Obsidian's own CSS variables rather than only overriding the visible
+result, so plugin surfaces generally inherit the palette without needing specific support.
+
+Two things worth knowing:
+
+- **CSS snippets load after themes.** If a snippet restyles the file explorer or the
+  editor, it will win. If something looks wrong, disable your snippets first
+  (**Settings → Appearance → CSS snippets**) before reporting it.
+- **Plugins that decorate explorer rows** — adding icons or badges to file names — may
+  shift those rows relative to undecorated ones. That is the plugin's own layout, not the
+  theme's indentation.
+
+## Troubleshooting
+
+**The theme does not appear in the list.**
+Check the folder is `.obsidian/themes/Amiga Workbench 3.1/` and contains both `theme.css` and
+`manifest.json`. The folder name must match exactly. Restart Obsidian.
+
+**I changed the theme but nothing happened.**
+Obsidian caches CSS. Switch to another theme and back, or restart. If you replaced
+`theme.css` by hand while Obsidian was running, a restart is usually required.
+
+**The fonts are not the ones I chose.**
+Check **Settings → Appearance**. If a font is set there it should win. If it does not,
+disable your CSS snippets — a snippet setting `--font-interface` directly will override
+both your setting and the theme.
+
+**Some panel is the wrong colour.**
+Most likely a plugin painting its own surface. Try disabling plugins one at a time. If it
+is a common plugin, please report it — the theme may be able to support it.
+
+**Dark mode looks wrong after switching.**
+Switch base theme once more, or restart. Obsidian occasionally keeps stale values when
+switching modes with a modal open.
+
+## Uninstalling
+
+Go to **Settings → Appearance → Themes** and select **Default**, or another theme. To
+remove it from disk, delete `.obsidian/themes/Amiga Workbench 3.1/`.
+
+Nothing is left behind. The theme writes no settings, stores no data, and touches nothing
+outside its own folder.
+
+## Reporting problems
+
+Please open an issue on the repository. Helpful things to include:
+
+1. Your Obsidian version — **Settings → About**
+2. Your operating system
+3. Whether you are in light or dark mode
+4. A screenshot
+5. **Whether the problem persists with all plugins and CSS snippets disabled** — this is
+   the single most useful piece of information
+
+## Trademarks, affiliation and intellectual property
+
+Please read this section in full. It matters.
+
+### No affiliation whatsoever
+
+Amiga Workbench 3.1 for Obsidian is an **independent, unofficial, community-created theme**. The
+developer is a private individual with **no relationship of any kind** to:
+
+- Amiga Corporation, Amiga Inc., or any entity trading under the Amiga name
+- Cloanto Corporation, holders of Commodore/Amiga ROM and Workbench copyrights
+- Hyperion Entertainment, developers and rights-holders of later AmigaOS releases
+- The former Commodore International, Commodore Business Machines, or their successors
+- Haage & Partner, or any other historical Amiga software publisher
+- Any present, former or claimed owner of the Amiga, Commodore, Kickstart, AmigaOS or
+  Workbench trademarks, in any territory
+
+There is **no endorsement, sponsorship, approval, licence, partnership, or association**,
+express or implied. Nothing in this project should be read as suggesting otherwise. If
+you have arrived here believing this is an official product, it is not.
+
+### Why the name refers to Workbench at all
+
+The name is **descriptive, not proprietary**. It tells you which remembered look the
+palette and proportions are drawn from — the mature Workbench of 1992–94 — in the same way a paint colour might be
+called "racing green" without any claim on a car manufacturer. This is nominative use:
+naming a thing in order to describe a resemblance to it. It is not a claim of origin,
+authorship or authority.
+
+The project's own framing is **"Amiga Inspired"**. Inspired by. Not a port, not a
+recreation, not a replica, not a continuation, and not a substitute for anything real.
+
+### No original assets are used or distributed
+
+This theme is **CSS only**. It contains no copyrighted material from any Amiga or
+Commodore product. Specifically, it does **not** contain, embed, adapt, trace, or
+redistribute:
+
+- Workbench, AmigaOS or Kickstart ROM code, or any part of any operating system
+- Original Workbench icons, or any icon set derived from them
+- MagicWB, NewIcons, GlowIcons, or any other third-party Amiga icon set
+- Topaz or any other Amiga bitmap font, or any digitisation of one
+- Original wallpapers, backdrops, pointers, brand marks or logos
+- Screenshots of any Amiga system, used as an asset or otherwise
+
+Every graphic in this theme is an **original drawing**, authored for this project as
+inline SVG, using ordinary geometry. Colour values are stated as plain numbers. Colours
+themselves are not copyrightable, and no artwork has been copied.
+
+### Trademark acknowledgement
+
+Amiga, AmigaOS, Kickstart and Workbench are trademarks or registered trademarks of their
+respective owners. Commodore is a trademark of its respective owner. All such marks are
+acknowledged as the property of those owners, and are used here only descriptively, to
+identify the historical visual style that inspired this work.
+
+Obsidian is a trademark of Dynalist Inc. This theme is a community theme for Obsidian and
+is not produced by, endorsed by, or affiliated with Dynalist Inc.
+
+### If you are a rights-holder
+
+If you represent any rights-holder and consider anything in this project to overstep,
+please open an issue on the repository. The developer's intention is respectful homage
+within the bounds of independent creative work, and any specific, good-faith concern will
+be addressed promptly and without argument.
+
+### Licence
+
+This theme is released under the **MIT Licence**. See [LICENSE](LICENSE) for the full
+text. The MIT Licence covers **only the original CSS and documentation in this
+repository**. It does not, and cannot, grant any rights in any third party's trademarks
+or copyrighted works, and confers no rights in anything owned by the parties named above.
