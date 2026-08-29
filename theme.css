@@ -66,8 +66,13 @@
   --amiga-ui-line-height: 1.4;
   --amiga-editor-line-height: 1.65;
   --amiga-code-line-height: 1.5;
+}
 
-  /* Obsidian mappings */
+/* Mapped on body, not :root. A personality declares its palette on body, and a custom
+   property substitutes var() against the element it is declared on — so mapping here
+   at :root would resolve every Obsidian token against the generic defaults and the
+   personality would never reach them. */
+body {
   --background-primary: var(--amiga-window);
   --background-primary-alt: var(--amiga-panel);
   --background-secondary: var(--amiga-desktop);
@@ -119,44 +124,45 @@
   --radius-m: var(--amiga-radius);
   --input-height: var(--amiga-control-height);
   --scrollbar-width: var(--amiga-scrollbar-width);
+  /* Obsidian draws parts of its own chrome from these. Left unmapped they are drawn
+     to Obsidian's defaults and disagree with the Workbench geometry beside them —
+     curved tab corners behind square tabs, a second pane divider, indentation guides
+     that cut across the disclosure triangles. */
+  --tab-curve: 0px;
+  --tab-radius: 0px;
+  --tab-radius-active: 0px;
+  --tab-outline-width: 0px;
+  --tab-outline-color: var(--amiga-border-dark);
+  --tab-divider-color: var(--amiga-border-dark);
+  --divider-color: var(--amiga-border-dark);
+  --divider-color-hover: var(--amiga-focus);
+  --divider-width: var(--amiga-border-width);
+  --nav-item-radius: 0px;
+  --nav-item-color: var(--amiga-text);
+  --nav-item-color-hover: var(--amiga-text);
+  --nav-item-color-active: var(--amiga-text-title);
+  --nav-item-color-selected: var(--amiga-text-title);
+  --nav-item-background-hover: var(--amiga-hover);
+  --nav-item-background-active: var(--amiga-selection);
+  --nav-item-background-selected: var(--amiga-selection);
+  --collapse-icon-color: var(--amiga-accent);
+  --collapse-icon-color-collapsed: var(--amiga-accent);
+  --indentation-guide-color: var(--amiga-border-middle);
+  --indentation-guide-color-active: var(--amiga-accent);
+  --indentation-guide-width: var(--amiga-border-width);
+  --scrollbar-radius: 0px;
+  --scrollbar-bg: var(--amiga-surface-recessed);
+  --scrollbar-thumb-bg: var(--amiga-surface-raised);
+  --scrollbar-active-thumb-bg: var(--amiga-active);
+  --checkbox-radius: 0px;
+  --checkbox-color: var(--amiga-accent);
+  --checkbox-color-hover: var(--amiga-active);
+  --checkbox-border-color: var(--amiga-border-dark);
+  --checkbox-border-color-hover: var(--amiga-border-dark);
+  --checkbox-marker-color: var(--amiga-border-dark);
 }
 
-.theme-dark {
-  --background-primary: var(--amiga-window);
-  --background-primary-alt: var(--amiga-panel);
-  --background-secondary: var(--amiga-desktop);
-  --background-secondary-alt: var(--amiga-panel);
-  --background-modifier-border: var(--amiga-border-dark);
-  --background-modifier-border-hover: var(--amiga-border-middle);
-  --background-modifier-border-focus: var(--amiga-focus);
-  --background-modifier-hover: var(--amiga-hover);
-  --background-modifier-active-hover: var(--amiga-active);
-  --background-modifier-form-field: var(--amiga-input-background);
-  --background-modifier-form-field-highlight: var(--amiga-surface-raised);
-  --text-normal: var(--amiga-text);
-  --text-muted: var(--amiga-text-muted);
-  --text-faint: var(--amiga-text-disabled);
-  --text-on-accent: var(--amiga-text-on-accent);
-  --text-accent: var(--amiga-text-accent);
-  --text-selection: var(--amiga-selection);
-  --interactive-accent: var(--amiga-accent);
-  --interactive-normal: var(--amiga-surface-raised);
-  --interactive-hover: var(--amiga-hover);
-  --interactive-accent-hover: var(--amiga-active);
-  /* Obsidian resolves --font-interface as override, then theme, then default, so a
-     theme supplies the -theme layer only. Setting --font-interface directly would
-     discard the reader's Appearance choice. --font-text-size belongs to the font-size
-     slider and is never set here. */
-  --font-interface-theme: var(--amiga-ui-font);
-  --font-text-theme: var(--amiga-editor-font);
-  --font-monospace-theme: var(--amiga-code-font);
-  --code-size: var(--amiga-code-font-size);
-  --line-height-normal: var(--amiga-editor-line-height);
-  --radius-s: var(--amiga-radius);
-  --radius-m: var(--amiga-radius);
-  --input-height: var(--amiga-control-height);
-  --scrollbar-width: var(--amiga-scrollbar-width);
-}
+
 
 .theme-light, .theme-dark { color-scheme: light; }
 
@@ -637,6 +643,16 @@ body {
   --amiga-tree-gutter: 20px;
   --amiga-tree-rail: 9px;
   --amiga-tree-step: 5px;
+  /* Obsidian computes its own nav layout from these. Telling it the gutter and the
+     indent step keeps its measurements identical to the rules below, rather than
+     leaving it to lay the tree out to different numbers underneath them. */
+  --nav-item-padding: 0 0.25rem 0 var(--amiga-tree-gutter);
+  --nav-item-children-margin-start: var(--amiga-tree-rail);
+  --nav-item-children-padding-start: var(--amiga-tree-step);
+  --nav-item-margin-bottom: 0px;
+  --nav-item-size: var(--amiga-chrome-size);
+  --nav-item-weight: var(--amiga-control-weight);
+  --nav-item-weight-active: 700;
   /* Chrome text follows the reader's interface font and font-size setting: Obsidian
      derives --font-ui-* from --font-text-size, so the shell scales with the slider
      instead of sitting at a fixed 13px. */
