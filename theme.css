@@ -694,7 +694,7 @@ body .workspace-ribbon {
   border: 0;
   border-right: 2px solid var(--amiga-border-dark);
   border-radius: 0;
-  background: var(--amiga-window);
+  background: var(--amiga-panel);
   box-shadow: inset 1px 0 0 var(--amiga-border-light);
 }
 body .workspace-ribbon :is(.side-dock-ribbon-action, .clickable-icon) {
@@ -810,7 +810,10 @@ body :is(.view-actions .clickable-icon, .view-actions .view-action, .markdown-so
 body :is(.view-actions .clickable-icon, .view-actions .view-action, .markdown-source-view .clickable-icon, .markdown-source-view .view-action):is(:active, .is-active, [aria-pressed="true"]) { background: var(--amiga-accent); box-shadow: inset 1px 1px 0 var(--amiga-border-dark); }
 
 /* Explorer lanes: connector, clear gap, accent disclosure, clear gap, label. */
-body :is(.nav-files-container, .workspace-leaf-content[data-type="file-explorer"]) { padding-left: 0.35rem; background: var(--amiga-window); font: var(--amiga-chrome-size) var(--amiga-chrome-font); }
+/* The side panels carry the panel tone, the same one the settings navigation uses,
+   so the left of the workspace reads as chrome and the editor keeps the canvas. */
+body :is(.nav-files-container, .workspace-leaf-content[data-type="file-explorer"]) { padding-left: 0.35rem; background: var(--amiga-panel); font: var(--amiga-chrome-size) var(--amiga-chrome-font); }
+body .workspace-leaf-content:is([data-type="file-explorer"], [data-type="search"], [data-type="bookmarks"], [data-type="outline"], [data-type="tag"], [data-type="backlink"], [data-type="outgoing-link"], [data-type="all-properties"], [data-type="starred"]) { background: var(--amiga-panel); }
 body :is(.nav-folder-title, .nav-file-title, .tree-item-self) { min-height: 27px; padding: 0 0.25rem; border: 0; border-radius: 0; color: var(--amiga-text); font: 600 var(--amiga-chrome-size)/1.5 var(--amiga-chrome-font); }
 body .nav-folder-title { font-weight: 700; }
 
