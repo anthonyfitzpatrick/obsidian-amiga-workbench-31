@@ -799,8 +799,28 @@ body :is(.view-header, .modal-title, .vertical-tab-header-group-title) {
   font-weight: 700;
 }
 body .view-header-title-container { flex: 0 1 auto; min-width: 0; color: inherit; font: inherit; }
-body :is(.view-header-breadcrumb, .view-header-title-parent) { flex: 0 1 auto; min-width: 0; margin-left: 0.45rem; padding: 0.2rem 0.35rem; border: 1px solid var(--amiga-border-dark); background: var(--amiga-window); color: var(--amiga-text); font: 600 var(--amiga-chrome-size) var(--amiga-chrome-font); }
-body .view-header-breadcrumb-separator { margin-inline: 0.35rem; color: var(--amiga-text-muted); }
+/* The path reads as a path: plain clickable text with separators between the segments,
+   the way a Workbench path was written out. Drawing each segment as a bordered gadget
+   turned the header into a row of boxes and cost so much width that every segment
+   truncated. */
+body :is(.view-header-breadcrumb, .view-header-title-parent) {
+  flex: 0 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  /* The header strip is the title bar, so the path takes the title colour. An accent
+     meant for the page measures under 2:1 against a blue title bar. Hover underlines
+     rather than recolouring, which stays legible in every palette. */
+  color: var(--amiga-text-title);
+  font: var(--amiga-chrome-size) var(--amiga-chrome-font);
+  cursor: pointer;
+}
+body :is(.view-header-breadcrumb, .view-header-title-parent):hover { text-decoration: underline; }
+body .view-header-breadcrumb-separator { margin-inline: 0.3rem; color: var(--amiga-text-title); opacity: 0.65; }
 body .view-header .view-actions { margin-left: auto; }
 /* Workbench dimmed the title bar of any window that was not in front. Obsidian marks the
    focused pane with mod-active, so every other pane takes the inactive title colour. */
