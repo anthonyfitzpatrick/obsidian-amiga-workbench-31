@@ -33,19 +33,7 @@ The relief is 2.04's, with one refinement the later style guide did bring — a 
 step inside the window frame, and more generous spacing around controls. It is the most
 comfortable of the three to sit in front of for a long stretch.
 
-<!-- SCREENSHOT 02 -->
-> ### 📷 Screenshot 02 — Amiga Workbench 3.1 in dark mode
-> **Save as:** `docs/images/02-workspace-dark.png`
->
-> **What this image must show:** The same window, same note, same folders expanded — but in dark mode. Keeping the content identical to Screenshot 01 lets people compare the two directly.
->
-> **How to capture it:**
-> 1. Leave everything exactly as it was for Screenshot 01. Do not resize or change the note.
-> 2. Settings → Appearance → set **Base theme** to *Dark*.
-> 3. Close Settings.
-> 4. On macOS press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>4</kbd>, then press <kbd>Space</kbd>, then click the Obsidian window — this captures the window cleanly with its shadow. On Windows use <kbd>Alt</kbd>+<kbd>PrtScn</kbd>, or Snipping Tool set to Window mode.
->
-> *Delete this block and replace it with:* `![Amiga Workbench 3.1 in dark mode](docs/images/02-workspace-dark.png)`
+![Amiga Workbench 3.1 in dark mode](docs/images/02-workspace-dark.png)
 
 ## Why you might choose this one
 
