@@ -640,14 +640,14 @@ body {
   /* Explorer indent. Every row reserves the same left gutter and the disclosure
      triangle hangs inside it, so a file's label lines up with its folder's label
      instead of sitting to the left of it. */
-  --amiga-tree-gutter: 20px;
-  --amiga-tree-rail: 9px;
-  --amiga-tree-step: 5px;
+  --amiga-tree-pad: 4px;
+  --amiga-tree-gutter: 17px;
+  --amiga-tree-step: 14px;
   /* Obsidian computes its own nav layout from these. Telling it the gutter and the
      indent step keeps its measurements identical to the rules below, rather than
      leaving it to lay the tree out to different numbers underneath them. */
-  --nav-item-padding: 0 0.25rem 0 var(--amiga-tree-gutter);
-  --nav-item-children-margin-start: var(--amiga-tree-rail);
+  --nav-item-padding: 0 0.25rem 0 var(--amiga-tree-pad);
+  --nav-item-children-margin-start: 0px;
   --nav-item-children-padding-start: var(--amiga-tree-step);
   --nav-item-margin-bottom: 0px;
   --nav-item-size: var(--amiga-chrome-size);
@@ -808,14 +808,19 @@ body .nav-folder-title { font-weight: 700; }
    both row types reserve the gutter and the triangle is taken out of the inline flow,
    so no row can sit to the left of its own parent. */
 body :is(.nav-folder-title, .nav-file-title) { position: relative; padding-left: var(--amiga-tree-gutter); }
-/* Obsidian draws its own indentation guides from its nav metrics. This explorer
-   rebuilds the gutter so the disclosure triangle hangs inside it, which puts those
-   guides straight through the triangles. The Workbench connector rail below replaces
-   them, dropping from under the parent's triangle rather than crossing it. */
+/* No connector rails. Workbench file windows separated depth by indentation alone,
+   and any vertical rule drawn down the tree — Obsidian's indentation guides or a
+   theme's own — ends up crossing the disclosure triangles. Obsidian's are suppressed
+   and none is drawn here, so nothing can cut through an arrow. */
 body { --nav-indentation-guide-color: transparent; }
 body .nav-indentation-guide { display: none; }
-body .nav-folder-children.tree-item-children { margin-left: var(--amiga-tree-rail); padding-left: var(--amiga-tree-step); border-left: 1px solid color-mix(in srgb, var(--amiga-accent) 42%, var(--amiga-border-middle)); }
-body .nav-folder-title > .collapse-icon { position: absolute; top: 0; bottom: 0; left: 4px; display: grid; place-items: center; flex: none; width: 12px; min-width: 12px; height: auto; margin: 0; padding: 0; background: none; color: var(--amiga-accent); transform: none; }
+body .nav-folder-children.tree-item-children { margin-left: 0; padding-left: var(--amiga-tree-step); border-left: 0; }
+
+/* The triangle stays in the inline flow and rows without one reserve its width, so
+   labels align at every depth without depending on a positioned ancestor. */
+body :is(.nav-folder-title, .nav-file-title) { padding-left: var(--amiga-tree-pad); }
+body .tree-item-self:not(.mod-collapsible) { padding-left: calc(var(--amiga-tree-pad) + var(--amiga-tree-gutter)); }
+body .nav-folder-title > .collapse-icon { position: static; display: grid; flex: 0 0 12px; place-items: center; width: 12px; min-width: 12px; height: auto; margin: 0 5px 0 0; padding: 0; background: none; color: var(--amiga-accent); transform: none; }
 body .nav-folder-title > .collapse-icon::before { content: none; }
 body .nav-folder-title > .collapse-icon svg { visibility: hidden; transform: none; }
 body .nav-folder-title > .collapse-icon::after { width: 0; height: 0; border-block: 5px solid transparent; border-left: 8px solid var(--amiga-accent); content: ""; }
