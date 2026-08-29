@@ -896,9 +896,11 @@ body .metadata-property {
      that injects its control between the key and the value cannot displace either. */
   /* The key holds an <input>, whose intrinsic width reflects its size attribute rather
      than its text, so the track will not grow to fit a long label and Obsidian truncates
-     it. The floor is therefore set wide enough for the property names people actually
-     use — "Point of View", "Editing Status" — rather than left to content sizing. */
-  grid-template-columns: minmax(10rem, 15rem) minmax(0, 1fr) auto;
+     it, and the key element does not stretch to fill its track either, which leaves a
+     dead gap beside it. The column is therefore a fixed width and both cells are made to
+     occupy it, so the label gets the whole column and the value starts where the key
+     ends. */
+  grid-template-columns: 12rem minmax(0, 1fr) auto;
   align-items: stretch;
   margin: 0;
   padding: 0;
@@ -914,6 +916,8 @@ body .metadata-property-key {
   grid-column: 1;
   grid-row: 1;
   display: flex;
+  box-sizing: border-box;
+  width: 100%;
   gap: 0.3rem;
   align-items: center;
   min-width: 0;
@@ -945,6 +949,8 @@ body .metadata-property-key-input {
 body .metadata-property-value {
   grid-column: 2;
   grid-row: 1;
+  box-sizing: border-box;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 0.25rem;
