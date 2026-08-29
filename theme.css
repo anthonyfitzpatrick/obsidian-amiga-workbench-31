@@ -26,7 +26,6 @@
   --amiga-border-dark: #263943;
   --amiga-bevel-highlight: var(--amiga-border-light);
   --amiga-bevel-mid: var(--amiga-border-middle);
-  --amiga-bevel-shadow: var(--amiga-border-dark);
   --amiga-bevel-deep: var(--amiga-border-dark);
 
   /* Interaction */
@@ -60,8 +59,6 @@
   --amiga-ui-font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --amiga-editor-font: ui-serif, Georgia, Cambria, serif;
   --amiga-code-font: ui-monospace, "SFMono-Regular", Consolas, monospace;
-  --amiga-ui-font-size: var(--font-ui-medium);
-  --amiga-editor-font-size: var(--font-text-size);
   --amiga-code-font-size: 0.875em;
   --amiga-ui-line-height: 1.4;
   --amiga-editor-line-height: 1.65;
@@ -80,7 +77,6 @@ body.theme-dark {
      :root, where the personality's values are not yet in scope. */
   --amiga-bevel-highlight: var(--amiga-border-light);
   --amiga-bevel-mid: var(--amiga-border-middle);
-  --amiga-bevel-shadow: var(--amiga-border-dark);
   --amiga-bevel-deep: var(--amiga-border-dark);
 
   --background-primary: var(--amiga-window);
@@ -177,7 +173,7 @@ body.theme-dark {
 .theme-light, .theme-dark { color-scheme: light; }
 
 
-body :where(button, .button, input, select, textarea, a, .clickable-icon, .workspace-tab-header, .workspace-tab-header-inner-close-button, .view-action, .vertical-tab-nav-item, .tree-item-self, .search-result-file-title, .search-result-file-match, .metadata-add-button, .canvas-control-item, .graph-control-section, .bases-table-cell, .backlink-result, .backlink-result-container):focus-visible {
+body :where(button, .button, input, select, textarea, a, .clickable-icon, .workspace-tab-header, .workspace-tab-header-inner-close-button, .view-action, .vertical-tab-nav-item, .tree-item-self, .search-result-file-title, .search-result-file-match, .metadata-add-button, .canvas-control-item, .graph-control-section, .bases-table-cell, .backlink-pane):focus-visible {
   outline: var(--amiga-focus-width) solid var(--amiga-focus);
   outline-offset: var(--amiga-focus-offset);
 }
@@ -397,8 +393,7 @@ input[type="checkbox"] { accent-color: var(--amiga-accent); }
 
 .modal-bg { backdrop-filter: none; }
 
-.modal-title,
-.prompt-title {
+.modal-title {
   padding: calc(var(--amiga-spacing-unit) / 2);
   border-bottom: var(--amiga-border-width) solid var(--amiga-border-dark);
   background: var(--amiga-titlebar);
@@ -416,6 +411,7 @@ input[type="checkbox"] { accent-color: var(--amiga-accent); }
 }
 
 /* Command palette and quick switcher: a recessed entry field over square result rows. */
+.prompt-input-container .prompt-input,
 .prompt-input {
   border: var(--amiga-border-width) solid var(--amiga-border-dark);
   border-radius: 0;
@@ -610,10 +606,9 @@ pre,
 .bases-table-cell.is-selected, .bases-card.is-selected { background: var(--amiga-selection); color: var(--amiga-text-title); }
 
 .workspace-leaf-content:is([data-type="backlink"], [data-type="localgraph"]) { background: var(--amiga-panel); }
-.backlink-pane, .backlink-container { background: var(--amiga-panel); }
-.backlink-result, .backlink-result-container { border-color: var(--amiga-border-middle); border-radius: 0; }
-.backlink-result:hover, .backlink-result-container:hover { background: var(--amiga-hover); }
-.backlink-result.is-active, .backlink-result-container.is-active { background: var(--amiga-selection); color: var(--amiga-text-title); }
+.backlink-pane { background: var(--amiga-panel); }
+.backlink-pane .tree-item-self { border-radius: 0; }
+.backlink-pane .search-result-file-matches { border-color: var(--amiga-border-middle); }
 
 
 /* Shared Workbench chrome: the single structural contract for every historical
@@ -649,7 +644,7 @@ body {
   --amiga-recessed-bevel: inset 1px 1px 0 var(--amiga-border-middle), inset -1px -1px 0 var(--amiga-border-light);
   --amiga-pressed-bevel: inset 1px 1px 0 var(--amiga-border-dark), inset -1px -1px 0 var(--amiga-border-light);
   --amiga-window-gap: 3px;
-  --amiga-gadget-size: 1.75rem;
+  --amiga-gadget-size: 36px;
   /* Explorer indent. Every row reserves the same left gutter and the disclosure
      triangle hangs inside it, so a file's label lines up with its folder's label
      instead of sitting to the left of it. */
@@ -704,10 +699,10 @@ body .workspace-ribbon :is(.side-dock-ribbon-action, .clickable-icon) {
   position: relative;
   display: grid;
   box-sizing: border-box;
-  width: 36px;
-  min-width: 36px;
-  height: 38px;
-  min-height: 38px;
+  width: var(--amiga-gadget-size);
+  min-width: var(--amiga-gadget-size);
+  height: calc(var(--amiga-gadget-size) + 2px);
+  min-height: calc(var(--amiga-gadget-size) + 2px);
   place-items: center;
   margin: 0 0 3px;
   padding: 2px;
@@ -776,7 +771,7 @@ body .workspace-tab-header {
 body :is(.workspace-tab-header-inner, .workspace-tab-header-inner-icon, .workspace-tab-header-inner-title) { opacity: 1; color: inherit; }
 body .workspace-tab-header-inner-icon svg { color: currentColor; opacity: 1; stroke-width: 2; stroke-linecap: square; stroke-linejoin: miter; }
 body .workspace-tab-header-inner-close-button { background: transparent; color: inherit; opacity: 1; }
-body :is(.view-header, .modal-title, .prompt-title, .vertical-tab-header-group-title) {
+body :is(.view-header, .modal-title, .vertical-tab-header-group-title) {
   display: flex;
   align-items: center;
   min-height: 30px;
@@ -786,17 +781,20 @@ body :is(.view-header, .modal-title, .prompt-title, .vertical-tab-header-group-t
   background: var(--amiga-titlebar);
   color: var(--amiga-text-title);
   font-family: var(--amiga-chrome-font);
-  font-size: var(--amiga-chrome-size);
+  font-size: var(--amiga-chrome-size-large);
   font-weight: 700;
 }
 body .view-header-title-container { flex: 0 1 auto; min-width: 0; color: inherit; font: inherit; }
 body :is(.view-header-breadcrumb, .view-header-title-parent) { flex: 0 1 auto; min-width: 0; margin-left: 0.45rem; padding: 0.2rem 0.35rem; border: 1px solid var(--amiga-border-dark); background: var(--amiga-window); color: var(--amiga-text); font: 600 var(--amiga-chrome-size) var(--amiga-chrome-font); }
 body .view-header-breadcrumb-separator { margin-inline: 0.35rem; color: var(--amiga-text-muted); }
 body .view-header .view-actions { margin-left: auto; }
+/* Workbench dimmed the title bar of any window that was not in front. Obsidian marks the
+   focused pane with mod-active, so every other pane takes the inactive title colour. */
+body .workspace-leaf:not(.mod-active) .view-header { background: var(--amiga-titlebar-inactive); }
 
 /* Existing commands are adjoining gadgets, never floating icon buttons. */
-body :is(.view-actions, .markdown-source-view .cm-toolbar) { display: flex; gap: 0; min-height: 34px; padding: 2px; border-block: 1px solid var(--amiga-border-dark); background: var(--amiga-panel); }
-body :is(.view-actions .clickable-icon, .view-actions .view-action, .markdown-source-view .clickable-icon, .markdown-source-view .view-action) {
+body .view-actions { display: flex; gap: 0; min-height: 34px; padding: 2px; border-block: 1px solid var(--amiga-border-dark); background: var(--amiga-panel); }
+body :is(.view-actions .clickable-icon, .view-actions .view-action) {
   width: 30px;
   min-width: 30px;
   height: 30px;
@@ -810,14 +808,14 @@ body :is(.view-actions .clickable-icon, .view-actions .view-action, .markdown-so
   box-shadow: var(--amiga-raised-bevel);
   color: var(--amiga-text);
 }
-body :is(.view-actions .clickable-icon, .view-actions .view-action, .markdown-source-view .clickable-icon, .markdown-source-view .view-action):is(:active, .is-active, [aria-pressed="true"]) { background: var(--amiga-accent); box-shadow: inset 1px 1px 0 var(--amiga-border-dark); }
+body :is(.view-actions .clickable-icon, .view-actions .view-action):is(:active, .is-active, [aria-pressed="true"]) { background: var(--amiga-accent); box-shadow: inset 1px 1px 0 var(--amiga-border-dark); }
 
 /* Explorer lanes: connector, clear gap, accent disclosure, clear gap, label. */
 /* The side panels carry the panel tone, the same one the settings navigation uses,
    so the left of the workspace reads as chrome and the editor keeps the canvas. */
 body :is(.nav-files-container, .workspace-leaf-content[data-type="file-explorer"]) { padding-left: 0.35rem; background: var(--amiga-panel); font: var(--amiga-chrome-size) var(--amiga-chrome-font); }
 body .workspace-leaf-content:is([data-type="file-explorer"], [data-type="search"], [data-type="bookmarks"], [data-type="outline"], [data-type="tag"], [data-type="backlink"], [data-type="outgoing-link"], [data-type="all-properties"], [data-type="starred"]) { background: var(--amiga-panel); }
-body :is(.nav-folder-title, .nav-file-title, .tree-item-self) { min-height: 27px; padding: 0 0.25rem; border: 0; border-radius: 0; color: var(--amiga-text); font: 600 var(--amiga-chrome-size)/1.5 var(--amiga-chrome-font); }
+body :is(.nav-folder-title, .nav-file-title, .tree-item-self) { min-height: 27px; padding: 0 0.25rem; border: 0; border-radius: 0; color: var(--amiga-text); font: 600 var(--amiga-chrome-size)/var(--amiga-ui-line-height) var(--amiga-chrome-font); }
 body .nav-folder-title { font-weight: 700; }
 
 /* Obsidian gives every nav row a left inset that the disclosure triangle hangs into,
@@ -862,8 +860,7 @@ body .metadata-property-key { display: flex; box-sizing: border-box; grid-column
 body .metadata-property-icon { display: none !important; }
 body .metadata-property-key-input { flex: 1 1 auto; width: 100%; min-width: 0; margin: 0; padding: 0; border: 0 !important; outline: 0; border-radius: 0; appearance: none; background: transparent !important; box-shadow: none; color: inherit; font-family: var(--font-interface); font-size: var(--font-ui-small); font-weight: inherit; line-height: 1.25; white-space: normal; overflow: visible; overflow-wrap: break-word; word-break: normal; text-overflow: clip; }
 body .metadata-property-value { display: flex; box-sizing: border-box; flex-flow: row nowrap; grid-column: 2; grid-row: 1; align-items: center; width: 100%; min-width: 0; min-height: 36px; height: auto; margin: 0; padding: 6px 6px 6px 6px; border: 0; border-radius: 0; overflow: visible; background: var(--amiga-input-background); box-shadow: var(--amiga-window-bevel); color: var(--amiga-text); font-family: var(--font-text); font-size: var(--font-ui-small); font-weight: 400; line-height: 1.25; }
-body .metadata-property > .field-btn-container.with-bottom-border { display: none !important; }
-body .metadata-property-value :is(.metadata-input-text, .metadata-input-number, .metadata-input-longtext, .metadata-link, .metadata-link-inner, .metadata-property-value-text) { font-family: var(--font-text); font-size: var(--font-ui-small); font-weight: 400; line-height: 1.25; }
+body .metadata-property-value :is(.metadata-input-text, .metadata-input-number, .metadata-input-longtext, .metadata-link, .metadata-link-inner) { font-family: var(--font-text); font-size: var(--font-ui-small); font-weight: 400; line-height: 1.25; }
 body .metadata-property-value .multi-select-container { display: flex; flex: 1 1 auto; flex-flow: row nowrap; align-items: center; width: 100%; min-width: 0; height: 36px; min-height: 36px; padding-right: 4px; overflow: hidden; background: transparent; white-space: nowrap; font-family: var(--font-interface); font-size: var(--font-ui-small); font-weight: 400; line-height: 1.25; }
 body .metadata-property-value .multi-select-pill { flex: 1 1 auto; min-width: 0; margin: 0; padding: 0; border: 0; border-radius: 0; overflow: hidden; background: transparent; box-shadow: none; color: inherit; white-space: nowrap; text-overflow: ellipsis; font-family: var(--font-interface); font-size: var(--font-ui-small); font-weight: 400; line-height: 1.25; }
 body .metadata-property-value .multi-select-pill :is(.clickable-icon, button) { display: none; }
@@ -949,7 +946,7 @@ body.is-popout-modal .modal.mod-settings :is(button, .button, .modal-header-butt
 body.is-popout-modal .modal.mod-settings :is(button, .button, .modal-header-button, .setting-item-control button):is(:hover, .mod-cta) { background: var(--amiga-accent); color: var(--amiga-text-title); }
 body.is-popout-modal .modal.mod-settings :is(button, .button, .modal-header-button, .setting-item-control button):active { box-shadow: var(--amiga-pressed-bevel); }
 body.is-popout-modal .modal.mod-settings :is(.checkbox-container, .checkbox-container::after, input[type="range"], input[type="color"]) { border-radius: 0; }
-body.is-popout-modal .modal.mod-settings :is(.setting-item, .setting-items, .installed-plugin, .community-item, .theme-container) { background-color: var(--amiga-window); }
+body.is-popout-modal .modal.mod-settings :is(.setting-item, .setting-items, .installed-plugin, .community-item) { background-color: var(--amiga-window); }
 body.is-popout-modal :is(.menu, .suggestion-container, .popover, .tooltip) { border: 1px solid var(--amiga-border-dark); border-radius: 0; background: var(--amiga-window); color: var(--amiga-text); box-shadow: var(--amiga-raised-bevel); }
 
 
@@ -974,7 +971,7 @@ body.theme-light {
   --amiga-text-title: #ffffff;
   --amiga-text-accent: #1e3d6d;
   --amiga-titlebar: #3b67a2;
-  --amiga-titlebar-inactive: #7f7873;
+  --amiga-titlebar-inactive: #7b746f;
   --amiga-border-light: #ffffff;
   --amiga-border-middle: #7f7873;
   --amiga-border-dark: #000000;
