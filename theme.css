@@ -16,6 +16,7 @@
   --amiga-text-disabled: #78858c;
   --amiga-text-title: #ffffff;
   --amiga-text-on-accent: var(--amiga-text-title);
+  --amiga-text-on-selection: var(--amiga-text-title);
   --amiga-text-accent: #063b62;
 
   /* Chrome and borders */
@@ -178,7 +179,7 @@ body :where(button, .button, input, select, textarea, a, .clickable-icon, .works
   outline-offset: var(--amiga-focus-offset);
 }
 
-::selection { background: var(--amiga-selection); color: var(--amiga-text-title); }
+::selection { background: var(--amiga-selection); color: var(--amiga-text-on-selection); }
 
 @media (prefers-reduced-motion: reduce) {
   :where(button, .button, .clickable-icon, .workspace-tab-header, .workspace-tab-header-inner-close-button, .view-action, .canvas-control-item, .graph-control-section, .bases-toolbar button) {
@@ -280,10 +281,10 @@ body.is-phone .workspace-ribbon { width: auto; min-width: 0; }
 .status-bar { background: var(--amiga-panel); border-radius: 0; color: var(--amiga-text); }
 .nav-folder-title, .nav-file-title, .tree-item-self { border-radius: 0; padding-inline: var(--amiga-spacing-unit); }
 .nav-folder-title:hover, .nav-file-title:hover, .tree-item-self:hover { background: var(--amiga-hover); }
-.nav-file-title.is-active, .tree-item-self.is-active { background: var(--amiga-selection); border: var(--amiga-border-width) solid var(--amiga-border-dark); color: var(--amiga-text-title); }
+.nav-file-title.is-active, .tree-item-self.is-active { background: var(--amiga-selection); border: var(--amiga-border-width) solid var(--amiga-border-dark); color: var(--amiga-text-on-selection); }
 .search-result-file-title, .search-result-file-match { border-radius: 0; }
 .search-result-file-title:hover, .search-result-file-match:hover { background: var(--amiga-hover); }
-.search-result-file-title:is(.is-active, .is-selected), .search-result-file-match:is(.is-active, .is-selected) { background: var(--amiga-selection); color: var(--amiga-text-title); }
+.search-result-file-title:is(.is-active, .is-selected), .search-result-file-match:is(.is-active, .is-selected) { background: var(--amiga-selection); color: var(--amiga-text-on-selection); }
 
 
 .markdown-source-view,
@@ -338,7 +339,7 @@ body.is-phone .workspace-ribbon { width: auto; min-width: 0; }
 }
 
 .cm-line ::selection {
-  color: var(--amiga-text-title);
+  color: var(--amiga-text-on-selection);
 }
 
 .internal-link,
@@ -365,7 +366,7 @@ input[type="checkbox"] { accent-color: var(--amiga-accent); }
 .vertical-tab-header, .setting-item, .metadata-container, .metadata-properties { background: var(--amiga-panel); box-shadow: var(--amiga-window-bevel); }
 .vertical-tab-nav-item, .setting-item, .metadata-property { border-radius: 0; }
 .vertical-tab-nav-item:hover, .metadata-add-button:hover { background: var(--amiga-hover); }
-.vertical-tab-nav-item.is-active { background: var(--amiga-selection); color: var(--amiga-text-title); }
+.vertical-tab-nav-item.is-active { background: var(--amiga-selection); color: var(--amiga-text-on-selection); }
 .setting-item, .metadata-property { border-bottom: var(--amiga-border-width) solid var(--amiga-border-middle); }
 .checkbox-container, .metadata-add-button { background: var(--amiga-surface-raised); }
 .metadata-property-key { color: var(--amiga-text-muted); }
@@ -442,7 +443,7 @@ input[type="checkbox"] { accent-color: var(--amiga-accent); }
 .menu-item.selected,
 .suggestion-item.is-selected {
   background: var(--amiga-selection);
-  color: var(--amiga-text-title);
+  color: var(--amiga-text-on-selection);
 }
 
 /* Secondary text inside a selected row must follow the bar, not the page. */
@@ -606,7 +607,7 @@ pre,
 .bases-table { --table-header-background: var(--amiga-titlebar); --table-header-color: var(--amiga-text-title); }
 .bases-table-header, .bases-table-cell { border-color: var(--amiga-border-middle); }
 .bases-table-cell:hover, .bases-card:hover { background: var(--amiga-hover); }
-.bases-table-cell.is-selected, .bases-card.is-selected { background: var(--amiga-selection); color: var(--amiga-text-title); }
+.bases-table-cell.is-selected, .bases-card.is-selected { background: var(--amiga-selection); color: var(--amiga-text-on-selection); }
 
 .workspace-leaf-content:is([data-type="backlink"], [data-type="localgraph"]) { background: var(--amiga-panel); }
 .backlink-pane { background: var(--amiga-panel); }
@@ -768,7 +769,7 @@ body .workspace-tab-header {
 }
 /* Selected, not titled: Workbench 1.3 marked the active item with its highlight
    colour, and 2.04/3.1 set selection to the same value as their title bars. */
-body .workspace-tab-header.is-active { background: var(--amiga-selection); color: var(--amiga-text-title); box-shadow: var(--amiga-window-bevel); }
+body .workspace-tab-header.is-active { background: var(--amiga-selection); color: var(--amiga-text-on-selection); box-shadow: var(--amiga-window-bevel); }
 body :is(.workspace-tab-header-new, .workspace-tab-header-inner-close-button) { width: 28px; min-width: 28px; height: 28px; min-height: 28px; margin: 0; padding: 0; border: 1px solid var(--amiga-border-dark); border-radius: 0; background: var(--amiga-window); }
 
 /* Obsidian dims inactive tab icons and titles through its own tab text variables and
@@ -888,7 +889,7 @@ body .nav-folder-title > .collapse-icon::before { content: none; }
 body .nav-folder-title > .collapse-icon svg { visibility: hidden; transform: none; }
 body .nav-folder-title > .collapse-icon::after { width: 0; height: 0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 8px solid var(--amiga-accent); content: ""; }
 body .nav-folder-title > .collapse-icon:not(.is-collapsed)::after { border: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid var(--amiga-accent); }
-body :is(.nav-file-title.is-active, .tree-item-self.is-active, .tree-item-self[aria-selected="true"]) { border: 1px solid var(--amiga-border-dark); background: var(--amiga-selection); color: var(--amiga-text-title); box-shadow: none; }
+body :is(.nav-file-title.is-active, .tree-item-self.is-active, .tree-item-self[aria-selected="true"]) { border: 1px solid var(--amiga-border-dark); background: var(--amiga-selection); color: var(--amiga-text-on-selection); box-shadow: none; }
 
 /* Properties, drawn as a Workbench requester: a titled strip, a keyed column, and values
    in recessed fields. Everything is sized from its content rather than pinned to fixed
@@ -1123,7 +1124,7 @@ body.is-popout-modal .modal.mod-settings .vertical-tab-nav-item {
 body.is-popout-modal .modal.mod-settings .vertical-tab-nav-item:is(:hover, .is-active) {
   border-color: var(--amiga-border-dark);
   background: var(--amiga-selection);
-  color: var(--amiga-text-title);
+  color: var(--amiga-text-on-selection);
   box-shadow: var(--amiga-window-bevel);
 }
 body.is-popout-modal .modal.mod-settings :is(.vertical-tab-header-group-title, .setting-item-heading, h1, h2, h3) { color: var(--amiga-text); }
@@ -1164,6 +1165,7 @@ body.theme-light {
   --amiga-text-muted: #33302d;
   --amiga-text-disabled: #4b4844;
   --amiga-text-on-accent: #000000;
+  --amiga-text-on-selection: #ffffff;
   --amiga-text-title: #ffffff;
   --amiga-text-accent: #1e3d6d;
   --amiga-titlebar: #3b67a2;
@@ -1210,6 +1212,7 @@ body.theme-dark {
   --amiga-text-muted: #bcb6ae;
   --amiga-text-disabled: #9c968e;
   --amiga-text-on-accent: #100f0e;
+  --amiga-text-on-selection: #ffffff;
   --amiga-text-title: #ffffff;
   --amiga-text-accent: #a8c4ea;
   --amiga-titlebar: #3b67a2;
