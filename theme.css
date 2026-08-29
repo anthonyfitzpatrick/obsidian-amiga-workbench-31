@@ -665,6 +665,18 @@ body {
   /* Chrome text follows the reader's interface font and font-size setting: Obsidian
      derives --font-ui-* from --font-text-size, so the shell scales with the slider
      instead of sitting at a fixed 13px. */
+  /* Obsidian draws icons in a muted colour at reduced opacity. A Workbench gadget has
+     no dimmed state — it is either drawn or it is not — so every icon takes the text
+     colour at full strength. Without this the vault profile controls at the foot of the
+     sidebar are barely visible against the panel. */
+  --icon-color: var(--amiga-text);
+  --icon-color-hover: var(--amiga-text);
+  --icon-color-active: var(--amiga-text);
+  --icon-color-focus: var(--amiga-text);
+  --icon-color-focused: var(--amiga-text);
+  --icon-opacity: 1;
+  --icon-opacity-hover: 1;
+  --icon-opacity-active: 1;
   --amiga-chrome-font: var(--font-interface);
   --amiga-chrome-size: var(--font-ui-small);
   --amiga-chrome-size-small: var(--font-ui-smaller);
@@ -681,6 +693,8 @@ body :is(.workspace-leaf, .workspace-sidedock, .mod-left-split, .mod-right-split
   box-shadow: var(--amiga-window-bevel);
 }
 body :is(.workspace-leaf-content, .workspace-sidedock .workspace-leaf-content, .markdown-source-view, .markdown-reading-view) { background: var(--amiga-window); }
+body .workspace-sidedock-vault-profile :is(.clickable-icon, .workspace-drawer-active-note-icon) { color: var(--amiga-text); opacity: 1; }
+body .workspace-sidedock-vault-profile :is(.clickable-icon, .workspace-drawer-active-note-icon) svg { color: currentColor; opacity: 1; }
 body .workspace-leaf-resize-handle { background: var(--amiga-desktop); border-inline: 1px solid var(--amiga-border-dark); }
 
 /* Native actions retain their handlers; each known action gets its own pictogram. */
