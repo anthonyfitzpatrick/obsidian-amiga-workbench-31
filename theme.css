@@ -642,12 +642,13 @@ body {
      instead of sitting to the left of it. */
   --amiga-tree-pad: 4px;
   --amiga-tree-gutter: 17px;
-  --amiga-tree-step: 14px;
+  --amiga-tree-rail: 10px;
+  --amiga-tree-step: 4px;
   /* Obsidian computes its own nav layout from these. Telling it the gutter and the
      indent step keeps its measurements identical to the rules below, rather than
      leaving it to lay the tree out to different numbers underneath them. */
   --nav-item-padding: 0 0.25rem 0 var(--amiga-tree-pad);
-  --nav-item-children-margin-start: 0px;
+  --nav-item-children-margin-start: var(--amiga-tree-rail);
   --nav-item-children-padding-start: var(--amiga-tree-step);
   --nav-item-margin-bottom: 0px;
   --nav-item-size: var(--amiga-chrome-size);
@@ -808,13 +809,18 @@ body .nav-folder-title { font-weight: 700; }
    both row types reserve the gutter and the triangle is taken out of the inline flow,
    so no row can sit to the left of its own parent. */
 body :is(.nav-folder-title, .nav-file-title) { position: relative; padding-left: var(--amiga-tree-gutter); }
-/* No connector rails. Workbench file windows separated depth by indentation alone,
-   and any vertical rule drawn down the tree — Obsidian's indentation guides or a
-   theme's own — ends up crossing the disclosure triangles. Obsidian's are suppressed
-   and none is drawn here, so nothing can cut through an arrow. */
+/* One connector rail per level, drawn by the theme. Obsidian's own indentation guides
+   are suppressed because it positions them from its own metrics and they land across
+   the disclosure triangles. This rail drops from directly under the parent's triangle
+   and sits 8px clear of every triangle below it at any depth, because the triangle is
+   in the inline flow and its position is therefore known. */
 body { --nav-indentation-guide-color: transparent; }
 body .nav-indentation-guide { display: none; }
-body .nav-folder-children.tree-item-children { margin-left: 0; padding-left: var(--amiga-tree-step); border-left: 0; }
+body .nav-folder-children.tree-item-children {
+  margin-left: var(--amiga-tree-rail);
+  padding-left: var(--amiga-tree-step);
+  border-left: 1px solid color-mix(in srgb, var(--amiga-accent) 42%, var(--amiga-border-middle));
+}
 
 /* The triangle stays in the inline flow and rows without one reserve its width, so
    labels align at every depth without depending on a positioned ancestor. */
