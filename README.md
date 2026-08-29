@@ -12,7 +12,7 @@
 
 ---
 
-![Amiga Workbench 3.1](screenshot.png)
+![Amiga Workbench 3.1](https://raw.githubusercontent.com/anthonyfitzpatrick/obsidian-amiga-workbench-31/main/screenshot.png)
 
 ## What this is
 
@@ -33,7 +33,7 @@ The relief is 2.04's, with one refinement the later style guide did bring — a 
 step inside the window frame, and more generous spacing around controls. It is the most
 comfortable of the three to sit in front of for a long stretch.
 
-![Amiga Workbench 3.1 in dark mode](docs/images/02-workspace-dark.png)
+![Amiga Workbench 3.1 in dark mode](https://raw.githubusercontent.com/anthonyfitzpatrick/obsidian-amiga-workbench-31/main/docs/images/02-workspace-dark.png)
 
 ## Why you might choose this one
 
@@ -67,7 +67,7 @@ is hidden behind a gradient or an image.
 | Spacing unit | 0.5rem | The most generous of the three |
 | Control height | 2.125rem | The largest gadgets |
 
-![Ribbon and file explorer](docs/images/03-chrome-detail.png)
+![Ribbon and file explorer](https://raw.githubusercontent.com/anthonyfitzpatrick/obsidian-amiga-workbench-31/main/docs/images/03-chrome-detail.png)
 
 ## What is covered
 
@@ -83,7 +83,7 @@ The theme styles the whole application, not just the editor:
 - **Canvas, graph, Bases and backlinks** — consistent surface and control treatment
 - **Settings** — including when opened in its own window
 
-![Editor and properties](docs/images/04-editor-and-properties.png)
+![Editor and properties](https://raw.githubusercontent.com/anthonyfitzpatrick/obsidian-amiga-workbench-31/main/docs/images/04-editor-and-properties.png)
 
 ## Installation
 
