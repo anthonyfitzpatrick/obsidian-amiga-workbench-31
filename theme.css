@@ -641,10 +641,13 @@ body {
   --amiga-heading-tracking: 0.01em;
   --amiga-tab-margin: 0;
   --amiga-tab-padding: 0 0.35rem;
-  --amiga-window-bevel: none;
-  --amiga-raised-bevel: none;
-  --amiga-recessed-bevel: inset 1px 1px 0 var(--amiga-border-middle);
-  --amiga-pressed-bevel: inset 1px 1px 0 var(--amiga-border-dark);
+  /* Flat by default, which is Workbench 1.x. A personality may raise these — the 3D
+     bevel was the whole visual argument of Workbench 2.0 — through the declared style
+     tokens, which is the only geometry a variant is allowed to touch. */
+  --amiga-window-bevel: inset 1px 1px 0 var(--amiga-border-light);
+  --amiga-raised-bevel: inset 1px 1px 0 var(--amiga-border-light), inset -1px -1px 0 var(--amiga-border-middle);
+  --amiga-recessed-bevel: inset 1px 1px 0 var(--amiga-border-middle), inset -1px -1px 0 var(--amiga-border-light);
+  --amiga-pressed-bevel: inset 1px 1px 0 var(--amiga-border-dark), inset -1px -1px 0 var(--amiga-border-light);
   --amiga-window-gap: 3px;
   --amiga-gadget-size: 1.75rem;
   /* Explorer indent. Every row reserves the same left gutter and the disclosure
@@ -680,7 +683,7 @@ body :is(.workspace-leaf, .workspace-sidedock, .mod-left-split, .mod-right-split
   border: 1px solid var(--amiga-border-dark);
   border-radius: 0;
   background: var(--amiga-window);
-  box-shadow: inset 1px 1px 0 var(--amiga-border-light);
+  box-shadow: var(--amiga-window-bevel);
 }
 body :is(.workspace-leaf-content, .workspace-sidedock .workspace-leaf-content, .markdown-source-view, .markdown-reading-view) { background: var(--amiga-window); }
 body .workspace-leaf-resize-handle { background: var(--amiga-desktop); border-inline: 1px solid var(--amiga-border-dark); }
@@ -711,7 +714,7 @@ body .workspace-ribbon :is(.side-dock-ribbon-action, .clickable-icon) {
   border: 1px solid var(--amiga-border-dark);
   border-radius: 0;
   background: var(--amiga-window);
-  box-shadow: inset 1px 1px 0 var(--amiga-border-light), inset -1px -1px 0 var(--amiga-border-middle);
+  box-shadow: var(--amiga-raised-bevel);
   color: var(--amiga-text);
   opacity: 1;
 }
@@ -721,7 +724,7 @@ body .workspace-ribbon :is([aria-label="Open quick switcher"], [aria-label="Open
 body .workspace-ribbon :is(.side-dock-ribbon-action, .clickable-icon):hover { background: color-mix(in srgb, var(--amiga-accent) 16%, var(--amiga-window)); color: var(--amiga-text); }
 body .workspace-ribbon :is(.side-dock-ribbon-action, .clickable-icon):is(:active, .is-active, [aria-pressed="true"]) {
   background: var(--amiga-accent);
-  box-shadow: inset 1px 1px 0 var(--amiga-border-dark), inset -1px -1px 0 var(--amiga-border-light);
+  box-shadow: var(--amiga-pressed-bevel);
   color: var(--amiga-border-dark);
 }
 body .workspace-ribbon :is(.side-dock-ribbon-action, .clickable-icon)[aria-disabled="true"] { background: var(--amiga-panel); color: var(--amiga-text-muted); opacity: 1; }
@@ -753,7 +756,7 @@ body .workspace-tab-header {
 }
 /* Selected, not titled: Workbench 1.3 marked the active item with its highlight
    colour, and 2.04/3.1 set selection to the same value as their title bars. */
-body .workspace-tab-header.is-active { background: var(--amiga-selection); color: var(--amiga-text-title); box-shadow: inset 1px 1px 0 var(--amiga-border-light); }
+body .workspace-tab-header.is-active { background: var(--amiga-selection); color: var(--amiga-text-title); box-shadow: var(--amiga-window-bevel); }
 body :is(.workspace-tab-header-new, .workspace-tab-header-inner-close-button) { width: 28px; min-width: 28px; height: 28px; min-height: 28px; margin: 0; padding: 0; border: 1px solid var(--amiga-border-dark); border-radius: 0; background: var(--amiga-window); }
 
 /* Obsidian dims inactive tab icons and titles through its own tab text variables and
@@ -804,7 +807,7 @@ body :is(.view-actions .clickable-icon, .view-actions .view-action, .markdown-so
   border-right: 0;
   border-radius: 0;
   background: var(--amiga-window);
-  box-shadow: inset 1px 1px 0 var(--amiga-border-light), inset -1px -1px 0 var(--amiga-border-middle);
+  box-shadow: var(--amiga-raised-bevel);
   color: var(--amiga-text);
 }
 body :is(.view-actions .clickable-icon, .view-actions .view-action, .markdown-source-view .clickable-icon, .markdown-source-view .view-action):is(:active, .is-active, [aria-pressed="true"]) { background: var(--amiga-accent); box-shadow: inset 1px 1px 0 var(--amiga-border-dark); }
@@ -855,7 +858,7 @@ body .metadata-property { position: relative; display: grid; grid-template-colum
 body .metadata-property-key { display: flex; box-sizing: border-box; grid-column: 1; grid-row: 1; align-items: flex-start; align-self: stretch; width: 100%; min-width: 0; min-height: 36px; padding: 6px 10px; border: 0; border-right: 1px solid var(--amiga-border-dark); background: var(--amiga-panel); color: var(--amiga-text); font-family: var(--font-interface); font-size: var(--font-ui-small); font-weight: 700; line-height: 1.25; }
 body .metadata-property-icon { display: none !important; }
 body .metadata-property-key-input { flex: 1 1 auto; width: 100%; min-width: 0; margin: 0; padding: 0; border: 0 !important; outline: 0; border-radius: 0; appearance: none; background: transparent !important; box-shadow: none; color: inherit; font-family: var(--font-interface); font-size: var(--font-ui-small); font-weight: inherit; line-height: 1.25; white-space: normal; overflow: visible; overflow-wrap: break-word; word-break: normal; text-overflow: clip; }
-body .metadata-property-value { display: flex; box-sizing: border-box; flex-flow: row nowrap; grid-column: 2; grid-row: 1; align-items: center; width: 100%; min-width: 0; min-height: 36px; height: auto; margin: 0; padding: 6px 6px 6px 6px; border: 0; border-radius: 0; overflow: visible; background: var(--amiga-input-background); box-shadow: inset 1px 1px 0 var(--amiga-border-light); color: var(--amiga-text); font-family: var(--font-text); font-size: var(--font-ui-small); font-weight: 400; line-height: 1.25; }
+body .metadata-property-value { display: flex; box-sizing: border-box; flex-flow: row nowrap; grid-column: 2; grid-row: 1; align-items: center; width: 100%; min-width: 0; min-height: 36px; height: auto; margin: 0; padding: 6px 6px 6px 6px; border: 0; border-radius: 0; overflow: visible; background: var(--amiga-input-background); box-shadow: var(--amiga-window-bevel); color: var(--amiga-text); font-family: var(--font-text); font-size: var(--font-ui-small); font-weight: 400; line-height: 1.25; }
 body .metadata-property > .field-btn-container.with-bottom-border { display: none !important; }
 body .metadata-property-value :is(.metadata-input-text, .metadata-input-number, .metadata-input-longtext, .metadata-link, .metadata-link-inner, .metadata-property-value-text) { font-family: var(--font-text); font-size: var(--font-ui-small); font-weight: 400; line-height: 1.25; }
 body .metadata-property-value .multi-select-container { display: flex; flex: 1 1 auto; flex-flow: row nowrap; align-items: center; width: 100%; min-width: 0; height: 36px; min-height: 36px; padding-right: 4px; overflow: hidden; background: transparent; white-space: nowrap; font-family: var(--font-interface); font-size: var(--font-ui-small); font-weight: 400; line-height: 1.25; }
@@ -864,7 +867,7 @@ body .metadata-property-value .multi-select-pill :is(.clickable-icon, button) { 
 body .metadata-property-value .multi-select-input { min-width: 0; margin: 0; padding: 0; border: 0; background: transparent; color: inherit; font-family: var(--font-interface); font-size: var(--font-ui-small); font-weight: 400; line-height: 1.25; }
 body .metadata-property-warning-icon { position: absolute; display: none !important; }
 body .metadata-property-value:focus-within { outline: 2px solid var(--amiga-focus); outline-offset: -2px; }
-body .metadata-add-button { min-height: 30px; margin: 3px 0.4rem; padding: 0.1rem 0.55rem; border: 2px solid var(--amiga-border-dark); border-radius: 0; background: var(--amiga-accent); box-shadow: inset 1px 1px 0 var(--amiga-border-light), inset -1px -1px 0 var(--amiga-border-middle); color: var(--amiga-border-dark); font-family: var(--font-interface); font-size: var(--font-ui-small); font-weight: 700; line-height: 1.25; text-transform: uppercase; }
+body .metadata-add-button { min-height: 30px; margin: 3px 0.4rem; padding: 0.1rem 0.55rem; border: 2px solid var(--amiga-border-dark); border-radius: 0; background: var(--amiga-accent); box-shadow: var(--amiga-raised-bevel); color: var(--amiga-border-dark); font-family: var(--font-interface); font-size: var(--font-ui-small); font-weight: 700; line-height: 1.25; text-transform: uppercase; }
 
 /* Metadata suggestion popups are scoped to the focused metadata chooser. */
 body:has(.metadata-property-value .multi-select-input:focus) .suggestion-container { padding: 2px; border: 2px solid var(--amiga-border-dark); border-radius: 0; background: var(--amiga-window); box-shadow: none; color: var(--amiga-text); font-family: var(--font-interface); font-size: var(--font-ui-small); font-weight: 400; line-height: 1.25; }
@@ -872,7 +875,7 @@ body:has(.metadata-property-value .multi-select-input:focus) .suggestion-contain
 body:has(.metadata-property-value .multi-select-input:focus) .suggestion-container input:focus { outline: 2px solid var(--amiga-focus); outline-offset: -2px; }
 body:has(.metadata-property-value .multi-select-input:focus) .suggestion-item { min-height: 28px; margin: 0; padding: 0 8px; border-radius: 0; background: var(--amiga-window); color: var(--amiga-text); font-family: var(--font-interface); font-size: var(--font-ui-small); font-weight: 400; line-height: 1.25; }
 body:has(.metadata-property-value .multi-select-input:focus) .suggestion-item.is-selected { background: var(--amiga-titlebar); color: var(--amiga-text-title); }
-body:has(.metadata-property-value .multi-select-input:focus) .suggestion-container :is(button, .button) { min-height: 24px; border: 1px solid var(--amiga-border-dark); border-radius: 0; background: var(--amiga-window); box-shadow: inset 1px 1px 0 var(--amiga-border-light), inset -1px -1px 0 var(--amiga-border-middle); color: var(--amiga-text); font-family: var(--font-interface); font-size: var(--font-ui-small); font-weight: 700; line-height: 1.25; }
+body:has(.metadata-property-value .multi-select-input:focus) .suggestion-container :is(button, .button) { min-height: 24px; border: 1px solid var(--amiga-border-dark); border-radius: 0; background: var(--amiga-window); box-shadow: var(--amiga-raised-bevel); color: var(--amiga-text); font-family: var(--font-interface); font-size: var(--font-ui-small); font-weight: 700; line-height: 1.25; }
 
 /* Graph Links and status information use the same requester compartments. */
 body :is(.graph-controls, .graph-control-section, .workspace-leaf-content[data-type="outgoing-link"], .workspace-leaf-content[data-type="backlink"]) { border: 2px solid var(--amiga-border-dark); border-radius: 0; background: var(--amiga-window); font: var(--amiga-chrome-size) var(--amiga-chrome-font); }
@@ -890,7 +893,7 @@ body.is-popout-modal .modal.mod-settings {
   border: 2px solid var(--amiga-border-dark);
   border-radius: 0;
   background: var(--amiga-window);
-  box-shadow: inset 1px 1px 0 var(--amiga-border-light), inset -1px -1px 0 var(--amiga-border-middle);
+  box-shadow: var(--amiga-raised-bevel);
   color: var(--amiga-text);
 }
 body.is-popout-modal .modal.mod-settings :is(.modal-header, .modal-content, .vertical-tab-content-container, .vertical-tab-content) { background: var(--amiga-window); color: var(--amiga-text); }
@@ -911,7 +914,7 @@ body.is-popout-modal .modal.mod-settings :is(input:not([type="checkbox"]):not([t
   border: 1px solid var(--amiga-border-dark);
   border-radius: 0;
   background: var(--amiga-input-background);
-  box-shadow: inset 1px 1px 0 var(--amiga-border-middle), inset -1px -1px 0 var(--amiga-border-light);
+  box-shadow: var(--amiga-recessed-bevel);
   color: var(--amiga-text);
 }
 body.is-popout-modal .modal.mod-settings :is(input, select, textarea):focus { outline: 2px solid var(--amiga-focus); outline-offset: -2px; }
@@ -925,7 +928,7 @@ body.is-popout-modal .modal.mod-settings .vertical-tab-nav-item:is(:hover, .is-a
   border-color: var(--amiga-border-dark);
   background: var(--amiga-selection);
   color: var(--amiga-text-title);
-  box-shadow: inset 1px 1px 0 var(--amiga-border-light);
+  box-shadow: var(--amiga-window-bevel);
 }
 body.is-popout-modal .modal.mod-settings :is(.vertical-tab-header-group-title, .setting-item-heading, h1, h2, h3) { color: var(--amiga-text); }
 body.is-popout-modal .modal.mod-settings .setting-item {
@@ -937,14 +940,14 @@ body.is-popout-modal .modal.mod-settings :is(button, .button, .modal-header-butt
   border: 1px solid var(--amiga-border-dark);
   border-radius: 0;
   background: var(--amiga-panel);
-  box-shadow: inset 1px 1px 0 var(--amiga-border-light), inset -1px -1px 0 var(--amiga-border-middle);
+  box-shadow: var(--amiga-raised-bevel);
   color: var(--amiga-text);
 }
 body.is-popout-modal .modal.mod-settings :is(button, .button, .modal-header-button, .setting-item-control button):is(:hover, .mod-cta) { background: var(--amiga-accent); color: var(--amiga-text-title); }
-body.is-popout-modal .modal.mod-settings :is(button, .button, .modal-header-button, .setting-item-control button):active { box-shadow: inset 1px 1px 0 var(--amiga-border-dark), inset -1px -1px 0 var(--amiga-border-light); }
+body.is-popout-modal .modal.mod-settings :is(button, .button, .modal-header-button, .setting-item-control button):active { box-shadow: var(--amiga-pressed-bevel); }
 body.is-popout-modal .modal.mod-settings :is(.checkbox-container, .checkbox-container::after, input[type="range"], input[type="color"]) { border-radius: 0; }
 body.is-popout-modal .modal.mod-settings :is(.setting-item, .setting-items, .installed-plugin, .community-item, .theme-container) { background-color: var(--amiga-window); }
-body.is-popout-modal :is(.menu, .suggestion-container, .popover, .tooltip) { border: 1px solid var(--amiga-border-dark); border-radius: 0; background: var(--amiga-window); color: var(--amiga-text); box-shadow: inset 1px 1px 0 var(--amiga-border-light), inset -1px -1px 0 var(--amiga-border-middle); }
+body.is-popout-modal :is(.menu, .suggestion-container, .popover, .tooltip) { border: 1px solid var(--amiga-border-dark); border-radius: 0; background: var(--amiga-window); color: var(--amiga-text); box-shadow: var(--amiga-raised-bevel); }
 
 
 /* Mature Workbench. Workbench 2.0 introduced this look and 3.x kept it, so the
@@ -980,6 +983,17 @@ body.theme-light {
   --amiga-icon-paper: #ffffff;
   --amiga-icon-ink: #000000;
   --amiga-icon-accent: #aa907c;
+
+  /* 3.x kept 2.0's 3D gadget, so the relief is the same depth. What the later style
+     guide added was discipline: a mid-tone step inside the window frame and more
+     generous spacing around controls. */
+  --amiga-bevel-width: 2px;
+  --amiga-spacing-unit: 0.5rem;
+  --amiga-control-height: 2.125rem;
+  --amiga-window-bevel: inset 2px 2px 0 var(--amiga-border-light), inset -2px -2px 0 var(--amiga-border-middle), inset 3px 3px 0 var(--amiga-panel);
+  --amiga-raised-bevel: inset 2px 2px 0 var(--amiga-border-light), inset -2px -2px 0 var(--amiga-border-middle);
+  --amiga-recessed-bevel: inset 2px 2px 0 var(--amiga-border-middle), inset -2px -2px 0 var(--amiga-border-light);
+  --amiga-pressed-bevel: inset 2px 2px 0 var(--amiga-border-middle), inset -2px -2px 0 var(--amiga-border-light);
 }
 
 
