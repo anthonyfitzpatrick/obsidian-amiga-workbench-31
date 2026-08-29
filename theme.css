@@ -544,7 +544,9 @@ body .workspace-tab-header {
   font-weight: 700;
   line-height: 1;
 }
-body .workspace-tab-header.is-active { background: var(--amiga-titlebar); color: var(--amiga-text-title); box-shadow: inset 1px 1px 0 var(--amiga-border-light); }
+/* Selected, not titled: Workbench 1.3 marked the active item with its highlight
+   colour, and 2.04/3.1 set selection to the same value as their title bars. */
+body .workspace-tab-header.is-active { background: var(--amiga-selection); color: var(--amiga-text-title); box-shadow: inset 1px 1px 0 var(--amiga-border-light); }
 body :is(.workspace-tab-header-new, .workspace-tab-header-inner-close-button) { width: 28px; min-width: 28px; height: 28px; min-height: 28px; margin: 0; padding: 0; border: 1px solid var(--amiga-border-dark); border-radius: 0; background: var(--amiga-window); }
 body :is(.view-header, .modal-title, .prompt-title, .vertical-tab-header-group-title) {
   display: flex;
