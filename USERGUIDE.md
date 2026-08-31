@@ -181,20 +181,6 @@ and the Workbench character belongs in the chrome around it rather than in your 
 
 ### Properties
 
-<!-- SCREENSHOT 06 -->
-> ### 📷 Screenshot 06 — The properties requester
-> **Save as:** `docs/images/g06-properties.png`
->
-> **What this image must show:** The properties table at the top of a note, expanded, with several fields of different types. This is one of the most heavily restyled surfaces in the theme.
->
-> **How to capture it:**
-> 1. Open a note with **five or six** frontmatter properties of mixed types.
-> 2. Make sure the properties section is **expanded**.
-> 3. Crop to the properties block plus the note title above it, roughly **900 × 400**.
->
-> *Delete this block and replace it with:* `![The properties requester](docs/images/g06-properties.png)`
-
-
 The properties block is rebuilt as a Workbench requester: a titled frame, a keyed column
 on the left, values in recessed fields on the right.
 
