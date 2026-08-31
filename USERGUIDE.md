@@ -242,22 +242,6 @@ rows and the status bar all grow. It is not pinned to a fixed pixel size.
 The theme needs no plugins. If you already use the **Style Settings** community plugin,
 five extra toggles appear under an **Amiga Workbench** section.
 
-<!-- SCREENSHOT 08 -->
-> ### 📷 Screenshot 08 — Optional Style Settings controls
-> **Save as:** `docs/images/g08-style-settings.png`
->
-> **What this image must show:** The Style Settings plugin panel showing this theme's five toggles. Only include this image if you have the Style Settings plugin installed; the theme does not require it.
->
-> **How to capture it:**
-> 1. Install and enable the **Style Settings** community plugin.
-> 2. Open Settings → **Style Settings**.
-> 3. Expand the **Amiga Workbench** section so all five toggles are visible.
-> 4. Crop to the settings panel, roughly **800 × 500**.
-> 5. If you would rather not document the plugin at all, delete this placeholder and the *Optional Style Settings* section that follows it.
->
-> *Delete this block and replace it with:* `![Optional Style Settings controls](docs/images/g08-style-settings.png)`
-
-
 | Toggle | What it does |
 | --- | --- |
 | **Flat gadgets** | Removes the raised and recessed bevels |
