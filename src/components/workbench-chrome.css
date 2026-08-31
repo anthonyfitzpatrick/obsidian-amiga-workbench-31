@@ -126,13 +126,26 @@
 .amiga-workbench .workspace-ribbon :is(.side-dock-ribbon-action, .clickable-icon)[aria-disabled="true"] { background: var(--amiga-panel); color: var(--amiga-text-muted); opacity: 1; }
 
 /* Attached rectangular window selectors over a title bar. */
-.amiga-workbench :is(.workspace-tab-header-container, .workspace-tab-header-container-inner, .workspace-tabs) {
+.amiga-workbench :is(.workspace-tab-header-container, .workspace-tabs) {
   display: flex;
   gap: 0;
   min-height: 32px;
   padding: 2px;
   border-block: 1px solid var(--amiga-border-dark);
   background: var(--amiga-titlebar);
+}
+/* The inner element only groups the tabs; it sits inside the header container
+   alongside the new-tab gadget. Giving it the container's own padding, border
+   and minimum height inset the tabs two pixels further than that gadget, so the
+   tab and the gadget never shared a top or bottom edge. It carries no frame of
+   its own: the container draws the strip. */
+.amiga-workbench .workspace-tab-header-container-inner {
+  display: flex;
+  gap: 0;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
 }
 .amiga-workbench .workspace-tab-header {
   min-width: 0;
