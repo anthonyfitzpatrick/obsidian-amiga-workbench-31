@@ -19,15 +19,14 @@ A complete guide to installing, using, customising and troubleshooting this them
 3. [Choosing light or dark](#choosing-light-or-dark)
 4. [What the theme changes](#what-the-theme-changes)
 5. [Typography and sizing](#typography-and-sizing)
-6. [Optional Style Settings](#optional-style-settings)
-7. [Accessibility](#accessibility)
-8. [On mobile](#on-mobile)
-9. [Printing and PDF export](#printing-and-pdf-export)
-10. [Working alongside plugins and snippets](#working-alongside-plugins-and-snippets)
-11. [Troubleshooting](#troubleshooting)
-12. [Uninstalling](#uninstalling)
-13. [Reporting problems](#reporting-problems)
-14. [Trademarks, affiliation and intellectual property](#trademarks-affiliation-and-intellectual-property)
+6. [Accessibility](#accessibility)
+7. [On mobile](#on-mobile)
+8. [Printing and PDF export](#printing-and-pdf-export)
+9. [Working alongside plugins and snippets](#working-alongside-plugins-and-snippets)
+10. [Troubleshooting](#troubleshooting)
+11. [Uninstalling](#uninstalling)
+12. [Reporting problems](#reporting-problems)
+13. [Trademarks, affiliation and intellectual property](#trademarks-affiliation-and-intellectual-property)
 
 ---
 
@@ -237,22 +236,6 @@ monospace face for the shell, in keeping with the era.
 If you increase the font size, the chrome scales with it — tab bars, headers, explorer
 rows and the status bar all grow. It is not pinned to a fixed pixel size.
 
-## Optional Style Settings
-
-The theme needs no plugins. If you already use the **Style Settings** community plugin,
-five extra toggles appear under an **Amiga Workbench** section.
-
-| Toggle | What it does |
-| --- | --- |
-| **Flat gadgets** | Removes the raised and recessed bevels |
-| **Comfortable spacing** | Increases padding, row height and control height |
-| **Larger controls** | Enlarges buttons and touch targets without changing spacing |
-| **Stronger borders** | Draws mid-tone frames in the darkest border colour, widens the focus ring |
-| **Quiet ribbon icons** | Draws pictograms in the text colour rather than the accent |
-
-Every one is **off by default**, so the theme looks identical whether or not the plugin is
-installed.
-
 ## Accessibility
 
 - **Contrast** — every text and background pair is checked in both modes. Body text sits
@@ -264,7 +247,6 @@ installed.
   disabling Obsidian's own scrolling.
 - **Increased contrast** — `prefers-contrast: more` strengthens frames and removes muted
   text in favour of full-strength text.
-- **Larger controls** — available through Style Settings if you want bigger targets.
 
 ## On mobile
 

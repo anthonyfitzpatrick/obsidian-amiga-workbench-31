@@ -123,10 +123,6 @@ chosen.
 - Obsidian **1.6.0** or later
 - No plugins. The theme is plain CSS and works on its own.
 
-Optional: if you already use the **Style Settings** plugin, a few extra toggles appear.
-They are described in the [User Guide](USERGUIDE.md). Without the plugin the theme is
-complete and unchanged.
-
 ## Accessibility
 
 - Every text and background pair is contrast-checked in both light and dark modes
