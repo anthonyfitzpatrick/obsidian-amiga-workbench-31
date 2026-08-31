@@ -47,21 +47,7 @@ deliberate departure and there are only a handful of them.
 
 ## Installing
 
-<!-- SCREENSHOT 01 -->
-> ### 📷 Screenshot 01 — Selecting the theme
-> **Save as:** `docs/images/g01-select-theme.png`
->
-> **What this image must show:** The Settings → Appearance pane with the Themes dropdown open and this theme highlighted, so a new user can see exactly where the setting lives.
->
-> **How to capture it:**
-> 1. Open **Settings** (the gear icon, bottom-left of the ribbon).
-> 2. Go to **Appearance**.
-> 3. Scroll to **Themes** and click the dropdown so the list of installed themes is open.
-> 4. Make sure **Amiga Workbench 3.1** is visible and highlighted in the list.
-> 5. On macOS press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>4</kbd>, then press <kbd>Space</kbd>, then click the Obsidian window — this captures the window cleanly with its shadow. On Windows use <kbd>Alt</kbd>+<kbd>PrtScn</kbd>, or Snipping Tool set to Window mode.
->
-> *Delete this block and replace it with:* `![Selecting the theme](docs/images/g01-select-theme.png)`
-
+![Selecting the theme](docs/images/g01-select-theme.png)
 
 ### From the Community Themes browser
 
