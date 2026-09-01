@@ -93,20 +93,7 @@ The ribbon, tab bar, view headers and status bar are rebuilt as Workbench chrome
 outlines, square gadgets, and a title strip treatment on the surfaces that behave like
 window titles.
 
-<!-- SCREENSHOT 04 -->
-> ### 📷 Screenshot 04 — The ribbon pictograms
-> **Save as:** `docs/images/g04-ribbon.png`
->
-> **What this image must show:** A tight crop of the left ribbon showing the hand-drawn pictograms for the core actions — quick switcher, graph, canvas, command palette — alongside any plugin icons you have, so readers can see how both are treated.
->
-> **How to capture it:**
-> 1. Light mode.
-> 2. Make sure the ribbon is visible: Settings → Appearance → **Show ribbon** enabled.
-> 3. Capture the window, then crop to the ribbon strip only — roughly **80 × 600**.
-> 4. Do not resize the crop afterwards. These are small pixel drawings and rescaling destroys them.
->
-> *Delete this block and replace it with:* `![The ribbon pictograms](docs/images/g04-ribbon.png)`
-
+![Tab strip, breadcrumbs and view header chrome](docs/images/04-tab-strip.png)
 
 Ribbon icons for the core Obsidian actions — quick switcher, graph view, canvas, command
 palette, templates, bases — are **original pictograms drawn for this theme** rather than
