@@ -44,9 +44,8 @@
   background: color-mix(in srgb, var(--amiga-hover) 50%, transparent);
 }
 
-.cm-selectionBackground,
-.markdown-source-view.mod-cm6 .cm-selectionBackground {
-  background: var(--amiga-selection) !important;
+body .markdown-source-view.mod-cm6 .cm-selectionBackground {
+  background: var(--amiga-selection);
 }
 
 .cm-line ::selection {
@@ -56,7 +55,6 @@
 .internal-link,
 .external-link {
   color: var(--link-color);
-  text-decoration-thickness: 2px;
   text-underline-offset: 0.12em;
 }
 

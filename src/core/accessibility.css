@@ -6,9 +6,9 @@ body :where(button, .button, input, select, textarea, a, .clickable-icon, .works
 ::selection { background: var(--amiga-selection); color: var(--amiga-text-on-selection); }
 
 @media (prefers-reduced-motion: reduce) {
-  :where(button, .button, .clickable-icon, .workspace-tab-header, .workspace-tab-header-inner-close-button, .view-action, .canvas-control-item, .graph-control-section, .bases-toolbar button) {
-    transition: none !important;
-    animation: none !important;
+  body :is(button, .button, .clickable-icon, .workspace-tab-header, .workspace-tab-header-inner-close-button, .view-action, .canvas-control-item, .graph-control-section, .bases-toolbar button) {
+    transition: none;
+    animation: none;
   }
 }
 

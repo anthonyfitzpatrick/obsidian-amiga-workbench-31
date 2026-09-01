@@ -182,9 +182,9 @@ body :where(button, .button, input, select, textarea, a, .clickable-icon, .works
 ::selection { background: var(--amiga-selection); color: var(--amiga-text-on-selection); }
 
 @media (prefers-reduced-motion: reduce) {
-  :where(button, .button, .clickable-icon, .workspace-tab-header, .workspace-tab-header-inner-close-button, .view-action, .canvas-control-item, .graph-control-section, .bases-toolbar button) {
-    transition: none !important;
-    animation: none !important;
+  body :is(button, .button, .clickable-icon, .workspace-tab-header, .workspace-tab-header-inner-close-button, .view-action, .canvas-control-item, .graph-control-section, .bases-toolbar button) {
+    transition: none;
+    animation: none;
   }
 }
 
@@ -265,8 +265,7 @@ body.is-phone .workspace-ribbon { width: auto; min-width: 0; }
 
 .workspace-ribbon { background: var(--amiga-panel); border-right: 0; }
 .workspace-sidedock-vault-profile { background: var(--amiga-panel); border-right: var(--amiga-border-width) solid var(--amiga-border-dark); }
-.workspace-leaf-content:has(.nav-file-title, .nav-folder-title) { background: var(--amiga-panel); }
-.workspace-leaf-content:is([data-type="search"], [data-type="backlink"], [data-type="outgoing-link"], [data-type="tag"], [data-type="bookmarks"], [data-type="outline"]) { background: var(--amiga-panel); }
+.workspace-leaf-content:is([data-type="file-explorer"], [data-type="search"], [data-type="backlink"], [data-type="outgoing-link"], [data-type="tag"], [data-type="bookmarks"], [data-type="outline"]) { background: var(--amiga-panel); }
 .workspace-tab-header-container, .workspace-tab-header-container-inner { background: var(--amiga-panel); }
 .workspace-tabs { background: var(--amiga-panel); }
 .workspace-tab-header { margin: var(--amiga-tab-margin); padding: var(--amiga-tab-padding); min-height: var(--amiga-control-height); color: var(--amiga-text); font-weight: var(--amiga-control-weight); }
@@ -333,9 +332,8 @@ body.is-phone .workspace-ribbon { width: auto; min-width: 0; }
   background: color-mix(in srgb, var(--amiga-hover) 50%, transparent);
 }
 
-.cm-selectionBackground,
-.markdown-source-view.mod-cm6 .cm-selectionBackground {
-  background: var(--amiga-selection) !important;
+body .markdown-source-view.mod-cm6 .cm-selectionBackground {
+  background: var(--amiga-selection);
 }
 
 .cm-line ::selection {
@@ -345,7 +343,6 @@ body.is-phone .workspace-ribbon { width: auto; min-width: 0; }
 .internal-link,
 .external-link {
   color: var(--link-color);
-  text-decoration-thickness: 2px;
   text-underline-offset: 0.12em;
 }
 
