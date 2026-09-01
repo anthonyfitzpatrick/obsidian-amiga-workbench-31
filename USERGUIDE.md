@@ -76,33 +76,9 @@ Both modes were designed separately. Neither is a mechanical inversion of the ot
 
 Go to **Settings → Appearance → Base theme** and choose *Light* or *Dark*.
 
-<!-- SCREENSHOT 02 -->
-> ### 📷 Screenshot 02 — Light mode
-> **Save as:** `docs/images/g02-light-mode.png`
->
-> **What this image must show:** The full workspace in light mode with a note open. Same guidance as the README hero image — a populated, realistic workspace rather than an empty one.
->
-> **How to capture it:**
-> 1. Settings → Appearance → **Base theme: Light**.
-> 2. Open a note with real content and expand a few explorer folders.
-> 3. Window at roughly **1400 × 900**.
-> 4. On macOS press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>4</kbd>, then press <kbd>Space</kbd>, then click the Obsidian window — this captures the window cleanly with its shadow. On Windows use <kbd>Alt</kbd>+<kbd>PrtScn</kbd>, or Snipping Tool set to Window mode.
->
-> *Delete this block and replace it with:* `![Light mode](docs/images/g02-light-mode.png)`
+![Light mode](screenshot.png)
 
-
-<!-- SCREENSHOT 03 -->
-> ### 📷 Screenshot 03 — Dark mode
-> **Save as:** `docs/images/g03-dark-mode.png`
->
-> **What this image must show:** The identical window and note in dark mode, for direct comparison with the previous image.
->
-> **How to capture it:**
-> 1. Change **only** the Base theme to *Dark*. Change nothing else.
-> 2. On macOS press <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>4</kbd>, then press <kbd>Space</kbd>, then click the Obsidian window — this captures the window cleanly with its shadow. On Windows use <kbd>Alt</kbd>+<kbd>PrtScn</kbd>, or Snipping Tool set to Window mode.
->
-> *Delete this block and replace it with:* `![Dark mode](docs/images/g03-dark-mode.png)`
-
+![Dark mode](docs/images/02-workspace-dark.png)
 
 Dark mode carries the blue title hierarchy and the warm accents onto a warm-tinted
 dark screen, keeping it distinct from 2.04's neutral charcoal.
