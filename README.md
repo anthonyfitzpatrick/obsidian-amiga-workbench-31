@@ -113,7 +113,7 @@ The theme styles the whole application, not just the editor:
 ### Manually
 
 1. Download `theme.css` and `manifest.json` from this repository.
-2. Place both in `YourVault/.obsidian/themes/Modern Amiga Workbench 3.1 inspired theme/` — the folder name must match exactly.
+2. Place both in `YourVault/.obsidian/themes/Modern Amiga Workbench 3.1 inspired/` — the folder name must match exactly.
 3. In Obsidian, go to **Settings → Appearance → Themes** and select **Amiga Workbench 3.1**.
 4. If it does not appear, close and reopen Obsidian.
 
