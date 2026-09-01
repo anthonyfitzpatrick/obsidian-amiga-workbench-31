@@ -1,4 +1,4 @@
-# Amiga Workbench 3.1 for Obsidian
+# Modern Amiga Workbench 3.1 inspired
 
 **Warm grey, blue title bars, and the salmon and beige of the eight-colour desktop.**
 

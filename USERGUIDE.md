@@ -1,4 +1,4 @@
-# Amiga Workbench 3.1 — User Guide
+# Modern Amiga Workbench 3.1 inspired — User Guide
 
 A complete guide to installing, using, customising and troubleshooting this theme.
 
