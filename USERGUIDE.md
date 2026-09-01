@@ -103,20 +103,7 @@ whichever plugins you have.
 
 ### The file explorer
 
-<!-- SCREENSHOT 05 -->
-> ### 📷 Screenshot 05 — File explorer and indentation
-> **Save as:** `docs/images/g05-explorer.png`
->
-> **What this image must show:** The file explorer with folders expanded at least four levels deep, showing the disclosure triangles, the per-level connector rails, and files aligned with their parent folders.
->
-> **How to capture it:**
-> 1. Light mode.
-> 2. Expand a deep folder chain — **four or more levels** — so the rails are clearly visible.
-> 3. Include at least one folder that is **collapsed** so both triangle states appear.
-> 4. Crop to the explorer pane, roughly **400 × 700**.
->
-> *Delete this block and replace it with:* `![File explorer and indentation](docs/images/g05-explorer.png)`
-
+![File explorer and indentation](docs/images/03-chrome-detail.png)
 
 Each nesting level is marked by a connector rail dropping from beneath its parent's
 disclosure triangle. Folder and file labels align at every depth. Disclosure triangles are
