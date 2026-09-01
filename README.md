@@ -13,7 +13,7 @@
 ---
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/anthonyfitzpatrick/obsidian-amiga-workbench-31/main/screenshot.png" alt="Amiga Workbench 3.1" width="900">
+  <img src="https://raw.githubusercontent.com/anthonyfitzpatrick/obsidian-theme-inspired-by-amiga-workbench-3.1/main/screenshot.png" alt="Amiga Workbench 3.1" width="900">
 </p>
 
 <p align="center"><em>Workbench 3.1 in light mode. Visually it inherits the 1990 redesign almost unchanged; what the AGA machines added was colour depth, so the greys are tinted toward beige and salmon serves as the interactive accent.</em></p>
@@ -38,7 +38,7 @@ step inside the window frame, and more generous spacing around controls. It is t
 comfortable of the three to sit in front of for a long stretch.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/anthonyfitzpatrick/obsidian-amiga-workbench-31/main/docs/images/02-workspace-dark.png" alt="Amiga Workbench 3.1 in dark mode" width="900">
+  <img src="https://raw.githubusercontent.com/anthonyfitzpatrick/obsidian-theme-inspired-by-amiga-workbench-3.1/main/docs/images/02-workspace-dark.png" alt="Amiga Workbench 3.1 in dark mode" width="900">
 </p>
 
 <p align="center"><em>The same workspace in dark mode. The warm cast is carried through rather than dropped — the dark greys stay tinted, which is precisely what separates 3.1's dark mode from 2.04's cool neutral.</em></p>
@@ -76,7 +76,7 @@ is hidden behind a gradient or an image.
 | Control height | 2.125rem | The largest gadgets |
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/anthonyfitzpatrick/obsidian-amiga-workbench-31/main/docs/images/03-chrome-detail.png" alt="Ribbon and file explorer" width="400">
+  <img src="https://raw.githubusercontent.com/anthonyfitzpatrick/obsidian-theme-inspired-by-amiga-workbench-3.1/main/docs/images/03-chrome-detail.png" alt="Ribbon and file explorer" width="400">
 </p>
 
 <p align="center"><em>The ribbon and the file tree at depth. The connector rails and disclosure triangles are drawn in salmon, the clearest single difference from 2.04, which draws the identical structure in grey. The ribbon pictograms are original drawings, not Obsidian's default line icons.</em></p>
@@ -96,7 +96,7 @@ The theme styles the whole application, not just the editor:
 - **Settings** — including when opened in its own window
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/anthonyfitzpatrick/obsidian-amiga-workbench-31/main/docs/images/04-tab-strip.png" alt="Tab strip, breadcrumbs and toolbar" width="900">
+  <img src="https://raw.githubusercontent.com/anthonyfitzpatrick/obsidian-theme-inspired-by-amiga-workbench-3.1/main/docs/images/04-tab-strip.png" alt="Tab strip, breadcrumbs and toolbar" width="900">
 </p>
 
 <p align="center"><em>The tab strip, the breadcrumb path and the toolbar row beneath them. 3.1 keeps 2.04's 2px gadget relief and adds the later style guide's refinement — a mid-tone step inside the window frame, and more room around every control.</em></p>

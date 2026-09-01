@@ -1,10 +1,10 @@
 blank_issues_enabled: false
 contact_links:
   - name: User Guide
-    url: https://github.com/anthonyfitzpatrick/obsidian-amiga-workbench-31/blob/main/USERGUIDE.md
+    url: https://github.com/anthonyfitzpatrick/obsidian-theme-inspired-by-amiga-workbench-3.1/blob/main/USERGUIDE.md
     about: Installing, choosing light or dark, what the theme changes, accessibility, and troubleshooting.
   - name: Overview
-    url: https://github.com/anthonyfitzpatrick/obsidian-amiga-workbench-31#readme
+    url: https://github.com/anthonyfitzpatrick/obsidian-theme-inspired-by-amiga-workbench-3.1#readme
     about: What this theme is, the palette it uses, and how it differs from the other two.
   - name: Theme page
     url: https://wolf359.app/amiga-workbench-31/
