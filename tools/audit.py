@@ -51,6 +51,8 @@ undef = {u for u in used if u.startswith('--amiga')} - defined
 ok(f"{len(defined)} defined, {len(used)} referenced, none undefined") if not undef else bad(f"undefined: {sorted(undef)}")
 unused = {t for t in defined if t.startswith('--amiga')} - used - {'--amiga-personality','--amiga-icon-paper','--amiga-icon-ink','--amiga-icon-accent'}
 ok("no dead --amiga tokens") if not unused else bad(f"defined but unused: {sorted(unused)}")
+title_ink = re.search(r'\.view-header-title\s*\{[^}]*color:\s*var\(--amiga-text-title\)', css)
+ok("note title takes the title-bar colour") if title_ink else bad("view-header-title omits --amiga-text-title, so body text lands on the title bar")
 
 print("\n  [5] Light and dark")
 def palette(sel):

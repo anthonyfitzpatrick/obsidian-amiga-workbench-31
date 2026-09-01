@@ -837,6 +837,11 @@ body :is(.view-header-breadcrumb, .view-header-title-parent) {
   cursor: pointer;
 }
 body :is(.view-header-breadcrumb, .view-header-title-parent):hover { text-decoration: underline; }
+/* The final segment is the note's own name, which Obsidian colours with the body text
+   colour rather than the header's. On a mid-tone title bar that measured 3.50:1 on 2.04
+   and 3.65:1 on 3.1, below the 4.5:1 the rest of the path already meets, so the name
+   takes the title colour too. */
+body .view-header-title { color: var(--amiga-text-title); }
 body .view-header-breadcrumb-separator { margin-inline: 0.3rem; color: var(--amiga-text-title); opacity: 0.65; }
 body .view-header .view-actions { margin-left: auto; }
 /* Workbench dimmed the title bar of any window that was not in front. Obsidian marks the
