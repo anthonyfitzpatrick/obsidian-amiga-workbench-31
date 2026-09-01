@@ -122,20 +122,7 @@ on the left, values in recessed fields on the right.
 
 ### Command palette, menus and notices
 
-<!-- SCREENSHOT 07 -->
-> ### 📷 Screenshot 07 — Command palette
-> **Save as:** `docs/images/g07-command-palette.png`
->
-> **What this image must show:** The command palette open over a note, showing the recessed search field, the result rows, the selected row highlighted, and the keyboard hint gadgets on the right.
->
-> **How to capture it:**
-> 1. Press <kbd>Cmd/Ctrl</kbd>+<kbd>P</kbd> to open the command palette.
-> 2. Type a few letters so several results appear, with one highlighted.
-> 3. Capture the whole window so the palette is shown in context, then crop to roughly **900 × 700**.
-> 4. Do not press Escape before capturing — use the screenshot shortcut with the palette still open.
->
-> *Delete this block and replace it with:* `![Command palette](docs/images/g07-command-palette.png)`
-
+![Command palette](docs/images/g07-command-palette.png)
 
 The palette gets a recessed entry field over square result rows, with a solid selection
 bar and keyboard hints drawn as small raised gadgets — the way Workbench drew key labels.
